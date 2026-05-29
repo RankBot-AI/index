@@ -454,7 +454,23 @@
             }
         }
 
-        // 🗄️ PERSISTENCE MODULE MEMORY LOADER ON LOAD
+        // NO-RELOAD SESSION RECOVERY MATRIX
+        function enterWorkspaceDirectly(email, tier) {
+            IS_AUTHENTICATED = true;
+            CURRENT_TIER = tier || "Free Trial";
+            
+            // Instantly hide the lock screen gate
+            document.getElementById('auth-gate').classList.add('opacity-0', 'pointer-events-none');
+            
+            let defaultName = email.split('@')[0];
+            let activeName = localStorage.getItem('rb_name') || defaultName;
+            document.getElementById('profile-letter').innerText = activeName.charAt(0).toUpperCase();
+            document.getElementById('menu-user-name').innerText = `Hi, ${activeName}`;
+            
+            applyTierStylesAndRings(CURRENT_TIER);
+            document.getElementById('prof-email-display').value = email;
+        }
+
         window.addEventListener('load', () => {
             const savedAuth = localStorage.getItem('rb_auth');
             const savedEmail = localStorage.getItem('rb_email');
@@ -464,19 +480,7 @@
             syncAcousticVoiceList();
 
             if (savedAuth === 'true' && savedEmail) {
-                IS_AUTHENTICATED = true;
-                CURRENT_TIER = savedTier || "Free Trial";
-                document.getElementById('auth-gate').classList.add('opacity-0', 'pointer-events-none');
-                
-                let defaultName = savedEmail.split('@')[0];
-                let activeName = localStorage.getItem('rb_name') || defaultName;
-                document.getElementById('profile-letter').innerText = activeName.charAt(0).toUpperCase();
-                document.getElementById('menu-user-name').innerText = `Hi, ${activeName}`;
-                
-                applyTierStylesAndRings(CURRENT_TIER);
-                
-                // FIXED PER VERBATIM REQUEST: ALWAYS SYNC FIELD VALUE TO DIRECTLY EQUAL LOGGED IN SESSIONS
-                document.getElementById('prof-email-display').value = savedEmail;
+                enterWorkspaceDirectly(savedEmail, savedTier);
                 
                 document.getElementById('prof-name').value = localStorage.getItem('rb_name') || "";
                 document.getElementById('prof-phone').value = localStorage.getItem('rb_phone') || "";
@@ -518,6 +522,7 @@
             }
         }
 
+        // 🔐 FIXED: 100% GARUANTEED INSTANT SHOW LOGIC (NO LOCATION.RELOAD GRIP)
         function verifyEmailFormat() {
             const emailInput = document.getElementById('auth-email-input');
             if(!emailInput) return;
@@ -526,7 +531,6 @@
             if (email && email.includes("@") && email.includes(".")) {
                 const encOwner = ["ayushkumar", "in2011", "gmail.com"].join(".");
                 if(email.toLowerCase() === encOwner.replace(".gmail", "@gmail")) {
-                    IS_AUTHENTICATED = true;
                     CURRENT_TIER = "Pro Plan";
                     
                     localStorage.setItem('rb_auth', 'true');
@@ -538,7 +542,8 @@
                     localStorage.setItem('rb_loc', 'Delhi, India');
                     localStorage.setItem('rb_country_code', '+91');
                     
-                    location.reload();
+                    // Directly unlock screen instantly without refresh glitching
+                    enterWorkspaceDirectly(email, CURRENT_TIER);
                 } else {
                     localStorage.setItem('rb_email', email);
                     document.getElementById('auth-gate').classList.add('opacity-0', 'pointer-events-none');
@@ -554,11 +559,14 @@
             localStorage.setItem('rb_tier', tierName);
             localStorage.setItem('rb_auth', 'true');
             if (tierName === 'Free Trial') localStorage.setItem('rb_free_chats', '0');
-            location.reload();
+            
+            // Open screen directly straight after selecting plan parameters
+            const email = localStorage.getItem('rb_email') || "student@example.com";
+            enterWorkspaceDirectly(email, CURRENT_TIER);
+            closePlans();
         }
 
         function saveProfileData() {
-            // FIXED: STRICT CONTEXT VALIDATION MAPPED STRAIGHT ON CORE LOCALSTORAGE SESSIONS
             const masterLoginToken = localStorage.getItem('rb_email');
             localStorage.setItem('rb_name', document.getElementById('prof-name').value.trim());
             localStorage.setItem('rb_phone', document.getElementById('prof-phone').value.trim());
@@ -567,10 +575,13 @@
             localStorage.setItem('rb_class', document.getElementById('prof-class').value);
             localStorage.setItem('rb_country_code', document.getElementById('prof-country-code').value);
             
-            // Reassert correct locked variable values
-            document.getElementById('prof-email-display').value = masterLoginToken;
             alert("🚀 STUDENT PROFILE META UPDATED!");
-            location.reload();
+            closeProfileModal();
+            
+            // Sync current header variables dynamically
+            let activeName = localStorage.getItem('rb_name') || masterLoginToken.split('@')[0];
+            document.getElementById('profile-letter').innerText = activeName.charAt(0).toUpperCase();
+            document.getElementById('menu-user-name').innerText = `Hi, ${activeName}`;
         }
 
         function toggleThemeState(mode) {
@@ -658,19 +669,20 @@
             }
         }
 
-        function openProfileModal() { 
-            document.getElementById('profile-menu').classList.add('hidden'); 
-            // Ensures correct hard locking update logic displays safely
-            document.getElementById('prof-email-display').value = localStorage.getItem('rb_email') || "";
-            document.getElementById('profile-modal').classList.remove('hidden'); 
-        }
+        function openProfileModal() { document.getElementById('profile-menu').classList.add('hidden'); document.getElementById('prof-email-display').value = localStorage.getItem('rb_email') || ""; document.getElementById('profile-modal').classList.remove('hidden'); }
         function closeProfileModal() { document.getElementById('profile-modal').classList.add('hidden'); }
         function openSettingsModal() { document.getElementById('profile-menu').classList.add('hidden'); document.getElementById('settings-modal').classList.remove('hidden'); }
         function closeSettingsModal() { document.getElementById('settings-modal').classList.add('hidden'); }
         function openPlans() { document.getElementById('profile-menu').classList.add('hidden'); document.getElementById('plans-screen').classList.remove('hidden'); }
         function closePlans() { document.getElementById('plans-screen').classList.add('hidden'); }
         function toggleProfileMenu() { document.getElementById('profile-menu').classList.toggle('hidden'); }
-        function logoutSystem() { localStorage.clear(); location.reload(); }
+        
+        // Dynamic hard logout to completely flush cache states smoothly
+        function logoutSystem() { 
+            localStorage.clear(); 
+            // Only use reload on absolute intentional logout triggers
+            location.reload(); 
+        }
         function deleteAccountSystem() { if(confirm("Wipe all data cache vault permanently?")) { logoutSystem(); } }
         function validateAndUploadFile(i) { alert("Document registered safely under 100MB constraints."); }
     </script>
