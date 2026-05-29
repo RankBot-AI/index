@@ -39,7 +39,7 @@
             <div class="text-center mb-6">
                 <div class="text-4xl mb-2">🤖</div>
                 <h2 class="heading-font text-2xl font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-pink-500 bg-clip-text text-transparent">RankBot AI Matrix</h2>
-                <p class="text-xs text-gray-400 mt-1">Enter email to verification parameters</p>
+                <p class="text-xs text-gray-400 mt-1">Authorized Gateway Secure Login</p>
             </div>
 
             <div class="space-y-4">
@@ -48,7 +48,7 @@
                     <input type="email" id="auth-email-input" placeholder="student@example.com" class="w-full bg-[#0d0d11] text-gray-200 placeholder-gray-700 border border-gray-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-purple-500/50 transition-colors">
                 </div>
                 
-                <button onclick="verifyEmailFormat()" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:opacity-90 text-white font-semibold py-3 px-4 rounded-xl transition-all duration-200 shadow-lg text-sm flex items-center justify-center">
+                <button onclick="verifyEmailFormat()" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:opacity-90 text-white font-semibold py-3 px-4 rounded-xl transition-all duration-200 shadow-lg text-sm flex items-center justify-center🚀">
                     Continue to Workspace ➔
                 </button>
             </div>
@@ -66,7 +66,7 @@
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                         <label class="block text-[11px] text-gray-400 uppercase tracking-wider mb-1">Full Name</label>
-                        <input type="text" id="p-name" placeholder="Ayush Kumar" class="w-full bg-[#0d0d11] text-gray-200 border border-gray-800 rounded-xl px-4 py-2.5 focus:outline-none focus:border-purple-500/50">
+                        <input type="text" id="p-name" placeholder="Your Name" class="w-full bg-[#0d0d11] text-gray-200 border border-gray-800 rounded-xl px-4 py-2.5 focus:outline-none focus:border-purple-500/50">
                     </div>
                     <div>
                         <label class="block text-[11px] text-gray-400 uppercase tracking-wider mb-1">Phone Number</label>
@@ -77,11 +77,11 @@
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                         <label class="block text-[11px] text-gray-400 uppercase tracking-wider mb-1">Where do you live (State/City)</label>
-                        <input type="text" id="p-location" placeholder="Delhi, India" class="w-full bg-[#0d0d11] text-gray-200 border border-gray-800 rounded-xl px-4 py-2.5 focus:outline-none focus:border-purple-500/50">
+                        <input type="text" id="p-location" placeholder="e.g. Delhi, India" class="w-full bg-[#0d0d11] text-gray-200 border border-gray-800 rounded-xl px-4 py-2.5 focus:outline-none focus:border-purple-500/50">
                     </div>
                     <div>
                         <label class="block text-[11px] text-gray-400 uppercase tracking-wider mb-1">School / Coaching Institute</label>
-                        <input type="text" id="p-school" placeholder="IIT-JEE Prep Center" class="w-full bg-[#0d0d11] text-gray-200 border border-gray-800 rounded-xl px-4 py-2.5 focus:outline-none focus:border-purple-500/50">
+                        <input type="text" id="p-school" placeholder="e.g. IIT-JEE Prep Center" class="w-full bg-[#0d0d11] text-gray-200 border border-gray-800 rounded-xl px-4 py-2.5 focus:outline-none focus:border-purple-500/50">
                     </div>
                 </div>
 
@@ -189,7 +189,7 @@
                         <button id="menu-upgrade-btn" onclick="openPlans()" class="w-full text-left px-3 py-2 bg-gradient-to-r from-amber-500/20 to-orange-500/20 text-amber-300 rounded-lg border border-amber-500/20 font-semibold transition-colors mt-2">✨ Upgrade Plans</button>
                     </div>
                     <div class="border-t border-gray-800 pt-2 mt-2">
-                        <button onclick="location.reload()" class="w-full text-center text-xs text-red-400 hover:underline">Logout / Reset</button>
+                        <button onclick="logoutSystem()" class="w-full text-center text-xs text-red-400 hover:underline">Logout / Reset Session</button>
                     </div>
                 </div>
             </div>
@@ -239,11 +239,9 @@
         const HUGGINGFACE_SPACE_API = "https://rankbotai-mentor.hf.space/call/rankbot_hybrid_routing"; 
         let CURRENT_TIER = "Tier 0 (Free Trial)";
         let IS_AUTHENTICATED = false;
-        let SAVED_EMAIL = "";
-        let FREE_CHAT_COUNT = 0;
         const MAX_FREE_CHATS = 10;
 
-        // 🌌 GALAXY GENERATION ENGINE
+        // 🌌 GALAXY CORE LAYERS
         function initGalaxy() {
             const bg = document.getElementById('galaxy-bg');
             const starCount = 60;
@@ -262,68 +260,90 @@
         }
         initGalaxy();
 
-        // 🔐 AUTH STAGE 1: EMAIL STRUCTURE VALIDATOR
+        // 🗄️ PERSISTENCE ENGINE: SECURE VAULT RECOVERY INTERFACE ON LOAD
+        window.addEventListener('load', () => {
+            const savedAuth = localStorage.getItem('rb_auth');
+            const savedEmail = localStorage.getItem('rb_email');
+            const savedTier = localStorage.getItem('rb_tier');
+            
+            if (savedAuth === 'true' && savedEmail) {
+                IS_AUTHENTICATED = true;
+                CURRENT_TIER = savedTier || "Tier 0 (Free Trial)";
+                
+                document.getElementById('auth-gate').classList.add('opacity-0', 'pointer-events-none');
+                
+                document.getElementById('profile-letter').innerText = savedEmail.charAt(0).toUpperCase();
+                document.getElementById('menu-user-name').innerText = localStorage.getItem('rb_name') || savedEmail.split('@')[0];
+                document.getElementById('menu-user-tier').innerText = CURRENT_TIER;
+                
+                document.getElementById('m-phone').innerText = localStorage.getItem('rb_phone') || "Not Set (Free)";
+                document.getElementById('m-loc').innerText = localStorage.getItem('rb_loc') || "Not Set (Free)";
+                document.getElementById('m-school').innerText = localStorage.getItem('rb_school') || "Not Set (Free)";
+                
+                const notice = document.getElementById('bottom-ad-notice');
+                if (CURRENT_TIER.includes("Free Trial")) {
+                    let count = parseInt(localStorage.getItem('rb_free_chats') || '0');
+                    notice.innerText = `⚠️ Free Trial Activated: ${MAX_FREE_CHATS - count} messages remaining. Upgrade Plan for constant multi-model bandwidth.`;
+                    notice.style.color = "rgb(192 132 252 / 0.6)";
+                    notice.classList.add('animate-pulse');
+                } else {
+                    notice.innerText = `✨ VIP SECURE CONNECTION: ${CURRENT_TIER} Active. No system lag.`;
+                    notice.style.color = "#34d399";
+                    notice.classList.remove('animate-pulse');
+                    document.getElementById('menu-upgrade-btn').style.display = "none";
+                }
+            }
+        });
+
+        // 🔐 AUTH VALIDATION STEP 1: EMAIL FORMAT & SILENT BYPASS FILTER
         function verifyEmailFormat() {
             const emailInput = document.getElementById('auth-email-input');
             const email = emailInput.value.trim();
             
             if (email && email.includes("@") && email.includes(".")) {
-                SAVED_EMAIL = email;
                 
-                // Secure Silent Verification Bypass Matching
                 const encOwner = ["ayushkumar", "in2011", "gmail.com"].join(".");
                 if(email.toLowerCase() === encOwner.replace(".gmail", "@gmail")) {
-                    // SILENT OWNER AUTO GRANTED ENTRY BYPASS
+                    // SILENT VIP GRANTED OVERRIDE & PERSISTENT LOCAL LOCKDOWN
                     IS_AUTHENTICATED = true;
-                    document.getElementById('auth-gate').classList.add('opacity-0', 'pointer-events-none');
                     CURRENT_TIER = "Tier 3 (Pro VIP Plan)";
-                    document.getElementById('menu-user-tier').innerText = "Tier 3 (Pro VIP Plan)";
                     
-                    document.getElementById('m-phone').innerText = "+91 Master Access";
-                    document.getElementById('m-loc').innerText = "Admin Matrix Core";
-                    document.getElementById('m-school').innerText = "RankBot Headquarters";
+                    localStorage.setItem('rb_auth', 'true');
+                    localStorage.setItem('rb_email', email);
+                    localStorage.setItem('rb_tier', CURRENT_TIER);
+                    localStorage.setItem('rb_name', 'Student Matrix Core');
+                    localStorage.setItem('rb_phone', '+91 Master Access');
+                    localStorage.setItem('rb_loc', 'Admin Matrix Core');
+                    localStorage.setItem('rb_school', 'RankBot Headquarters');
                     
-                    const notice = document.getElementById('bottom-ad-notice');
-                    notice.innerText = "✨ VIP SECURE CONNECTION: Tier 3 (Pro VIP Plan) Active. No system lag.";
-                    notice.style.color = "#34d399";
-                    notice.classList.remove('animate-pulse');
-                    document.getElementById('menu-upgrade-btn').style.display = "none";
+                    location.reload();
                 } else {
-                    // Open Premium Plan Selector for ordinary students
+                    localStorage.setItem('rb_email', email);
                     document.getElementById('auth-gate').classList.add('opacity-0', 'pointer-events-none');
                     document.getElementById('plans-screen').classList.remove('hidden');
                 }
-                
-                document.getElementById('profile-letter').innerText = email.charAt(0).toUpperCase();
-                document.getElementById('menu-user-name').innerText = email.split('@')[0];
             } else {
                 alert("❌ INVALID EMAIL! Please enter a valid student email matrix format.");
             }
         }
 
-        // 💎 TIER SELECTOR MANAGEMENT WITH PROFILE LOCK TRIGGER
+        // 💎 PREMIUM SUBSCRIPTION TIER CONTROL LAYER
         function selectTier(tierName, requiresProfile) {
             CURRENT_TIER = tierName;
-            document.getElementById('menu-user-tier').innerText = tierName;
+            localStorage.setItem('rb_tier', tierName);
             document.getElementById('plans-screen').classList.add('hidden');
 
-            const notice = document.getElementById('bottom-ad-notice');
-            
             if (!requiresProfile) {
-                // Free Trial Path - Open Chat directly without form verification
                 IS_AUTHENTICATED = true;
-                notice.innerText = `⚠️ Free Trial Activated: ${MAX_FREE_CHATS - FREE_CHAT_COUNT} messages remaining. Upgrade Plan for constant multi-model bandwidth.`;
-                notice.style.color = "rgb(192 132 252 / 0.6)";
-                notice.classList.add('animate-pulse');
+                localStorage.setItem('rb_auth', 'true');
+                localStorage.setItem('rb_free_chats', '0');
+                location.reload();
             } else {
-                // Premium Path - Mandatory Form Trigger Lock
                 document.getElementById('profile-gate').classList.remove('hidden');
-                notice.innerText = `✨ VIP SECURE CONNECTION: ${tierName} Pending Activation.`;
-                notice.style.color = "#fbbf24";
             }
         }
 
-        // 📋 SUBMIT MASTER PROFILE VERIFICATION METHOD
+        // 📋 MASTER STUDENT RECOGNITION REGISTRATION SUBMIT
         function submitMasterProfile() {
             const name = document.getElementById('p-name').value.trim();
             const phone = document.getElementById('p-phone').value.trim();
@@ -331,81 +351,28 @@
             const school = document.getElementById('p-school').value.trim();
 
             if (name && phone && loc && school) {
-                // Fully Validated Local Form Integrity Parameter Check
                 IS_AUTHENTICATED = true;
-                document.getElementById('profile-gate').classList.add('hidden');
                 
-                // Inject updated metadata securely inside settings component panel
-                document.getElementById('menu-user-name').innerText = name;
-                document.getElementById('m-phone').innerText = phone;
-                document.getElementById('m-loc').innerText = loc;
-                document.getElementById('m-school').innerText = school;
-
-                const notice = document.getElementById('bottom-ad-notice');
-                notice.innerText = `✨ VIP SECURE CONNECTION: ${CURRENT_TIER} Active. No system lag.`;
-                notice.style.color = "#34d399";
-                notice.classList.remove('animate-pulse');
+                localStorage.setItem('rb_auth', 'true');
+                localStorage.setItem('rb_name', name);
+                localStorage.setItem('rb_phone', phone);
+                localStorage.setItem('rb_loc', loc);
+                localStorage.setItem('rb_school', school);
 
                 alert("🚀 PROFILE ACTIVATED SUCCESSFULLY!\nYour secure premium workspace channel is fully active now.");
+                location.reload();
             } else {
                 alert("❌ INCOMPLETE PROFILE!\nAll parameters (Name, Phone, Location, Institute) are strictly mandatory to activate Premium Workspace Tiers.");
             }
         }
 
-        function bypassToPlans() {
-            alert("Authentication credentials required to continue framework synchronization.");
-        }
-
-        function openPlans() { 
-            if(document.getElementById('menu-user-tier').innerText.includes("Master Admin") || !document.getElementById('menu-upgrade-btn').style.display === "none") {
-                alert("Master Premium bandwidth status remains absolute.");
-                return;
-            }
-            document.getElementById('plans-screen').classList.remove('hidden'); 
-        }
-        
-        function closePlans() { document.getElementById('plans-screen').classList.add('hidden'); }
-        function toggleProfileMenu() { document.getElementById('profile-menu').classList.toggle('hidden'); }
-
-        function validateAndUploadFile(input) {
-            const file = input.files[0];
-            const statusLabel = document.getElementById('file-status');
-            if (!file) return;
-
-            const maxSizeBytes = 100 * 1024 * 1024; 
-            if (file.size > maxSizeBytes) {
-                alert("❌ FILE REJECTED! Size exceeds 100MB security filter parameter.");
-                input.value = "";
-                statusLabel.innerText = "";
-            } else {
-                statusLabel.innerText = `📎 ${file.name} (${(file.size / (1024*1024)).toFixed(1)} MB) ready.`;
-                statusLabel.style.color = "#a78bfa";
-            }
-        }
-
-        function triggerVoiceInput() {
-            if ('webkitSpeechRecognition' in window || 'speechRecognition' in window) {
-                const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-                const recognition = new SpeechRecognition();
-                recognition.lang = 'en-US';
-                recognition.start();
-                recognition.onresult = function(event) {
-                    document.getElementById('student-query').value = event.results[0][0].transcript;
-                };
-            } else {
-                alert("Please use your keyboard's built-in microphone button!");
-            }
-        }
-
-        // ➔ CORE TRANSMISSION PROTOCOL TO HYBRID ENGINE
+        // ➔ TRANSMIT CONSOLE BUFFER STREAM DATA TO SPACES CORE 
         async function sendQueryToBot() {
-            if(!IS_AUTHENTICATED) {
-                alert("Please complete validation processes first.");
-                return;
-            }
+            if(!IS_AUTHENTICATED) return;
 
-            // Strict Free Trial Chat Count Validation Gate Check
-            if (CURRENT_TIER.includes("Free Trial") && FREE_CHAT_COUNT >= MAX_FREE_CHATS) {
+            let currentFreeChats = parseInt(localStorage.getItem('rb_free_chats') || '0');
+
+            if (CURRENT_TIER.includes("Free Trial") && currentFreeChats >= MAX_FREE_CHATS) {
                 alert("🛑 FREE TRIAL LIMIT EXCEEDED!\nYou have consumed your 10 complimentary Free queries. Please open Profile menu and upgrade to Premium Plans to unlock endless answers!");
                 return;
             }
@@ -434,11 +401,11 @@
             fileStatus.innerText = "";
             streamContainer.scrollTop = streamContainer.scrollHeight;
 
-            // Increment count and update notice if Free Trial profile active
             if (CURRENT_TIER.includes("Free Trial")) {
-                FREE_CHAT_COUNT++;
+                currentFreeChats++;
+                localStorage.setItem('rb_free_chats', currentFreeChats.toString());
                 const notice = document.getElementById('bottom-ad-notice');
-                notice.innerText = `⚠️ Free Trial Activated: ${MAX_FREE_CHATS - FREE_CHAT_COUNT} messages remaining. Upgrade Plan for constant multi-model bandwidth.`;
+                notice.innerText = `⚠️ Free Trial Activated: ${MAX_FREE_CHATS - currentFreeChats} messages remaining. Upgrade Plan for constant multi-model bandwidth.`;
             }
 
             const botMessageId = "rankbot-msg-" + Date.now();
@@ -479,12 +446,34 @@
                     }
                 };
 
-                eventSource.onerror = function() {
-                    eventSource.close();
-                };
+                eventSource.onerror = function() { eventSource.close(); };
 
             } catch (error) {
                 document.getElementById(`${botMessageId}-text`).innerText = "RankBot core data stream synchronizing. Please try again in 5 seconds.";
+            }
+        }
+
+        function logoutSystem() {
+            localStorage.clear();
+            location.reload();
+        }
+        function bypassToPlans() { alert("Authentication credentials required to initialize core session."); }
+        function openPlans() { if(!document.getElementById('menu-upgrade-btn').style.display) { document.getElementById('plans-screen').classList.remove('hidden'); } }
+        function closePlans() { document.getElementById('plans-screen').classList.add('hidden'); }
+        function toggleProfileMenu() { document.getElementById('profile-menu').classList.toggle('hidden'); }
+
+        function validateAndUploadFile(input) {
+            const file = input.files[0];
+            const statusLabel = document.getElementById('file-status');
+            if (!file) return;
+            const maxSizeBytes = 100 * 1024 * 1024; 
+            if (file.size > maxSizeBytes) {
+                alert("❌ FILE REJECTED! Size exceeds 100MB security threshold parameters.");
+                input.value = "";
+                statusLabel.innerText = "";
+            } else {
+                statusLabel.innerText = `📎 ${file.name} (${(file.size / (1024*1024)).toFixed(1)} MB) ready.`;
+                statusLabel.style.color = "#a78bfa";
             }
         }
     </script>
