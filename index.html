@@ -50,7 +50,7 @@
     <div id="galaxy-bg"></div>
 
     <div id="auth-gate" class="fixed inset-0 z-50 flex items-center justify-center blur-bg p-4 transition-all duration-500">
-        <div class="glass-panel w-full max-w-md rounded-3xl p-8 shadow-2xl" onsubmit="return false;">
+        <div class="glass-panel w-full max-w-md rounded-3xl p-8 shadow-2xl">
             <div class="text-center mb-6">
                 <div class="text-4xl mb-2">🤖</div>
                 <h2 class="heading-font text-2xl font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-pink-500 bg-clip-text text-transparent">RankBot AI Matrix</h2>
@@ -63,15 +63,15 @@
                     <input type="email" id="auth-email-input" placeholder="student@example.com" class="w-full bg-[#0d0d11] text-gray-200 placeholder-gray-700 border border-gray-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-purple-500/50 transition-colors">
                 </div>
                 
-                <button type="button" onclick="verifyEmailFormat(event)" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:opacity-90 text-white font-semibold py-3 px-4 rounded-xl transition-all duration-200 shadow-lg text-sm flex items-center justify-center">
+                <div onclick="verifyEmailFormat()" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:opacity-90 text-white font-semibold py-3 px-4 rounded-xl transition-all duration-200 shadow-lg text-sm flex items-center justify-center cursor-pointer text-center select-none">
                     Continue to Workspace
-                </button>
+                </div>
             </div>
         </div>
     </div>
 
     <div id="profile-modal" class="fixed inset-0 z-50 flex items-center justify-center blur-bg p-4 hidden transition-all duration-300 overflow-y-auto">
-        <div class="glass-panel w-full max-w-md rounded-3xl p-6 shadow-2xl relative my-auto" onsubmit="return false;">
+        <div class="glass-panel w-full max-w-md rounded-3xl p-6 shadow-2xl relative my-auto">
             <button onclick="closeProfileModal()" class="absolute top-4 right-4 text-gray-500 hover:text-white">✕</button>
             <h3 class="heading-font text-xl font-bold text-white mb-4 border-b border-gray-800 pb-2 flex items-center gap-2">👤 Complete Student Profile</h3>
             
@@ -126,10 +126,10 @@
                 </div>
 
                 <div class="pt-4 border-t border-gray-800 space-y-2">
-                    <button type="button" onclick="saveProfileData()" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold py-2.5 rounded-xl transition-all">Save Profile Matrix</button>
-                    <button type="button" onclick="alert('Add account framework initialized.')" class="w-full bg-zinc-800 hover:bg-zinc-700 text-gray-300 py-2 rounded-xl font-medium text-[11px] transition-colors">➕ Add Account</button>
-                    <button type="button" onclick="logoutSystem()" class="w-full bg-zinc-900 hover:bg-zinc-800 text-red-400 py-2 rounded-xl text-[11px] transition-colors">Logout Session</button>
-                    <button type="button" onclick="deleteAccountSystem()" class="w-full text-center text-[10px] text-gray-600 hover:text-red-500 underline block pt-1">Delete Account Permanently</button>
+                    <div onclick="saveProfileData()" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold py-2.5 rounded-xl transition-all cursor-pointer text-center select-none">Save Profile Matrix</div>
+                    <div onclick="alert('Add account framework initialized.')" class="w-full bg-zinc-800 hover:bg-zinc-700 text-gray-300 py-2 rounded-xl font-medium text-[11px] transition-colors cursor-pointer text-center select-none">➕ Add Account</div>
+                    <div onclick="logoutSystem()" class="w-full bg-zinc-900 hover:bg-zinc-800 text-red-400 py-2 rounded-xl text-[11px] transition-colors cursor-pointer text-center select-none">Logout Session</div>
+                    <div onclick="deleteAccountSystem()" class="w-full text-center text-[10px] text-gray-600 hover:text-red-500 underline block pt-1 cursor-pointer select-none">Delete Account Permanently</div>
                 </div>
             </div>
         </div>
@@ -140,7 +140,7 @@
             <div class="text-center mb-5">
                 <h2 class="heading-font text-2xl font-bold text-white">Choose Your Upgrade Path</h2>
                 <p class="text-gray-400 text-xs mt-1">Unlock unrestricted RankBot AI bandwidth streams</p>
-                <button onclick="closePlans()" class="mt-3 bg-[#1e1f24] text-[10px] text-gray-300 px-4 py-1.5 rounded-full border border-gray-700 hover:text-white">Go back to Chat</button>
+                <button onclick="closePlans()" class="mt-3 bg-[#1e1f24] text-[10px] text-gray-300 px-4 py-1.5 rounded-full border border-gray-700 hover:text-white select-none">Go back to Chat</button>
             </div>
             
             <div class="space-y-4 px-1 pb-4">
@@ -150,7 +150,7 @@
                             <h3 class="font-bold text-lg text-blue-400">Free Trial</h3>
                             <p class="text-2xl font-bold mt-1 text-white">₹0 <span class="text-xs text-gray-500">/ 3 Days</span></p>
                         </div>
-                        <button onclick="selectTier('Free Trial')" class="bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold px-5 py-2 rounded-xl transition-all">Activate</button>
+                        <div onclick="selectTier('Free Trial')" class="bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold px-5 py-2 rounded-xl transition-all cursor-pointer select-none">Activate</div>
                     </div>
                     <ul class="text-xs text-gray-400 mt-3 space-y-2 border-t border-gray-800/60 pt-3 font-medium">
                         <li class="text-blue-400/90 font-bold">• Limited to 10 RankBot AI Matrix Queries Total</li>
@@ -166,7 +166,7 @@
                             <h3 class="font-bold text-lg text-pink-400">Lite Plan</h3>
                             <p class="text-2xl font-bold mt-1 text-white">₹199 <span class="text-xs text-gray-500">/ Month</span></p>
                         </div>
-                        <button onclick="selectTier('Lite Plan')" class="bg-pink-600 hover:bg-pink-700 text-white text-xs font-bold px-5 py-2 rounded-xl transition-all">Select Lite</button>
+                        <div onclick="selectTier('Lite Plan')" class="bg-pink-600 hover:bg-pink-700 text-white text-xs font-bold px-5 py-2 rounded-xl transition-all cursor-pointer select-none">Select Lite</div>
                     </div>
                     <ul class="text-xs text-gray-400 mt-3 space-y-2 border-t border-gray-800/60 pt-3 font-medium">
                         <li class="text-pink-400/90 font-bold">• 50 Ad-Free RankBot AI Priority Messages Capacity</li>
@@ -183,7 +183,7 @@
                             <h3 class="font-bold text-lg text-purple-400">Plus Plan</h3>
                             <p class="text-2xl font-bold mt-1 text-white">₹499 <span class="text-xs text-gray-500">/ Month</span></p>
                         </div>
-                        <button onclick="selectTier('Plus Plan')" class="bg-purple-600 hover:bg-purple-700 text-white text-xs font-bold px-5 py-2 rounded-xl transition-all">Select Plus</button>
+                        <div onclick="selectTier('Plus Plan')" class="bg-purple-600 hover:bg-purple-700 text-white text-xs font-bold px-5 py-2 rounded-xl transition-all cursor-pointer select-none">Select Plus</div>
                     </div>
                     <ul class="text-xs text-gray-400 mt-3 space-y-2 border-t border-gray-800/60 pt-3 font-medium">
                         <li class="text-purple-400/90 font-bold">• 150 Ad-Free High Priority RankBot AI Allocation Streams</li>
@@ -200,7 +200,7 @@
                             <h3 class="font-bold text-lg bg-gradient-to-r from-blue-400 via-pink-400 to-purple-400 bg-clip-text text-transparent">Pro Plan</h3>
                             <p class="text-2xl font-bold mt-1 text-white">₹699 <span class="text-xs text-gray-500">/ Month</span></p>
                         </div>
-                        <button onclick="selectTier('Pro Plan')" class="bg-gradient-to-r from-blue-500 via-pink-500 to-purple-500 text-white text-xs font-bold px-5 py-2 rounded-xl hover:opacity-90 transition-all">Unlock VIP</button>
+                        <div onclick="selectTier('Pro Plan')" class="bg-gradient-to-r from-blue-500 via-pink-500 to-purple-500 text-white text-xs font-bold px-5 py-2 rounded-xl hover:opacity-90 transition-all cursor-pointer select-none">Unlock VIP</div>
                     </div>
                     <ul class="text-xs text-gray-300 mt-3 space-y-2 border-t border-gray-800/60 pt-3 font-medium">
                         <li class="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent font-bold">• 100% Unlimited Absolute RankBot AI Answers capacity</li>
@@ -235,16 +235,16 @@
                             <select id="set-voice" class="w-full bg-[#050508] border border-gray-800 rounded-xl p-2 text-gray-300 focus:outline-none"></select>
                         </div>
                     </div>
-                    <button onclick="testActiveVoiceOutputSound()" class="w-full bg-purple-600/20 text-purple-300 border border-purple-500/30 hover:bg-purple-600/40 font-bold py-2 rounded-xl flex items-center justify-center gap-2 transition-all">
+                    <div onclick="testActiveVoiceOutputSound()" class="w-full bg-purple-600/20 text-purple-300 border border-purple-500/30 hover:bg-purple-600/40 font-bold py-2 rounded-xl flex items-center justify-center gap-2 transition-all cursor-pointer text-center select-none">
                         🔊 Play Active Audio Track Sample (Test)
-                    </button>
+                    </div>
                 </div>
 
                 <div class="bg-[#0c0c12] p-3 rounded-xl border border-gray-800 space-y-2">
                     <p class="font-bold text-pink-400 tracking-wider uppercase text-[9px]">🌓 Workspace Theme Module</p>
-                    <div class="grid grid-cols-2 gap-2">
-                        <button onclick="toggleThemeState('dark')" id="theme-dark-btn" class="py-2 rounded-xl font-bold border border-purple-600 bg-purple-600/20 text-white">Dark Mode</button>
-                        <button onclick="toggleThemeState('light')" id="theme-light-btn" class="py-2 rounded-xl font-bold border border-gray-800 bg-transparent text-gray-400">Light Mode</button>
+                    <div class="grid grid-cols-2 gap-2 select-none">
+                        <div onclick="toggleThemeState('dark')" id="theme-dark-btn" class="py-2 rounded-xl font-bold border border-purple-600 bg-purple-600/20 text-white text-center cursor-pointer">Dark Mode</div>
+                        <div onclick="toggleThemeState('light')" id="theme-light-btn" class="py-2 rounded-xl font-bold border border-gray-800 bg-transparent text-gray-400 text-center cursor-pointer">Light Mode</div>
                     </div>
                 </div>
 
@@ -281,13 +281,13 @@
                                 <option value="deep">Detailed Step-By-Step Mathematical Breakdown</option>
                             </select>
                         </div>
-                        <div class="grid grid-cols-2 gap-2 pt-1">
-                            <button onclick="localStorage.removeItem('rb_free_chats'); alert('Cache Matrix Emptied successfully.');" class="bg-zinc-900 border border-gray-800 text-gray-300 font-medium py-1.5 rounded-lg hover:text-white transition-colors text-[10px]">
+                        <div class="grid grid-cols-2 gap-2 pt-1 select-none">
+                            <div onclick="localStorage.removeItem('rb_free_chats'); alert('Cache Matrix Emptied successfully.');" class="bg-zinc-900 border border-gray-800 text-gray-300 font-medium py-1.5 rounded-lg hover:text-white transition-colors text-[10px] text-center cursor-pointer">
                                 🗑️ Clear Cache Memory
-                            </button>
-                            <button onclick="alert('Bandwidth Multiplier Switched.');" class="bg-zinc-900 border border-gray-800 text-gray-300 font-medium py-1.5 rounded-lg hover:text-white transition-colors text-[10px]">
+                            </div>
+                            <div onclick="alert('Bandwidth Multiplier Switched.');" class="bg-zinc-900 border border-gray-800 text-gray-300 font-medium py-1.5 rounded-lg hover:text-white transition-colors text-[10px] text-center cursor-pointer">
                                 ⚡ Optimize Bandwidth Node
-                            </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -306,10 +306,10 @@
                     </div>
                 </div>
 
-                <div class="pt-3 border-t border-gray-800 space-y-2">
-                    <button type="button" onclick="saveSettingsForm()" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold py-2.5 rounded-xl transition-all shadow-md">Save Config Parameters</button>
-                    <button type="button" onclick="logoutSystem()" class="w-full bg-zinc-900 hover:bg-zinc-800 text-red-400 py-2 rounded-xl text-[11px] font-medium transition-colors">Logout Session</button>
-                    <button type="button" onclick="deleteAccountSystem()" class="w-full text-center text-[10px] text-gray-600 hover:underline block pt-1">Delete Account Permanently</button>
+                <div class="pt-3 border-t border-gray-800 space-y-2 select-none">
+                    <div onclick="saveSettingsForm()" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold py-2.5 rounded-xl transition-all shadow-md text-center cursor-pointer">Save Config Parameters</div>
+                    <div onclick="logoutSystem()" class="w-full bg-zinc-900 hover:bg-zinc-800 text-red-400 py-2 rounded-xl text-[11px] font-medium transition-colors text-center cursor-pointer">Logout Session</div>
+                    <div onclick="deleteAccountSystem()" class="w-full text-center text-[10px] text-gray-600 hover:underline block pt-1 cursor-pointer">Delete Account Permanently</div>
                 </div>
             </div>
         </div>
@@ -331,15 +331,15 @@
                     <div id="profile-letter" class="w-full h-full bg-[#0d0d11] rounded-full flex items-center justify-center font-bold text-gray-200 text-base heading-font">U</div>
                 </div>
                 
-                <div id="profile-menu" class="absolute top-14 right-0 w-64 glass-panel rounded-2xl p-4 shadow-2xl hidden z-30">
+                <div id="profile-menu" class="absolute top-14 right-0 w-64 glass-panel rounded-2xl p-4 shadow-2xl hidden z-30 select-none">
                     <div class="text-center pb-3 border-b border-gray-800">
                         <p id="menu-user-name" class="font-bold text-sm text-white">Hi, User</p>
                         <span id="menu-user-tier" class="text-[10px] px-2 py-0.5 rounded-full font-bold inline-block mt-1">Free Trial</span>
                     </div>
                     <div class="py-2 space-y-1 text-xs text-gray-300">
-                        <button onclick="openProfileModal()" class="w-full text-left px-3 py-2 hover:bg-zinc-800/50 rounded-lg transition-colors flex items-center gap-2.5">👤 Profile</button>
-                        <button onclick="openPlans()" class="w-full text-left px-3 py-2 hover:bg-zinc-800/50 rounded-lg transition-colors flex items-center gap-2.5">💎 Plans</button>
-                        <button onclick="openSettingsModal()" class="w-full text-left px-3 py-2 hover:bg-zinc-800/50 rounded-lg transition-colors flex items-center gap-2.5">⚙️ Settings</button>
+                        <div onclick="openProfileModal()" class="w-full text-left px-3 py-2 hover:bg-zinc-800/50 rounded-lg transition-colors flex items-center gap-2.5 cursor-pointer">👤 Profile</div>
+                        <div onclick="openPlans()" class="w-full text-left px-3 py-2 hover:bg-zinc-800/50 rounded-lg transition-colors flex items-center gap-2.5 cursor-pointer">💎 Plans</div>
+                        <div onclick="openSettingsModal()" class="w-full text-left px-3 py-2 hover:bg-zinc-800/50 rounded-lg transition-colors flex items-center gap-2.5 cursor-pointer">⚙️ Settings</div>
                     </div>
                 </div>
             </div>
@@ -369,13 +369,13 @@
                         <span id="file-status" class="text-[10px] text-gray-500 font-medium"></span>
                     </div>
                     
-                    <div class="flex items-center gap-2">
-                        <button onclick="triggerVoiceInput()" class="p-2.5 hover:bg-zinc-800/60 rounded-xl text-gray-400 hover:text-white transition-colors" title="Voice Search System">
+                    <div class="flex items-center gap-2 select-none">
+                        <div onclick="triggerVoiceInput()" class="p-2.5 hover:bg-zinc-800/60 rounded-xl text-gray-400 hover:text-white transition-colors cursor-pointer" title="Voice Search System">
                             🎙️
-                        </button>
-                        <button onclick="sendQueryToBot()" class="p-2.5 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-xl hover:opacity-90 transition-all font-bold text-xs flex items-center justify-center shadow-md">
+                        </div>
+                        <div onclick="sendQueryToBot()" class="p-2.5 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-xl hover:opacity-90 transition-all font-bold text-xs flex items-center justify-center shadow-md cursor-pointer">
                             ➔
-                        </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -390,26 +390,6 @@
         let CURRENT_TIER = "Free Trial";
         let IS_AUTHENTICATED = false;
         const MAX_FREE_CHATS = 10;
-
-        function initGalaxy() {
-            const bg = document.getElementById('galaxy-bg');
-            if(!bg) return;
-            bg.innerHTML = "";
-            const starCount = 60;
-            for (let i = 0; i < starCount; i++) {
-                const star = document.createElement('div');
-                star.className = 'star';
-                star.style.left = `${Math.random() * 100}%`;
-                star.style.top = `${Math.random() * 100}%`;
-                const size = Math.random() * 2 + 1;
-                star.style.width = `${size}px`;
-                star.style.height = `${size}px`;
-                star.style.animationDelay = `${Math.random() * 8}s`;
-                star.style.animationDuration = `${Math.random() * 6 + 6}s`;
-                bg.appendChild(star);
-            }
-        }
-        initGalaxy();
 
         function syncAcousticVoiceList() {
             const gender = document.getElementById('set-voice-gender').value;
@@ -436,7 +416,6 @@
                 `;
             }
         }
-        syncAcousticVoiceList();
 
         function testActiveVoiceOutputSound() {
             const selectedVoice = document.getElementById('set-voice').value;
@@ -457,7 +436,7 @@
             const savedEmail = localStorage.getItem('rb_email');
             const savedTier = localStorage.getItem('rb_tier');
             
-            document.getElementById('telemetry-session').innerText = "RB-" + Math.random().toString(36).substring(3, 8).toUpperCase();
+            syncAcousticVoiceList();
 
             if (savedAuth === 'true' && savedEmail) {
                 IS_AUTHENTICATED = true;
@@ -480,6 +459,14 @@
 
                 applyFontStyles();
                 if(localStorage.getItem('rb_theme') === 'light') toggleThemeState('light');
+                if(localStorage.getItem('rb_set_gender')) {
+                    document.getElementById('set-voice-gender').value = localStorage.getItem('rb_set_gender');
+                    syncAcousticVoiceList();
+                    document.getElementById('set-voice').value = localStorage.getItem('rb_set_voice');
+                }
+                if(localStorage.getItem('rb_ai_len')) {
+                    document.getElementById('set-ai-len').value = localStorage.getItem('rb_ai_len');
+                }
             }
         });
 
@@ -494,29 +481,27 @@
                 badge.innerText = "Free Trial Active"; badge.classList.add('bg-blue-500/20', 'text-blue-400'); ring.classList.add('border-blue-500');
                 let count = parseInt(localStorage.getItem('rb_free_chats') || '0');
                 notice.innerText = `⚠️ Free Trial Active: ${MAX_FREE_CHATS - count} messages remaining. Upgrade to Premium.`;
+                notice.style.color = "#60a5fa";
             } else if (tier === "Lite Plan") {
                 badge.innerText = "Lite Plan Active"; badge.classList.add('bg-pink-500/20', 'text-pink-400'); ring.classList.add('border-pink-500');
                 notice.innerText = "✨ VIP SECURE CONNECTION: Lite Plan Active.";
+                notice.style.color = "#f472b6";
             } else if (tier === "Plus Plan") {
                 badge.innerText = "Plus Plan Active"; badge.classList.add('bg-purple-500/20', 'text-purple-400'); ring.classList.add('border-purple-500');
                 notice.innerText = "✨ VIP SECURE CONNECTION: Plus Plan Active.";
+                notice.style.color = "#c084fc";
             } else if (tier === "Pro Plan") {
                 badge.innerText = "Pro Plan Active"; badge.classList.add('bg-gradient-to-r', 'from-blue-500', 'via-pink-500', 'to-purple-500', 'text-white'); ring.classList.add('pro-mesh-active');
-                notice.innerText = "✨ VIP SECURE OMNISCIENT CORE CONNECTION.";
+                notice.innerText = "✨ VIP SECURE OMNISCIENT CORE CONNECTION: Pro Plan Active.";
                 notice.style.color = "#34d399";
-                document.getElementById('menu-upgrade-btn').style.display = "none";
+                notice.classList.remove('animate-pulse');
             }
         }
 
-        // 🔐 FIXED SECURITY BYPASS INTERFACE (WITH ABSOLUTE REFRESH BLOCK)
-        function verifyEmailFormat(event) {
-            if (event) {
-                event.preventDefault(); // HARD CODES DEFIANCE TO BROWSER RELOAD
-                event.stopPropagation();
-            }
-            
+        // 🔐 THE ABSOLUTE NO-REFRESH VERIFIER ARCHITECTURE
+        function verifyEmailFormat() {
             const emailInput = document.getElementById('auth-email-input');
-            if(!emailInput) return false;
+            if(!emailInput) return;
             const email = emailInput.value.trim();
             
             if (email && email.includes("@") && email.includes(".")) {
@@ -534,8 +519,7 @@
                     localStorage.setItem('rb_loc', 'Delhi, India');
                     localStorage.setItem('rb_country_code', '+91');
                     
-                    // Controlled redirection reload execution
-                    setTimeout(() => { location.reload(); }, 100);
+                    location.reload();
                 } else {
                     localStorage.setItem('rb_email', email);
                     document.getElementById('auth-gate').classList.add('opacity-0', 'pointer-events-none');
@@ -544,7 +528,6 @@
             } else {
                 alert("❌ INVALID EMAIL MATRIX FORMAT.");
             }
-            return false;
         }
 
         function selectTier(tierName) {
@@ -572,12 +555,12 @@
             const lightBtn = document.getElementById('theme-light-btn');
             if (mode === 'light') {
                 body.classList.add('light-mode-active'); localStorage.setItem('rb_theme', 'light');
-                lightBtn.className = "py-2 rounded-xl font-bold border border-purple-600 bg-purple-600/20 text-purple-600";
-                darkBtn.className = "py-2 rounded-xl font-bold border border-gray-300 bg-transparent text-gray-400";
+                lightBtn.className = "py-2 rounded-xl font-bold border border-purple-600 bg-purple-600/20 text-purple-600 text-center cursor-pointer";
+                darkBtn.className = "py-2 rounded-xl font-bold border border-gray-300 bg-transparent text-gray-400 text-center cursor-pointer";
             } else {
                 body.classList.remove('light-mode-active'); localStorage.setItem('rb_theme', 'dark');
-                darkBtn.className = "py-2 rounded-xl font-bold border border-purple-600 bg-purple-600/20 text-white";
-                lightBtn.className = "py-2 rounded-xl font-bold border border-gray-800 bg-transparent text-gray-400";
+                darkBtn.className = "py-2 rounded-xl font-bold border border-purple-600 bg-purple-600/20 text-white text-center cursor-pointer";
+                lightBtn.className = "py-2 rounded-xl font-bold border border-gray-800 bg-transparent text-gray-400 text-center cursor-pointer";
                 initGalaxy();
             }
         }
