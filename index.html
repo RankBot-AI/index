@@ -225,7 +225,7 @@
         }
         initGalaxy();
 
-        // 🔐 AUTH GATE WITH MASTER ADMIN BYPASS OVERRIDE
+        // 🔐 AUTH GATE WITH SILENT VERIFICATION BYPASS
         function triggerVerification() {
             const promptEmail = prompt("Enter your official email:");
             if (promptEmail && promptEmail.includes("@")) {
@@ -233,21 +233,19 @@
                 IS_AUTHENTICATED = true;
                 document.getElementById('auth-gate').classList.add('opacity-0', 'pointer-events-none');
                 
-                // Securely matching the owner's profile string reconstruction
+                // Securely matching the owner's profile string
                 const encOwner = ["ayushkumar", "in2011", "gmail.com"].join(".");
                 if(promptEmail.trim().toLowerCase() === encOwner.replace(".gmail", "@gmail")) {
-                    // MASTER OWNER GRANTED OVERRIDE MATRIX
+                    // SILENT OWNER UNLOCKED OVERRIDE
                     CURRENT_TIER = "Tier 3 (Pro VIP Plan)";
-                    document.getElementById('menu-user-tier').innerText = "👑 Master Admin (VIP)";
-                    document.getElementById('menu-user-tier').className = "text-[10px] bg-gradient-to-r from-amber-500 to-orange-500 text-black px-2 py-0.5 rounded-full font-bold";
+                    document.getElementById('menu-user-tier').innerText = "Tier 3 (Pro VIP Plan)";
                     
                     const notice = document.getElementById('bottom-ad-notice');
-                    notice.innerText = "✨ Welcome Back, Master Admin. Elite Unrestricted Omniscient Bandwidth Active.";
+                    notice.innerText = "✨ VIP SECURE CONNECTION: Tier 3 (Pro VIP Plan) Active. No system lag.";
                     notice.style.color = "#34d399";
                     notice.classList.remove('animate-pulse');
                     
                     document.getElementById('menu-upgrade-btn').style.display = "none";
-                    alert("⚡ SECURITY HANDSHAKE SUCCESSFUL!\nWelcome back, Master Admin. Your RankBot Pro VIP Dev-Matrix is fully active without limits.");
                 } else {
                     // Standard Student Gate Flow
                     alert("🔒 VERIFICATION DISPATCHED!\nA customized link has been sent to your email parameters.");
@@ -276,8 +274,8 @@
         }
 
         function selectTier(tierName) {
-            if(document.getElementById('menu-user-tier').innerText.includes("Master Admin")) {
-                alert("Master Admin access remains absolute on the VIP Core Engine.");
+            if(document.getElementById('bottom-ad-notice').innerText.includes("VIP SECURE CONNECTION") && !document.getElementById('menu-upgrade-btn').style.display) {
+                alert("Your account parameters are already active on the premium engine.");
                 return;
             }
             CURRENT_TIER = tierName;
@@ -287,9 +285,11 @@
             if (tierName.includes("Tier 0")) {
                 notice.innerText = "⚠️ Constant Core Warning: Premium algorithms locked. Upgrade Plan for 100% unrestricted priority bandwidth.";
                 notice.style.color = "rgb(192 132 252 / 0.6)";
+                notice.classList.add('animate-pulse');
             } else {
                 notice.innerText = `✨ VIP SECURE CONNECTION: ${tierName} Active. No system lag.`;
                 notice.style.color = "#34d399";
+                notice.classList.remove('animate-pulse');
             }
             
             if(!IS_AUTHENTICATED) {
