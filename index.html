@@ -63,8 +63,8 @@
                     <input type="email" id="auth-email-input" placeholder="student@example.com" class="w-full bg-[#0d0d11] text-gray-200 placeholder-gray-700 border border-gray-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-purple-500/50 transition-colors">
                 </div>
                 
-                <button onclick="verifyEmailFormat()" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:opacity-90 text-white font-semibold py-3 px-4 rounded-xl transition-all duration-200 shadow-lg text-sm flex items-center justify-center">
-                    Continue to Workspace ➔
+                <button type="button" onclick="verifyEmailFormat()" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:opacity-90 text-white font-semibold py-3 px-4 rounded-xl transition-all duration-200 shadow-lg text-sm flex items-center justify-center">
+                    Continue to Workspace
                 </button>
             </div>
         </div>
@@ -126,10 +126,10 @@
                 </div>
 
                 <div class="pt-4 border-t border-gray-800 space-y-2">
-                    <button onclick="saveProfileData()" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold py-2.5 rounded-xl transition-all">Save Profile Matrix</button>
-                    <button onclick="alert('Alternative Matrix Node Redirecting: Add account framework initialized.')" class="w-full bg-zinc-800 hover:bg-zinc-700 text-gray-300 py-2 rounded-xl font-medium text-[11px] transition-colors">➕ Add Account</button>
-                    <button onclick="logoutSystem()" class="w-full bg-zinc-900 hover:bg-zinc-800 text-red-400 py-2 rounded-xl text-[11px] transition-colors">Logout Session</button>
-                    <button onclick="deleteAccountSystem()" class="w-full text-center text-[10px] text-gray-600 hover:text-red-500 underline block pt-1">Delete Account Permanently</button>
+                    <button type="button" onclick="saveProfileData()" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold py-2.5 rounded-xl transition-all">Save Profile Matrix</button>
+                    <button type="button" onclick="alert('Alternative Matrix Node Redirecting: Add account framework initialized.')" class="w-full bg-zinc-800 hover:bg-zinc-700 text-gray-300 py-2 rounded-xl font-medium text-[11px] transition-colors">➕ Add Account</button>
+                    <button type="button" onclick="logoutSystem()" class="w-full bg-zinc-900 hover:bg-zinc-800 text-red-400 py-2 rounded-xl text-[11px] transition-colors">Logout Session</button>
+                    <button type="button" onclick="deleteAccountSystem()" class="w-full text-center text-[10px] text-gray-600 hover:text-red-500 underline block pt-1">Delete Account Permanently</button>
                 </div>
             </div>
         </div>
@@ -220,9 +220,8 @@
             <h3 class="heading-font text-xl font-bold text-white mb-4 border-b border-gray-800 pb-2 flex items-center gap-2">⚙️ Advanced Control Center</h3>
             
             <div class="space-y-4 text-xs">
-                
                 <div class="bg-[#0c0c12] p-3 rounded-xl border border-gray-800 space-y-3">
-                    <p class="font-bold text-purple-400 tracking-wider uppercase text-[9px]">🤖 RankBot AI Acoustic Panel</p>
+                    <p class="font-bold text-purple-400 tracking-wider uppercase text-[9px]">🤖 AI Voice Customization Panel</p>
                     <div class="grid grid-cols-2 gap-2">
                         <div>
                             <label class="block text-gray-400 mb-1">AI Voice Gender</label>
@@ -273,7 +272,6 @@
 
                 <div class="bg-[#0c0c12] p-3 rounded-xl border border-gray-800 space-y-3">
                     <p class="font-bold text-amber-400 tracking-wider uppercase text-[9px]">🛠️ Core AI Operational Modules</p>
-                    
                     <div class="space-y-2">
                         <div>
                             <label class="block text-gray-500 mb-1 text-[10px]">AI Response Stream Length</label>
@@ -283,7 +281,6 @@
                                 <option value="deep">Detailed Step-By-Step Mathematical Breakdown</option>
                             </select>
                         </div>
-                        
                         <div class="grid grid-cols-2 gap-2 pt-1">
                             <button onclick="localStorage.removeItem('rb_free_chats'); alert('Cache Matrix Emptied: Client storage cells wiped successfully.');" class="bg-zinc-900 border border-gray-800 text-gray-300 font-medium py-1.5 rounded-lg hover:text-white transition-colors text-[10px]">
                                 🗑️ Clear Cache Memory
@@ -310,9 +307,9 @@
                 </div>
 
                 <div class="pt-3 border-t border-gray-800 space-y-2">
-                    <button onclick="saveSettingsForm()" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold py-2.5 rounded-xl transition-all shadow-md">Save Config Parameters</button>
-                    <button onclick="logoutSystem()" class="w-full bg-zinc-900 hover:bg-zinc-800 text-red-400 py-2 rounded-xl text-[11px] font-medium transition-colors">Logout Session</button>
-                    <button onclick="deleteAccountSystem()" class="w-full text-center text-[10px] text-gray-600 hover:underline block pt-1">Delete Account Permanently</button>
+                    <button type="button" onclick="saveSettingsForm()" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold py-2.5 rounded-xl transition-all shadow-md">Save Config Parameters</button>
+                    <button type="button" onclick="logoutSystem()" class="w-full bg-zinc-900 hover:bg-zinc-800 text-red-400 py-2 rounded-xl text-[11px] font-medium transition-colors">Logout Session</button>
+                    <button type="button" onclick="deleteAccountSystem()" class="w-full text-center text-[10px] text-gray-600 hover:underline block pt-1">Delete Account Permanently</button>
                 </div>
             </div>
         </div>
@@ -394,7 +391,6 @@
         let IS_AUTHENTICATED = false;
         const MAX_FREE_CHATS = 10;
 
-        // 🌌 GALAXY GENERATION ENGINE
         function initGalaxy() {
             const bg = document.getElementById('galaxy-bg');
             if(!bg) return;
@@ -415,7 +411,6 @@
         }
         initGalaxy();
 
-        // 🔊 12 EXTENDED AUDIO PARAMETERS MATRIX LIST GENERATOR (6 MALE, 6 FEMALE NODES)
         function syncAcousticVoiceList() {
             const gender = document.getElementById('set-voice-gender').value;
             const voiceSelect = document.getElementById('set-voice');
@@ -443,40 +438,23 @@
         }
         syncAcousticVoiceList();
 
-        // 🔊 SPEECH MATRIX SIMULATOR OUTPUT AUDIO PLAYER CODE
         function testActiveVoiceOutputSound() {
             const selectedVoice = document.getElementById('set-voice').value;
             const gender = document.getElementById('set-voice-gender').value;
-            
             if ('speechSynthesis' in window) {
-                window.speechSynthesis.cancel(); // Stop ongoing track triggers
+                window.speechSynthesis.cancel();
                 const utterance = new SpeechSynthesisUtterance("Hi, I am RankBot AI.");
-                
-                // Fine-tuning tone waves to make each voice unique
                 if (selectedVoice.includes("jarvis") || selectedVoice.includes("titan")) {
                     utterance.pitch = 0.65; utterance.rate = 0.85;
                 } else if (selectedVoice.includes("friday") || selectedVoice.includes("alexa")) {
                     utterance.pitch = 1.25; utterance.rate = 1.05;
-                } else if (selectedVoice.includes("nova") || selectedVoice.includes("aura")) {
-                    utterance.pitch = 1.1; utterance.rate = 0.9;
-                } else if (selectedVoice.includes("matrix") || selectedVoice.includes("quantum")) {
-                    utterance.pitch = 0.9; utterance.rate = 1.0;
                 } else {
                     utterance.pitch = 1.0; utterance.rate = 1.0;
                 }
-
-                // Match Native system profiles if accessible
-                const voices = window.speechSynthesis.getVoices();
-                const matchedVoice = voices.find(v => v.gender === gender || (gender === 'female' && v.name.toLowerCase().includes('female')) || (gender === 'male' && v.name.toLowerCase().includes('male')));
-                if (matchedVoice) utterance.voice = matchedVoice;
-
                 window.speechSynthesis.speak(utterance);
-            } else {
-                alert("🔊 [Audio Simulation Track]: 'Hi, I am RankBot AI.' (Your browser native Audio Node activated)");
             }
         }
 
-        // 🗄️ PERSISTENCE MODULE MEMORY LOADER ON LOAD
         window.addEventListener('load', () => {
             const savedAuth = localStorage.getItem('rb_auth');
             const savedEmail = localStorage.getItem('rb_email');
@@ -487,12 +465,10 @@
             if (savedAuth === 'true' && savedEmail) {
                 IS_AUTHENTICATED = true;
                 CURRENT_TIER = savedTier || "Free Trial";
-                
                 document.getElementById('auth-gate').classList.add('opacity-0', 'pointer-events-none');
                 
                 let defaultName = savedEmail.split('@')[0];
                 let activeName = localStorage.getItem('rb_name') || defaultName;
-                
                 document.getElementById('profile-letter').innerText = activeName.charAt(0).toUpperCase();
                 document.getElementById('menu-user-name').innerText = `Hi, ${activeName}`;
                 
@@ -507,14 +483,6 @@
 
                 applyFontStyles();
                 if(localStorage.getItem('rb_theme') === 'light') toggleThemeState('light');
-                if(localStorage.getItem('rb_set_gender')) {
-                    document.getElementById('set-voice-gender').value = localStorage.getItem('rb_set_gender');
-                    syncAcousticVoiceList();
-                    document.getElementById('set-voice').value = localStorage.getItem('rb_set_voice');
-                }
-                if(localStorage.getItem('rb_ai_len')) {
-                    document.getElementById('set-ai-len').value = localStorage.getItem('rb_ai_len');
-                }
             }
         });
 
@@ -522,43 +490,31 @@
             const badge = document.getElementById('menu-user-tier');
             const ring = document.getElementById('pfp-ring-wrapper');
             const notice = document.getElementById('bottom-ad-notice');
-            
             badge.className = "text-[10px] px-2 py-0.5 rounded-full font-bold inline-block mt-1 ";
-            ring.className = "w-11 h-11 rounded-full p-[2px] cursor-pointer active:scale-95 transition-all shadow-lg border ";
+            ring.className = "w-11 h-11 rounded-full p-[2px] cursor-pointer active:scale-95 transition-all shadow-lg border border-transparent";
             
             if (tier === "Free Trial") {
-                badge.innerText = "Free Trial Active";
-                badge.classList.add('bg-blue-500/20', 'text-blue-400');
-                ring.classList.add('border-blue-500');
+                badge.innerText = "Free Trial Active"; badge.classList.add('bg-blue-500/20', 'text-blue-400'); ring.classList.add('border-blue-500');
                 let count = parseInt(localStorage.getItem('rb_free_chats') || '0');
                 notice.innerText = `⚠️ Free Trial Active: ${MAX_FREE_CHATS - count} messages remaining. Upgrade to Premium.`;
-                notice.style.color = "#60a5fa";
             } else if (tier === "Lite Plan") {
-                badge.innerText = "Lite Plan Active";
-                badge.classList.add('bg-pink-500/20', 'text-pink-400');
-                ring.classList.add('border-pink-500');
-                notice.innerText = "✨ VIP SECURE CONNECTION: Lite Plan Active. 50 Messages Bandwidth.";
-                notice.style.color = "#f472b6";
+                badge.innerText = "Lite Plan Active"; badge.classList.add('bg-pink-500/20', 'text-pink-400'); ring.classList.add('border-pink-500');
+                notice.innerText = "✨ VIP SECURE CONNECTION: Lite Plan Active.";
             } else if (tier === "Plus Plan") {
-                badge.innerText = "Plus Plan Active";
-                badge.classList.add('bg-purple-500/20', 'text-purple-400');
-                ring.classList.add('border-purple-500');
-                notice.innerText = "✨ VIP SECURE CONNECTION: Plus Plan Active. Enhanced Matrix Active.";
-                notice.style.color = "#c084fc";
+                badge.innerText = "Plus Plan Active"; badge.classList.add('bg-purple-500/20', 'text-purple-400'); ring.classList.add('border-purple-500');
+                notice.innerText = "✨ VIP SECURE CONNECTION: Plus Plan Active.";
             } else if (tier === "Pro Plan") {
-                badge.innerText = "Pro Plan Active";
-                badge.classList.add('bg-gradient-to-r', 'from-blue-500', 'via-pink-500', 'to-purple-500', 'text-white');
-                ring.classList.add('pro-mesh-active');
-                notice.innerText = "✨ VIP SECURE OMNISCIENT CORE CONNECTION: Pro God-Tier Unrestricted Stream.";
+                badge.innerText = "Pro Plan Active"; badge.classList.add('bg-gradient-to-r', 'from-blue-500', 'via-pink-500', 'to-purple-500', 'text-white'); ring.classList.add('pro-mesh-active');
+                notice.innerText = "✨ VIP SECURE OMNISCIENT CORE CONNECTION.";
                 notice.style.color = "#34d399";
-                notice.classList.remove('animate-pulse');
                 document.getElementById('menu-upgrade-btn').style.display = "none";
             }
         }
 
-        // 🔐 LOGIN HANDSHAKE VALIDATOR OVERRIDE
+        // 🔐 FIXED SECURITY ENTRY GATEWAY HANDSHAKE (NO MORE AUTO-REFRESH)
         function verifyEmailFormat() {
             const emailInput = document.getElementById('auth-email-input');
+            if(!emailInput) return;
             const email = emailInput.value.trim();
             
             if (email && email.includes("@") && email.includes(".")) {
@@ -605,20 +561,16 @@
             location.reload();
         }
 
-        // ⚙️ THEME SWITCH CONFIG CONTROL
         function toggleThemeState(mode) {
             const body = document.body;
             const darkBtn = document.getElementById('theme-dark-btn');
             const lightBtn = document.getElementById('theme-light-btn');
-            
             if (mode === 'light') {
-                body.classList.add('light-mode-active');
-                localStorage.setItem('rb_theme', 'light');
+                body.classList.add('light-mode-active'); localStorage.setItem('rb_theme', 'light');
                 lightBtn.className = "py-2 rounded-xl font-bold border border-purple-600 bg-purple-600/20 text-purple-600";
                 darkBtn.className = "py-2 rounded-xl font-bold border border-gray-300 bg-transparent text-gray-400";
             } else {
-                body.classList.remove('light-mode-active');
-                localStorage.setItem('rb_theme', 'dark');
+                body.classList.remove('light-mode-active'); localStorage.setItem('rb_theme', 'dark');
                 darkBtn.className = "py-2 rounded-xl font-bold border border-purple-600 bg-purple-600/20 text-white";
                 lightBtn.className = "py-2 rounded-xl font-bold border border-gray-800 bg-transparent text-gray-400";
                 initGalaxy();
@@ -629,11 +581,8 @@
             const sz = document.getElementById('set-font-size').value;
             const fam = document.getElementById('set-font-fam').value;
             const textBlock = document.getElementById('welcome-message-text');
-            if(textBlock) {
-                textBlock.className = `text-gray-200 leading-relaxed bg-[#0f0f14]/80 p-4 rounded-2xl border border-gray-900 ${sz} ${fam}`;
-            }
-            localStorage.setItem('rb_font_sz', sz);
-            localStorage.setItem('rb_font_fam', fam);
+            if(textBlock) textBlock.className = `text-gray-200 leading-relaxed bg-[#0f0f14]/80 p-4 rounded-2xl border border-gray-900 ${sz} ${fam}`;
+            localStorage.setItem('rb_font_sz', sz); localStorage.setItem('rb_font_fam', fam);
         }
 
         function saveSettingsForm() {
@@ -646,49 +595,34 @@
             closeSettingsModal();
         }
 
-        // ➔ CONSOLE TRANMISION CORE TRANSMISSION METHOD
         async function sendQueryToBot() {
             if(!IS_AUTHENTICATED) return;
             let currentFreeChats = parseInt(localStorage.getItem('rb_free_chats') || '0');
-
             if (CURRENT_TIER === "Free Trial" && currentFreeChats >= MAX_FREE_CHATS) {
-                alert("🛑 FREE TRIAL LIMIT EXCEEDED! Please upgrade to premium.");
-                return;
+                alert("🛑 FREE TRIAL LIMIT EXCEEDED! Please upgrade to premium."); return;
             }
-
             const queryInput = document.getElementById('student-query');
             const streamContainer = document.getElementById('chat-stream');
-            let messageText = queryInput.value.trim();
-            if(!messageText) return;
+            let messageText = queryInput.value.trim(); if(!messageText) return;
 
             streamContainer.innerHTML += `
                 <div class="flex items-start gap-4 justify-end max-w-3xl ml-auto">
-                    <div class="space-y-1 text-right">
-                        <p class="text-xs font-bold text-gray-500 uppercase tracking-widest">You</p>
-                        <div class="bg-gradient-to-br from-purple-600 to-pink-600 px-4 py-2.5 text-white inline-block text-left text-sm rounded-2xl shadow-md">${messageText}</div>
-                    </div>
-                </div>
-            `;
-            
-            queryInput.value = "";
-            streamContainer.scrollTop = streamContainer.scrollHeight;
+                    <div class="space-y-1 text-right"><p class="text-xs font-bold text-gray-500 uppercase tracking-widest">You</p>
+                    <div class="bg-gradient-to-br from-purple-600 to-pink-600 px-4 py-2.5 text-white inline-block text-left text-sm rounded-2xl shadow-md">${messageText}</div></div>
+                </div>`;
+            queryInput.value = ""; streamContainer.scrollTop = streamContainer.scrollHeight;
 
             if (CURRENT_TIER === "Free Trial") {
-                currentFreeChats++;
-                localStorage.setItem('rb_free_chats', currentFreeChats.toString());
-                document.getElementById('bottom-ad-notice').innerText = `⚠️ Free Trial Active: ${MAX_FREE_CHATS - currentFreeChats} messages remaining. Upgrade to Premium.`;
+                currentFreeChats++; localStorage.setItem('rb_free_chats', currentFreeChats.toString());
             }
 
             const botMessageId = "rankbot-msg-" + Date.now();
             streamContainer.innerHTML += `
                 <div class="flex items-start gap-4 max-w-3xl" id="${botMessageId}">
                     <div class="w-9 h-9 rounded-xl bg-purple-600/20 border border-purple-500/30 flex items-center justify-center text-lg flex-shrink-0">🤖</div>
-                    <div class="space-y-1">
-                        <p class="text-xs font-bold text-purple-400 uppercase tracking-widest">RankBot AI</p>
-                        <p class="text-gray-400 text-sm animate-pulse" id="${botMessageId}-text">Processing query streams safely under RankBot protocol...</p>
-                    </div>
-                </div>
-            `;
+                    <div class="space-y-1"><p class="text-xs font-bold text-purple-400 uppercase tracking-widest">RankBot AI</p>
+                    <p class="text-gray-400 text-sm animate-pulse" id="${botMessageId}-text">Processing query streams safely under RankBot protocol...</p></div>
+                </div>`;
             streamContainer.scrollTop = streamContainer.scrollHeight;
 
             try {
@@ -697,7 +631,6 @@
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ data: [messageText, [], CURRENT_TIER] })
                 });
-                
                 const result = await response.json();
                 const eventSource = new EventSource(`${HUGGINGFACE_SPACE_API}/${result.event_id}`);
                 const responseTextBox = document.getElementById(`${botMessageId}-text`);
@@ -705,10 +638,7 @@
 
                 eventSource.onmessage = function(event) {
                     const data = JSON.parse(event.data);
-                    if (data && data[0]) {
-                        responseTextBox.innerText = data[0];
-                        streamContainer.scrollTop = streamContainer.scrollHeight;
-                    }
+                    if (data && data[0]) { responseTextBox.innerText = data[0]; streamContainer.scrollTop = streamContainer.scrollHeight; }
                 };
                 eventSource.onerror = function() { eventSource.close(); };
             } catch (error) {
@@ -716,10 +646,6 @@
             }
         }
 
-        // CONTROL VIEW CLOSURES AND OPENINGS
-        document.addEventListener('DOMContentLoaded', () => {
-            window.speechSynthesis.getVoices(); // Warmup synthesis core engines
-        });
         function openProfileModal() { document.getElementById('profile-menu').classList.add('hidden'); document.getElementById('profile-modal').classList.remove('hidden'); }
         function closeProfileModal() { document.getElementById('profile-modal').classList.add('hidden'); }
         function openSettingsModal() { document.getElementById('profile-menu').classList.add('hidden'); document.getElementById('settings-modal').classList.remove('hidden'); }
