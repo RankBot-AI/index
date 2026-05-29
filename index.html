@@ -82,7 +82,7 @@
                 </div>
                 <div>
                     <label class="block text-gray-400 mb-1">Email Address</label>
-                    <input type="email" id="prof-email-display" readonly class="w-full bg-[#0d0d11]/50 border border-gray-800 rounded-xl p-2.5 text-gray-500 cursor-not-allowed outline-none">
+                    <input type="email" id="prof-email-display" readonly class="w-full bg-[#0d0d11]/80 text-purple-400 border border-gray-800 rounded-xl p-2.5 cursor-not-allowed outline-none font-mono text-sm">
                 </div>
                 
                 <div>
@@ -136,14 +136,15 @@
     </div>
 
     <div id="plans-screen" class="fixed inset-0 z-40 flex items-center justify-center blur-bg p-4 hidden transition-all duration-500 overflow-y-auto">
-        <div class="w-full max-w-xl my-auto max-h-[90vh] overflow-y-auto smooth-scroll pr-1">
-            <div class="text-center mb-5">
+        <div class="glass-panel w-full max-w-xl rounded-3xl p-6 shadow-2xl relative my-auto max-h-[90vh] overflow-y-auto smooth-scroll pr-1">
+            <button onclick="closePlans()" class="absolute top-4 right-4 text-gray-500 hover:text-white text-sm font-bold select-none">✕</button>
+            
+            <div class="text-center mb-5 mt-2">
                 <h2 class="heading-font text-2xl font-bold text-white">Choose Your Upgrade Path</h2>
                 <p class="text-gray-400 text-xs mt-1">Unlock unrestricted RankBot AI bandwidth streams</p>
-                <button onclick="closePlans()" class="mt-3 bg-[#1e1f24] text-[10px] text-gray-300 px-4 py-1.5 rounded-full border border-gray-700 hover:text-white select-none">Go back to Chat</button>
             </div>
             
-            <div class="space-y-4 px-1 pb-4">
+            <div class="space-y-4 px-1 pb-2">
                 <div class="glass-panel p-5 rounded-2xl border border-blue-500/30 hover:border-blue-500/60 transition-all">
                     <div class="flex items-start justify-between">
                         <div>
@@ -226,12 +227,12 @@
                         <div>
                             <label class="block text-gray-400 mb-1">AI Voice Gender</label>
                             <select id="set-voice-gender" onchange="syncAcousticVoiceList()" class="w-full bg-[#050508] border border-gray-800 rounded-xl p-2 text-gray-300 focus:outline-none">
-                                <option value="male">Male Node Engine</option>
-                                <option value="female">Female Node Engine</option>
+                                <option value="male">Male Vector Core</option>
+                                <option value="female">Female Vector Core</option>
                             </select>
                         </div>
                         <div>
-                            <label class="block text-gray-400 mb-1">Acoustic Vector Name</label>
+                            <label class="block text-gray-400 mb-1">Acoustic Engine Name</label>
                             <select id="set-voice" class="w-full bg-[#050508] border border-gray-800 rounded-xl p-2 text-gray-300 focus:outline-none"></select>
                         </div>
                     </div>
@@ -391,6 +392,26 @@
         let IS_AUTHENTICATED = false;
         const MAX_FREE_CHATS = 10;
 
+        function initGalaxy() {
+            const bg = document.getElementById('galaxy-bg');
+            if(!bg) return;
+            bg.innerHTML = "";
+            const starCount = 60;
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                const size = Math.random() * 2 + 1;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.animationDelay = `${Math.random() * 8}s`;
+                star.style.animationDuration = `${Math.random() * 6 + 6}s`;
+                bg.appendChild(star);
+            }
+        }
+        initGalaxy();
+
         function syncAcousticVoiceList() {
             const gender = document.getElementById('set-voice-gender').value;
             const voiceSelect = document.getElementById('set-voice');
@@ -398,21 +419,21 @@
             
             if(gender === 'male') {
                 voiceSelect.innerHTML = `
-                    <option value="jarvis_alpha">Jarvis Alpha Male Node</option>
-                    <option value="matrix_acoustic">RankBot Acoustic Core</option>
-                    <option value="titan_heavy">Titan Deep Bass Vector</option>
-                    <option value="orion_omega">Orion Omega Synth</option>
-                    <option value="quantum_male">Quantum Logic Synth</option>
-                    <option value="apex_instructor">Apex Elite Instructor</option>
+                    <option value="jarvis_alpha">Jarvis Natural Resonant</option>
+                    <option value="matrix_acoustic">RankBot Acoustic Clear</option>
+                    <option value="titan_heavy">Titan Deep Bass Articulate</option>
+                    <option value="orion_omega">Orion Omega Studio Voice</option>
+                    <option value="quantum_male">Quantum Human Speech</option>
+                    <option value="apex_instructor">Apex Clear Mentor</option>
                 `;
             } else {
                 voiceSelect.innerHTML = `
                     <option value="friday_adaptive">Friday Smart Adaptive</option>
-                    <option value="alexa_pulse">Alexa AI Pulse Engine</option>
-                    <option value="nova_stellar">Nova Stellar Acoustic</option>
-                    <option value="athena_logic">Athena Logic Stream</option>
-                    <option value="aura_calm">Aura Serene Guidance</option>
-                    <option value="valkyrie_pro">Valkyrie High Response</option>
+                    <option value="alexa_pulse">Alexa Premium Smooth</option>
+                    <option value="nova_stellar">Nova Crisp Acoustic</option>
+                    <option value="athena_logic">Athena Natural Cadence</option>
+                    <option value="aura_calm">Aura Serene Human Speech</option>
+                    <option value="valkyrie_pro">Valkyrie High Definition</option>
                 `;
             }
         }
@@ -423,19 +444,23 @@
                 window.speechSynthesis.cancel();
                 const utterance = new SpeechSynthesisUtterance("Hi, I am RankBot AI.");
                 if (selectedVoice.includes("jarvis") || selectedVoice.includes("titan")) {
-                    utterance.pitch = 0.65; utterance.rate = 0.85;
-                } else if (selectedVoice.includes("friday") || selectedVoice.includes("alexa")) {
-                    utterance.pitch = 1.25; utterance.rate = 1.05;
+                    utterance.pitch = 0.92; utterance.rate = 0.90;
+                } else if (selectedVoice.includes("friday") || selectedVoice.includes("alexa") || selectedVoice.includes("nova")) {
+                    utterance.pitch = 1.10; utterance.rate = 0.95;
+                } else {
+                    utterance.pitch = 1.00; utterance.rate = 0.95;
                 }
                 window.speechSynthesis.speak(utterance);
             }
         }
 
+        // 🗄️ PERSISTENCE MODULE MEMORY LOADER ON LOAD
         window.addEventListener('load', () => {
             const savedAuth = localStorage.getItem('rb_auth');
             const savedEmail = localStorage.getItem('rb_email');
             const savedTier = localStorage.getItem('rb_tier');
             
+            document.getElementById('telemetry-session').innerText = "RB-" + Math.random().toString(36).substring(3, 8).toUpperCase();
             syncAcousticVoiceList();
 
             if (savedAuth === 'true' && savedEmail) {
@@ -450,6 +475,9 @@
                 
                 applyTierStylesAndRings(CURRENT_TIER);
                 
+                // FIXED PER VERBATIM REQUEST: ALWAYS SYNC FIELD VALUE TO DIRECTLY EQUAL LOGGED IN SESSIONS
+                document.getElementById('prof-email-display').value = savedEmail;
+                
                 document.getElementById('prof-name').value = localStorage.getItem('rb_name') || "";
                 document.getElementById('prof-phone').value = localStorage.getItem('rb_phone') || "";
                 document.getElementById('prof-loc').value = localStorage.getItem('rb_loc') || "";
@@ -459,14 +487,6 @@
 
                 applyFontStyles();
                 if(localStorage.getItem('rb_theme') === 'light') toggleThemeState('light');
-                if(localStorage.getItem('rb_set_gender')) {
-                    document.getElementById('set-voice-gender').value = localStorage.getItem('rb_set_gender');
-                    syncAcousticVoiceList();
-                    document.getElementById('set-voice').value = localStorage.getItem('rb_set_voice');
-                }
-                if(localStorage.getItem('rb_ai_len')) {
-                    document.getElementById('set-ai-len').value = localStorage.getItem('rb_ai_len');
-                }
             }
         });
 
@@ -498,7 +518,6 @@
             }
         }
 
-        // 🔐 THE ABSOLUTE NO-REFRESH VERIFIER ARCHITECTURE
         function verifyEmailFormat() {
             const emailInput = document.getElementById('auth-email-input');
             if(!emailInput) return;
@@ -539,12 +558,17 @@
         }
 
         function saveProfileData() {
+            // FIXED: STRICT CONTEXT VALIDATION MAPPED STRAIGHT ON CORE LOCALSTORAGE SESSIONS
+            const masterLoginToken = localStorage.getItem('rb_email');
             localStorage.setItem('rb_name', document.getElementById('prof-name').value.trim());
             localStorage.setItem('rb_phone', document.getElementById('prof-phone').value.trim());
             localStorage.setItem('rb_loc', document.getElementById('prof-loc').value.trim());
             localStorage.setItem('rb_school', document.getElementById('prof-school').value.trim());
             localStorage.setItem('rb_class', document.getElementById('prof-class').value);
             localStorage.setItem('rb_country_code', document.getElementById('prof-country-code').value);
+            
+            // Reassert correct locked variable values
+            document.getElementById('prof-email-display').value = masterLoginToken;
             alert("🚀 STUDENT PROFILE META UPDATED!");
             location.reload();
         }
@@ -634,7 +658,12 @@
             }
         }
 
-        function openProfileModal() { document.getElementById('profile-menu').classList.add('hidden'); document.getElementById('profile-modal').classList.remove('hidden'); }
+        function openProfileModal() { 
+            document.getElementById('profile-menu').classList.add('hidden'); 
+            // Ensures correct hard locking update logic displays safely
+            document.getElementById('prof-email-display').value = localStorage.getItem('rb_email') || "";
+            document.getElementById('profile-modal').classList.remove('hidden'); 
+        }
         function closeProfileModal() { document.getElementById('profile-modal').classList.add('hidden'); }
         function openSettingsModal() { document.getElementById('profile-menu').classList.add('hidden'); document.getElementById('settings-modal').classList.remove('hidden'); }
         function closeSettingsModal() { document.getElementById('settings-modal').classList.add('hidden'); }
