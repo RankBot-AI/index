@@ -50,7 +50,7 @@
     <div id="galaxy-bg"></div>
 
     <div id="auth-gate" class="fixed inset-0 z-50 flex items-center justify-center blur-bg p-4 transition-all duration-500">
-        <div class="glass-panel w-full max-w-md rounded-3xl p-8 shadow-2xl">
+        <div class="glass-panel w-full max-w-md rounded-3xl p-8 shadow-2xl" onsubmit="return false;">
             <div class="text-center mb-6">
                 <div class="text-4xl mb-2">🤖</div>
                 <h2 class="heading-font text-2xl font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-pink-500 bg-clip-text text-transparent">RankBot AI Matrix</h2>
@@ -63,7 +63,7 @@
                     <input type="email" id="auth-email-input" placeholder="student@example.com" class="w-full bg-[#0d0d11] text-gray-200 placeholder-gray-700 border border-gray-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-purple-500/50 transition-colors">
                 </div>
                 
-                <button type="button" onclick="verifyEmailFormat()" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:opacity-90 text-white font-semibold py-3 px-4 rounded-xl transition-all duration-200 shadow-lg text-sm flex items-center justify-center">
+                <button type="button" onclick="verifyEmailFormat(event)" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:opacity-90 text-white font-semibold py-3 px-4 rounded-xl transition-all duration-200 shadow-lg text-sm flex items-center justify-center">
                     Continue to Workspace
                 </button>
             </div>
@@ -71,7 +71,7 @@
     </div>
 
     <div id="profile-modal" class="fixed inset-0 z-50 flex items-center justify-center blur-bg p-4 hidden transition-all duration-300 overflow-y-auto">
-        <div class="glass-panel w-full max-w-md rounded-3xl p-6 shadow-2xl relative my-auto">
+        <div class="glass-panel w-full max-w-md rounded-3xl p-6 shadow-2xl relative my-auto" onsubmit="return false;">
             <button onclick="closeProfileModal()" class="absolute top-4 right-4 text-gray-500 hover:text-white">✕</button>
             <h3 class="heading-font text-xl font-bold text-white mb-4 border-b border-gray-800 pb-2 flex items-center gap-2">👤 Complete Student Profile</h3>
             
@@ -127,7 +127,7 @@
 
                 <div class="pt-4 border-t border-gray-800 space-y-2">
                     <button type="button" onclick="saveProfileData()" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold py-2.5 rounded-xl transition-all">Save Profile Matrix</button>
-                    <button type="button" onclick="alert('Alternative Matrix Node Redirecting: Add account framework initialized.')" class="w-full bg-zinc-800 hover:bg-zinc-700 text-gray-300 py-2 rounded-xl font-medium text-[11px] transition-colors">➕ Add Account</button>
+                    <button type="button" onclick="alert('Add account framework initialized.')" class="w-full bg-zinc-800 hover:bg-zinc-700 text-gray-300 py-2 rounded-xl font-medium text-[11px] transition-colors">➕ Add Account</button>
                     <button type="button" onclick="logoutSystem()" class="w-full bg-zinc-900 hover:bg-zinc-800 text-red-400 py-2 rounded-xl text-[11px] transition-colors">Logout Session</button>
                     <button type="button" onclick="deleteAccountSystem()" class="w-full text-center text-[10px] text-gray-600 hover:text-red-500 underline block pt-1">Delete Account Permanently</button>
                 </div>
@@ -206,7 +206,7 @@
                         <li class="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent font-bold">• 100% Unlimited Absolute RankBot AI Answers capacity</li>
                         <li class="text-amber-400 font-bold">• Armed with 5 Elite High-IQ RankBot Specialized Hybrid Engines</li>
                         <li>• Unrestricted Advanced Multi-Thread Logical Reasoning Allocations</li>
-                        <li>• Immediate Hyper-Priority Bandwidth Bandwidth (No Wait Queues Active)</li>
+                        <li>• Immediate Hyper-Priority Bandwidth (No Wait Queues Active)</li>
                         <li>• Exclusive God-Tier RankBot Custom Administrative Control Matrix Dashboard</li>
                     </ul>
                 </div>
@@ -282,10 +282,10 @@
                             </select>
                         </div>
                         <div class="grid grid-cols-2 gap-2 pt-1">
-                            <button onclick="localStorage.removeItem('rb_free_chats'); alert('Cache Matrix Emptied: Client storage cells wiped successfully.');" class="bg-zinc-900 border border-gray-800 text-gray-300 font-medium py-1.5 rounded-lg hover:text-white transition-colors text-[10px]">
+                            <button onclick="localStorage.removeItem('rb_free_chats'); alert('Cache Matrix Emptied successfully.');" class="bg-zinc-900 border border-gray-800 text-gray-300 font-medium py-1.5 rounded-lg hover:text-white transition-colors text-[10px]">
                                 🗑️ Clear Cache Memory
                             </button>
-                            <button onclick="alert('Bandwidth Multiplier Switched: Low-Data logic stream active.');" class="bg-zinc-900 border border-gray-800 text-gray-300 font-medium py-1.5 rounded-lg hover:text-white transition-colors text-[10px]">
+                            <button onclick="alert('Bandwidth Multiplier Switched.');" class="bg-zinc-900 border border-gray-800 text-gray-300 font-medium py-1.5 rounded-lg hover:text-white transition-colors text-[10px]">
                                 ⚡ Optimize Bandwidth Node
                             </button>
                         </div>
@@ -440,7 +440,6 @@
 
         function testActiveVoiceOutputSound() {
             const selectedVoice = document.getElementById('set-voice').value;
-            const gender = document.getElementById('set-voice-gender').value;
             if ('speechSynthesis' in window) {
                 window.speechSynthesis.cancel();
                 const utterance = new SpeechSynthesisUtterance("Hi, I am RankBot AI.");
@@ -448,8 +447,6 @@
                     utterance.pitch = 0.65; utterance.rate = 0.85;
                 } else if (selectedVoice.includes("friday") || selectedVoice.includes("alexa")) {
                     utterance.pitch = 1.25; utterance.rate = 1.05;
-                } else {
-                    utterance.pitch = 1.0; utterance.rate = 1.0;
                 }
                 window.speechSynthesis.speak(utterance);
             }
@@ -511,10 +508,15 @@
             }
         }
 
-        // 🔐 FIXED SECURITY ENTRY GATEWAY HANDSHAKE (NO MORE AUTO-REFRESH)
-        function verifyEmailFormat() {
+        // 🔐 FIXED SECURITY BYPASS INTERFACE (WITH ABSOLUTE REFRESH BLOCK)
+        function verifyEmailFormat(event) {
+            if (event) {
+                event.preventDefault(); // HARD CODES DEFIANCE TO BROWSER RELOAD
+                event.stopPropagation();
+            }
+            
             const emailInput = document.getElementById('auth-email-input');
-            if(!emailInput) return;
+            if(!emailInput) return false;
             const email = emailInput.value.trim();
             
             if (email && email.includes("@") && email.includes(".")) {
@@ -531,7 +533,9 @@
                     localStorage.setItem('rb_class', '11th Standard');
                     localStorage.setItem('rb_loc', 'Delhi, India');
                     localStorage.setItem('rb_country_code', '+91');
-                    location.reload();
+                    
+                    // Controlled redirection reload execution
+                    setTimeout(() => { location.reload(); }, 100);
                 } else {
                     localStorage.setItem('rb_email', email);
                     document.getElementById('auth-gate').classList.add('opacity-0', 'pointer-events-none');
@@ -540,6 +544,7 @@
             } else {
                 alert("❌ INVALID EMAIL MATRIX FORMAT.");
             }
+            return false;
         }
 
         function selectTier(tierName) {
