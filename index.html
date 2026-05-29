@@ -392,26 +392,6 @@
         let IS_AUTHENTICATED = false;
         const MAX_FREE_CHATS = 10;
 
-        function initGalaxy() {
-            const bg = document.getElementById('galaxy-bg');
-            if(!bg) return;
-            bg.innerHTML = "";
-            const starCount = 60;
-            for (let i = 0; i < starCount; i++) {
-                const star = document.createElement('div');
-                star.className = 'star';
-                star.style.left = `${Math.random() * 100}%`;
-                star.style.top = `${Math.random() * 100}%`;
-                const size = Math.random() * 2 + 1;
-                star.style.width = `${size}px`;
-                star.style.height = `${size}px`;
-                star.style.animationDelay = `${Math.random() * 8}s`;
-                star.style.animationDuration = `${Math.random() * 6 + 6}s`;
-                bg.appendChild(star);
-            }
-        }
-        initGalaxy();
-
         function syncAcousticVoiceList() {
             const gender = document.getElementById('set-voice-gender').value;
             const voiceSelect = document.getElementById('set-voice');
@@ -454,13 +434,16 @@
             }
         }
 
-        // NO-RELOAD SESSION RECOVERY MATRIX
+        // 🟢 FIXED: PURE UI WORKSPACE UNLOCK METHOD (NO MORE REFRESH GLITCHES)
         function enterWorkspaceDirectly(email, tier) {
             IS_AUTHENTICATED = true;
             CURRENT_TIER = tier || "Free Trial";
             
-            // Instantly hide the lock screen gate
-            document.getElementById('auth-gate').classList.add('opacity-0', 'pointer-events-none');
+            // Instantly remove and hide the login overlay gate completely
+            const gate = document.getElementById('auth-gate');
+            if(gate) {
+                gate.style.display = 'none';
+            }
             
             let defaultName = email.split('@')[0];
             let activeName = localStorage.getItem('rb_name') || defaultName;
@@ -471,7 +454,8 @@
             document.getElementById('prof-email-display').value = email;
         }
 
-        window.addEventListener('load', () => {
+        // 🗄️ RE-ENGINEERED LOAD LIFECYCLE (CHECKS AND HIDES SCREEN FIRST)
+        window.addEventListener('DOMContentLoaded', () => {
             const savedAuth = localStorage.getItem('rb_auth');
             const savedEmail = localStorage.getItem('rb_email');
             const savedTier = localStorage.getItem('rb_tier');
@@ -480,6 +464,7 @@
             syncAcousticVoiceList();
 
             if (savedAuth === 'true' && savedEmail) {
+                // Instantly inject variable credentials to destroy login overlay parameters before rendering
                 enterWorkspaceDirectly(savedEmail, savedTier);
                 
                 document.getElementById('prof-name').value = localStorage.getItem('rb_name') || "";
@@ -522,7 +507,6 @@
             }
         }
 
-        // 🔐 FIXED: 100% GARUANTEED INSTANT SHOW LOGIC (NO LOCATION.RELOAD GRIP)
         function verifyEmailFormat() {
             const emailInput = document.getElementById('auth-email-input');
             if(!emailInput) return;
@@ -542,7 +526,7 @@
                     localStorage.setItem('rb_loc', 'Delhi, India');
                     localStorage.setItem('rb_country_code', '+91');
                     
-                    // Directly unlock screen instantly without refresh glitching
+                    // FIXED: Changes window status directly without firing glitch reloads
                     enterWorkspaceDirectly(email, CURRENT_TIER);
                 } else {
                     localStorage.setItem('rb_email', email);
@@ -560,7 +544,6 @@
             localStorage.setItem('rb_auth', 'true');
             if (tierName === 'Free Trial') localStorage.setItem('rb_free_chats', '0');
             
-            // Open screen directly straight after selecting plan parameters
             const email = localStorage.getItem('rb_email') || "student@example.com";
             enterWorkspaceDirectly(email, CURRENT_TIER);
             closePlans();
@@ -578,7 +561,6 @@
             alert("🚀 STUDENT PROFILE META UPDATED!");
             closeProfileModal();
             
-            // Sync current header variables dynamically
             let activeName = localStorage.getItem('rb_name') || masterLoginToken.split('@')[0];
             document.getElementById('profile-letter').innerText = activeName.charAt(0).toUpperCase();
             document.getElementById('menu-user-name').innerText = `Hi, ${activeName}`;
@@ -680,7 +662,6 @@
         // Dynamic hard logout to completely flush cache states smoothly
         function logoutSystem() { 
             localStorage.clear(); 
-            // Only use reload on absolute intentional logout triggers
             location.reload(); 
         }
         function deleteAccountSystem() { if(confirm("Wipe all data cache vault permanently?")) { logoutSystem(); } }
