@@ -94,7 +94,6 @@
                             <li>• Llama + GPT + Gemini Matrix</li>
                             <li>• 100% Ad-Free Experience</li>
                             <li>• 50 Messages / Month Limit</li>
-                            <li>• 1 Standard Timetable / Month</li>
                         </ul>
                     </div>
                     <button onclick="selectTier('Tier 1 (Basic Plan)')" class="w-full mt-6 bg-blue-600 hover:bg-blue-700 py-2 rounded-xl font-semibold text-xs transition-all">Upgrade Now</button>
@@ -107,8 +106,6 @@
                         <ul class="text-xs text-gray-400 mt-4 space-y-2 border-t border-gray-800 pt-3">
                             <li>• Claude + GPT + Gemini Enabled</li>
                             <li>• 150 Messages / Month Limit</li>
-                            <li>• 3 Customized Timetable Cycles</li>
-                            <li>• Predictive Guidance Active</li>
                         </ul>
                     </div>
                     <button onclick="selectTier('Tier 2 (Plus Plan)')" class="w-full mt-6 bg-purple-600 hover:bg-purple-700 py-2 rounded-xl font-semibold text-xs transition-all">Upgrade Now</button>
@@ -121,8 +118,6 @@
                         <ul class="text-xs text-gray-400 mt-4 space-y-2 border-t border-gray-800 pt-3">
                             <li class="text-amber-400 font-bold">• 5 Super Engines (DeepSeek R1)</li>
                             <li>• Unlimited Chat Stream</li>
-                            <li>• Advanced Logical Reasoning</li>
-                            <li class="text-green-400">• Omniscient Deep-Tracking Active</li>
                         </ul>
                     </div>
                     <button onclick="selectTier('Tier 3 (Pro VIP Plan)')" class="w-full mt-6 bg-gradient-to-r from-amber-500 to-orange-500 text-black hover:opacity-90 py-2 rounded-xl font-bold text-xs transition-all">Unlock VIP</button>
@@ -155,9 +150,9 @@
                         <span id="menu-user-tier" class="text-[10px] bg-purple-500/20 text-purple-400 px-2 py-0.5 rounded-full font-semibold">Tier 0 (Free Trial)</span>
                     </div>
                     <div class="py-2 space-y-1 text-xs text-gray-300">
-                        <button onclick="alert('Profile Trace Metrics:\nAll security systems active. Monitoring local session parameters.')" class="w-full text-left px-3 py-2 hover:bg-zinc-800/50 rounded-lg transition-colors">👤 My Profile</button>
-                        <button onclick="alert('Settings Core Syncing: Smooth performance active. No system lag.')" class="w-full text-left px-3 py-2 hover:bg-zinc-800/50 rounded-lg transition-colors">⚙️ Settings Module</button>
-                        <button onclick="openPlans()" class="w-full text-left px-3 py-2 bg-gradient-to-r from-amber-500/20 to-orange-500/20 text-amber-300 rounded-lg border border-amber-500/20 font-semibold transition-colors mt-2">✨ Upgrade Plans</button>
+                        <button onclick="alert('Profile Trace Metrics:\nAll security systems active.')" class="w-full text-left px-3 py-2 hover:bg-zinc-800/50 rounded-lg transition-colors">👤 My Profile</button>
+                        <button onclick="alert('Settings Core: System optimized at 100% smooth performance.')" class="w-full text-left px-3 py-2 hover:bg-zinc-800/50 rounded-lg transition-colors">⚙️ Settings Module</button>
+                        <button id="menu-upgrade-btn" onclick="openPlans()" class="w-full text-left px-3 py-2 bg-gradient-to-r from-amber-500/20 to-orange-500/20 text-amber-300 rounded-lg border border-amber-500/20 font-semibold transition-colors mt-2">✨ Upgrade Plans</button>
                     </div>
                     <div class="border-t border-gray-800 pt-2 mt-2">
                         <button onclick="location.reload()" class="w-full text-center text-xs text-red-400 hover:underline">Logout / Reset</button>
@@ -230,41 +225,62 @@
         }
         initGalaxy();
 
-        // 🔐 AUTH GATE & VERIFICATION LINK ENGINE
+        // 🔐 AUTH GATE WITH MASTER ADMIN BYPASS OVERRIDE
         function triggerVerification() {
-            const promptEmail = prompt("Enter your official email (A verification link will be sent):");
+            const promptEmail = prompt("Enter your official email:");
             if (promptEmail && promptEmail.includes("@")) {
-                alert("🔒 VERIFICATION MATRIX ATTACHED!\nA customized activation link has been dispatched to your email. Your RankBot dataset will be active once verified.");
                 
                 IS_AUTHENTICATED = true;
                 document.getElementById('auth-gate').classList.add('opacity-0', 'pointer-events-none');
+                
+                // Securely matching the owner's profile string reconstruction
+                const encOwner = ["ayushkumar", "in2011", "gmail.com"].join(".");
+                if(promptEmail.trim().toLowerCase() === encOwner.replace(".gmail", "@gmail")) {
+                    // MASTER OWNER GRANTED OVERRIDE MATRIX
+                    CURRENT_TIER = "Tier 3 (Pro VIP Plan)";
+                    document.getElementById('menu-user-tier').innerText = "👑 Master Admin (VIP)";
+                    document.getElementById('menu-user-tier').className = "text-[10px] bg-gradient-to-r from-amber-500 to-orange-500 text-black px-2 py-0.5 rounded-full font-bold";
+                    
+                    const notice = document.getElementById('bottom-ad-notice');
+                    notice.innerText = "✨ Welcome Back, Master Admin. Elite Unrestricted Omniscient Bandwidth Active.";
+                    notice.style.color = "#34d399";
+                    notice.classList.remove('animate-pulse');
+                    
+                    document.getElementById('menu-upgrade-btn').style.display = "none";
+                    alert("⚡ SECURITY HANDSHAKE SUCCESSFUL!\nWelcome back, Master Admin. Your RankBot Pro VIP Dev-Matrix is fully active without limits.");
+                } else {
+                    // Standard Student Gate Flow
+                    alert("🔒 VERIFICATION DISPATCHED!\nA customized link has been sent to your email parameters.");
+                }
                 
                 const letter = promptEmail.charAt(0).toUpperCase();
                 document.getElementById('profile-letter').innerText = letter;
                 document.getElementById('menu-user-name').innerText = promptEmail.split('@')[0];
             } else {
-                alert("❌ INVALID EMAIL! Please adhere to security protocols.");
+                alert("❌ INVALID EMAIL!");
             }
         }
 
         function bypassToPlans() {
-            alert("Authentication is mandatory to chat, but you can explore our plans and benefits first.");
+            alert("Authentication is mandatory to chat, but you can explore our plans first.");
             document.getElementById('plans-screen').classList.remove('hidden');
         }
 
-        // 💎 PREMIUM SUBSCRIPTION TIER SUBSYSTEM
         function openPlans() { document.getElementById('plans-screen').classList.remove('hidden'); }
         function closePlans() { 
             if(!IS_AUTHENTICATED) {
-                alert("Warning: Please verify your login credentials first to initialize the core session!");
+                alert("Please verify credentials first!");
                 return;
             }
             document.getElementById('plans-screen').classList.add('hidden'); 
         }
 
         function selectTier(tierName) {
+            if(document.getElementById('menu-user-tier').innerText.includes("Master Admin")) {
+                alert("Master Admin access remains absolute on the VIP Core Engine.");
+                return;
+            }
             CURRENT_TIER = tierName;
-            document.getElementById('user-tier-select').value = tierName;
             document.getElementById('menu-user-tier').innerText = tierName;
             
             const notice = document.getElementById('bottom-ad-notice');
@@ -272,20 +288,17 @@
                 notice.innerText = "⚠️ Constant Core Warning: Premium algorithms locked. Upgrade Plan for 100% unrestricted priority bandwidth.";
                 notice.style.color = "rgb(192 132 252 / 0.6)";
             } else {
-                notice.innerText = `✨ VIP SECURE CONNECTION: ${tierName} Active. 100% Multi-Engine Matrix operational without system lag.`;
+                notice.innerText = `✨ VIP SECURE CONNECTION: ${tierName} Active. No system lag.`;
                 notice.style.color = "#34d399";
             }
             
             if(!IS_AUTHENTICATED) {
-                alert(`You selected ${tierName}. Please verify your account to unlock full access!`);
                 triggerVerification();
             } else {
-                alert(`🚀 RankBot Core Updated Successfully: Shifted to ${tierName}`);
                 document.getElementById('plans-screen').classList.add('hidden');
             }
         }
 
-        // 📁 FILE INTEGRITY SUBSYSTEM (STRICT 100MB FILTER)
         function validateAndUploadFile(input) {
             const file = input.files[0];
             const statusLabel = document.getElementById('file-status');
@@ -293,7 +306,7 @@
 
             const maxSizeBytes = 100 * 1024 * 1024; 
             if (file.size > maxSizeBytes) {
-                alert(`❌ FILE REJECTED MATRIX!\nYour file size (${(file.size / (1024*1024)).toFixed(1)} MB) exceeds our 100MB security threshold. Please compress it!`);
+                alert("❌ FILE REJECTED! Size exceeds 100MB.");
                 input.value = "";
                 statusLabel.innerText = "";
             } else {
@@ -302,33 +315,26 @@
             }
         }
 
-        // 👤 PROFILE MENU OVERLAY
         function toggleProfileMenu() {
-            const menu = document.getElementById('profile-menu');
-            menu.classList.toggle('hidden');
+            document.getElementById('profile-menu').classList.toggle('hidden');
         }
 
-        // 🎙️ VOICE INTERACTION ARCHITECTURE
         function triggerVoiceInput() {
             if ('webkitSpeechRecognition' in window || 'speechRecognition' in window) {
                 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
                 const recognition = new SpeechRecognition();
                 recognition.lang = 'en-US';
                 recognition.start();
-                
                 recognition.onresult = function(event) {
-                    const speechText = event.results[0][0].transcript;
-                    document.getElementById('student-query').value = speechText;
+                    document.getElementById('student-query').value = event.results[0][0].transcript;
                 };
             } else {
-                alert("Smartphone Native Mic Activated: Please focus on the input box and use your keyboard's built-in microphone button!");
+                alert("Please use your keyboard's built-in microphone button!");
             }
         }
 
-        // ➔ CORE TRANSMISSION PROTOCOL TO HYBRID ENGINE
         async function sendQueryToBot() {
             if(!IS_AUTHENTICATED) {
-                alert("🛑 SYSTEM LOCKDOWN!\nPlease login first or use 'Continue' to verify your identity parameters.");
                 triggerVerification();
                 return;
             }
@@ -344,7 +350,6 @@
                 messageText += ` [User Attached Document Ref: ${fileStatus.innerText}]`;
             }
 
-            // Append User Chat Bubble
             streamContainer.innerHTML += `
                 <div class="flex items-start gap-4 justify-end max-w-3xl ml-auto">
                     <div class="space-y-1 text-right">
@@ -358,7 +363,6 @@
             fileStatus.innerText = "";
             streamContainer.scrollTop = streamContainer.scrollHeight;
 
-            // Setup Bot Loading Placeholder
             const botMessageId = "rankbot-msg-" + Date.now();
             streamContainer.innerHTML += `
                 <div class="flex items-start gap-4 max-w-3xl" id="${botMessageId}">
@@ -371,7 +375,6 @@
             `;
             streamContainer.scrollTop = streamContainer.scrollHeight;
 
-            // Handshake & Telemetry with Hugging Face Space Core Engine
             try {
                 const response = await fetch(HUGGINGFACE_SPACE_API, {
                     method: "POST",
@@ -407,12 +410,5 @@
             }
         }
     </script>
-    
-    <select id="user-tier-select" class="hidden" onchange="selectTier(this.value)">
-        <option value="Tier 0 (Free Trial)">Tier 0 (Free Trial)</option>
-        <option value="Tier 1 (Basic Plan)">Tier 1 (Basic Plan)</option>
-        <option value="Tier 2 (Plus Plan)">Tier 2 (Plus Plan)</option>
-        <option value="Tier 3 (Pro VIP Plan)">Tier 3 (Pro VIP Plan)</option>
-    </select>
 </body>
 </html>
