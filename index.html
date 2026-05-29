@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="hi-IN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -41,7 +41,7 @@
             <div class="text-center mb-8">
                 <div class="text-4xl mb-2">🤖</div>
                 <h2 class="heading-font text-2xl font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-pink-500 bg-clip-text text-transparent">RankBot AI Matrix</h2>
-                <p class="text-xs text-gray-400 mt-1">लॉगिन/साइन-अप के बिना चैट करना सख्त वर्जित है</p>
+                <p class="text-xs text-gray-400 mt-1">Chatting without login/sign-up is strictly restricted</p>
             </div>
 
             <div class="space-y-3">
@@ -57,75 +57,75 @@
 
             <div class="relative my-6">
                 <div class="absolute inset-0 flex items-center"><div class="w-full border-t border-gray-800"></div></div>
-                <div class="relative flex justify-center text-xs uppercase"><span class="bg-[#0f0f14] px-2 text-gray-500">या फिर</span></div>
+                <div class="relative flex justify-center text-xs uppercase"><span class="bg-[#0f0f14] px-2 text-gray-500">OR</span></div>
             </div>
 
-            <p class="text-center text-xs text-gray-400">अकाउंट नहीं है? <a href="#" onclick="triggerVerification()" class="text-purple-400 hover:underline font-semibold">यहाँ साइन-अप करें</a></p>
+            <p class="text-center text-xs text-gray-400">Don't have an account? <a href="#" onclick="triggerVerification()" class="text-purple-400 hover:underline font-semibold">Sign up here</a></p>
         </div>
     </div>
 
     <div id="plans-screen" class="fixed inset-0 z-40 flex items-center justify-center blur-bg p-4 hidden transition-all duration-500 overflow-y-auto">
         <div class="w-full max-w-5xl my-auto">
             <div class="text-center mb-8">
-                <h2 class="heading-font text-3xl font-bold text-white">चुनें अपना सफलता पथ (Premium Tiers)</h2>
-                <p class="text-gray-400 text-sm mt-1">बिना किसी छिपे वॉटरमार्क या विज्ञापनों के कस्टमाइज्ड पढ़ाई करें</p>
-                <button onclick="closePlans()" class="mt-4 bg-[#1e1f24] text-xs text-gray-300 px-4 py-1.5 rounded-full border border-gray-700 hover:text-white">वापस चैट पर जाएँ</button>
+                <h2 class="heading-font text-3xl font-bold text-white">Choose Your Success Path (Premium Tiers)</h2>
+                <p class="text-gray-400 text-sm mt-1">Study customized without any hidden watermarks or ads</p>
+                <button onclick="closePlans()" class="mt-4 bg-[#1e1f24] text-xs text-gray-300 px-4 py-1.5 rounded-full border border-gray-700 hover:text-white">Go back to Chat</button>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-4 gap-4 px-2">
                 <div class="glass-panel p-5 rounded-2xl flex flex-col justify-between border-gray-800">
                     <div>
                         <h3 class="font-bold text-lg text-gray-300">Free Trial</h3>
-                        <p class="text-2xl font-bold mt-2">₹0 <span class="text-xs text-gray-500">/3 दिन</span></p>
+                        <p class="text-2xl font-bold mt-2">₹0 <span class="text-xs text-gray-500">/3 Days</span></p>
                         <ul class="text-xs text-gray-400 mt-4 space-y-2 border-t border-gray-800 pt-3">
-                            <li>• Powered Only by Llama</li>
-                            <li class="text-red-400">• विज्ञापनों के साथ (Ads Enabled)</li>
-                            <li>• केवल 10 बेसिक सवाल सीमा</li>
+                            <li>• Powered Only by Llama Engine</li>
+                            <li class="text-red-400">• Ads Enabled</li>
+                            <li>• 10 Basic Queries Limit</li>
                         </ul>
                     </div>
-                    <button onclick="selectTier('Tier 0 (Free Trial)')" class="w-full mt-6 bg-zinc-800 hover:bg-zinc-700 py-2 rounded-xl font-semibold text-xs transition-all">एक्टिव करें</button>
+                    <button onclick="selectTier('Tier 0 (Free Trial)')" class="w-full mt-6 bg-zinc-800 hover:bg-zinc-700 py-2 rounded-xl font-semibold text-xs transition-all">Activate Trial</button>
                 </div>
                 <div class="glass-panel p-5 rounded-2xl flex flex-col justify-between border-blue-900/40">
                     <div>
-                        <span class="text-[10px] bg-blue-500/10 text-blue-400 px-2 py-0.5 rounded-full uppercase font-bold tracking-wider">लोकप्रिय</span>
+                        <span class="text-[10px] bg-blue-500/10 text-blue-400 px-2 py-0.5 rounded-full uppercase font-bold tracking-wider">Popular</span>
                         <h3 class="font-bold text-lg text-white mt-1">Basic Plan</h3>
-                        <p class="text-2xl font-bold mt-2">₹199 <span class="text-xs text-gray-500">/महीना</span></p>
+                        <p class="text-2xl font-bold mt-2">₹199 <span class="text-xs text-gray-500">/Month</span></p>
                         <ul class="text-xs text-gray-400 mt-4 space-y-2 border-t border-gray-800 pt-3">
                             <li>• Llama + GPT + Gemini Matrix</li>
-                            <li>• 100% विज्ञापन मुक्त (No Ads)</li>
-                            <li>• 50 संदेश प्रति माह सीमा</li>
-                            <li>• 1 स्टैंडर्ड टाइमटेबल/माह</li>
+                            <li>• 100% Ad-Free Experience</li>
+                            <li>• 50 Messages / Month Limit</li>
+                            <li>• 1 Standard Timetable / Month</li>
                         </ul>
                     </div>
-                    <button onclick="selectTier('Tier 1 (Basic Plan)')" class="w-full mt-6 bg-blue-600 hover:bg-blue-700 py-2 rounded-xl font-semibold text-xs transition-all">अपग्रेड करें</button>
+                    <button onclick="selectTier('Tier 1 (Basic Plan)')" class="w-full mt-6 bg-blue-600 hover:bg-blue-700 py-2 rounded-xl font-semibold text-xs transition-all">Upgrade Now</button>
                 </div>
                 <div class="glass-panel p-5 rounded-2xl flex flex-col justify-between border-purple-900/40">
                     <div>
-                        <span class="text-[10px] bg-purple-500/10 text-purple-400 px-2 py-0.5 rounded-full uppercase font-bold tracking-wider">अनुशंसित</span>
+                        <span class="text-[10px] bg-purple-500/10 text-purple-400 px-2 py-0.5 rounded-full uppercase font-bold tracking-wider">Recommended</span>
                         <h3 class="font-bold text-lg text-white mt-1">Plus Plan</h3>
-                        <p class="text-2xl font-bold mt-2">₹499 <span class="text-xs text-gray-500">/महीना</span></p>
+                        <p class="text-2xl font-bold mt-2">₹499 <span class="text-xs text-gray-500">/Month</span></p>
                         <ul class="text-xs text-gray-400 mt-4 space-y-2 border-t border-gray-800 pt-3">
                             <li>• Claude + GPT + Gemini Enabled</li>
-                            <li>• 150 संदेश प्रति माह सीमा</li>
-                            <li>• 3 कस्टमाइज्ड टाइमटेबल चक्र</li>
-                            <li>• प्रेडिक्टिव गाइडेंस एक्टिवेटेड</li>
+                            <li>• 150 Messages / Month Limit</li>
+                            <li>• 3 Customized Timetable Cycles</li>
+                            <li>• Predictive Guidance Active</li>
                         </ul>
                     </div>
-                    <button onclick="selectTier('Tier 2 (Plus Plan)')" class="w-full mt-6 bg-purple-600 hover:bg-purple-700 py-2 rounded-xl font-semibold text-xs transition-all">अपग्रेड करें</button>
+                    <button onclick="selectTier('Tier 2 (Plus Plan)')" class="w-full mt-6 bg-purple-600 hover:bg-purple-700 py-2 rounded-xl font-semibold text-xs transition-all">Upgrade Now</button>
                 </div>
                 <div class="glass-panel p-5 rounded-2xl flex flex-col justify-between border-amber-500/30 relative overflow-hidden">
                     <div class="absolute top-0 right-0 bg-gradient-to-l from-amber-500 to-orange-500 text-black font-bold text-[9px] px-3 py-1 uppercase tracking-widest transform rotate-45 translate-x-4 translate-y-2">GOD TIER</div>
                     <div>
                         <h3 class="font-bold text-lg text-amber-400">Pro VIP Plan</h3>
-                        <p class="text-2xl font-bold mt-2">₹699 <span class="text-xs text-gray-500">/महीना</span></p>
+                        <p class="text-2xl font-bold mt-2">₹699 <span class="text-xs text-gray-500">/Month</span></p>
                         <ul class="text-xs text-gray-400 mt-4 space-y-2 border-t border-gray-800 pt-3">
-                            <li class="text-amber-400 font-bold">• 5 सुपर एआई इंजन (DeepSeek R1)</li>
-                            <li>• असीमित चैट्स (Unlimited)</li>
-                            <li>• एडवांस लॉजिकल रीज़निंग ट्रिक्स</li>
-                            <li class="text-green-400">• ओम्नीशिएंट डीप-ट्रैकिंग एक्टिव</li>
+                            <li class="text-amber-400 font-bold">• 5 Super Engines (DeepSeek R1)</li>
+                            <li>• Unlimited Chat Stream</li>
+                            <li>• Advanced Logical Reasoning</li>
+                            <li class="text-green-400">• Omniscient Deep-Tracking Active</li>
                         </ul>
                     </div>
-                    <button onclick="selectTier('Tier 3 (Pro VIP Plan)')" class="w-full mt-6 bg-gradient-to-r from-amber-500 to-orange-500 text-black hover:opacity-90 py-2 rounded-xl font-bold text-xs transition-all">VIP अनलॉक करें</button>
+                    <button onclick="selectTier('Tier 3 (Pro VIP Plan)')" class="w-full mt-6 bg-gradient-to-r from-amber-500 to-orange-500 text-black hover:opacity-90 py-2 rounded-xl font-bold text-xs transition-all">Unlock VIP</button>
                 </div>
             </div>
         </div>
@@ -155,12 +155,12 @@
                         <span id="menu-user-tier" class="text-[10px] bg-purple-500/20 text-purple-400 px-2 py-0.5 rounded-full font-semibold">Tier 0 (Free Trial)</span>
                     </div>
                     <div class="py-2 space-y-1 text-xs text-gray-300">
-                        <button onclick="alert('Profile Trace Metrics:\nAll security systems active. Monitoring local session parameters.')" class="w-full text-left px-3 py-2 hover:bg-zinc-800/50 rounded-lg transition-colors">👤 माई प्रोफाइल</button>
-                        <button onclick="alert('Settings Core Syncing: Smooth performance active. No system lag.')" class="w-full text-left px-3 py-2 hover:bg-zinc-800/50 rounded-lg transition-colors">⚙️ सेटिंग्स मॉड्यूल</button>
-                        <button onclick="openPlans()" class="w-full text-left px-3 py-2 bg-gradient-to-r from-amber-500/20 to-orange-500/20 text-amber-300 rounded-lg border border-amber-500/20 font-semibold transition-colors mt-2">✨ अपग्रेड प्लांस</button>
+                        <button onclick="alert('Profile Trace Metrics:\nAll security systems active. Monitoring local session parameters.')" class="w-full text-left px-3 py-2 hover:bg-zinc-800/50 rounded-lg transition-colors">👤 My Profile</button>
+                        <button onclick="alert('Settings Core Syncing: Smooth performance active. No system lag.')" class="w-full text-left px-3 py-2 hover:bg-zinc-800/50 rounded-lg transition-colors">⚙️ Settings Module</button>
+                        <button onclick="openPlans()" class="w-full text-left px-3 py-2 bg-gradient-to-r from-amber-500/20 to-orange-500/20 text-amber-300 rounded-lg border border-amber-500/20 font-semibold transition-colors mt-2">✨ Upgrade Plans</button>
                     </div>
                     <div class="border-t border-gray-800 pt-2 mt-2">
-                        <button onclick="location.reload()" class="w-full text-center text-xs text-red-400 hover:underline">लॉगआउट / रिसेट</button>
+                        <button onclick="location.reload()" class="w-full text-center text-xs text-red-400 hover:underline">Logout / Reset</button>
                     </div>
                 </div>
             </div>
@@ -171,7 +171,7 @@
                 <div class="w-9 h-9 rounded-xl bg-purple-600/20 border border-purple-500/30 flex items-center justify-center text-lg flex-shrink-0">🤖</div>
                 <div class="space-y-1">
                     <p class="text-xs font-bold text-purple-400 uppercase tracking-widest">RankBot AI</p>
-                    <p class="text-gray-200 text-sm leading-relaxed bg-[#0f0f14]/80 p-4 rounded-2xl border border-gray-900">नमस्ते भाई! मैं आपका कस्टमाइज्ड **RankBot AI** मेंटर हूँ। आपकी पढ़ाई, डेली टाइम-टेबल, और आईआईटी-जेईई / नीट के कठिनतम सवालों को हल करने की पूरी व्यवस्था यहाँ लाइव है। अपनी शंका यहाँ टाइप करें।</p>
+                    <p class="text-gray-200 text-sm leading-relaxed bg-[#0f0f14]/80 p-4 rounded-2xl border border-gray-900">Hello brother! I am your customized **RankBot AI** Mentor. Your studies, daily timetable, and complete setups to solve complex IIT-JEE / NEET questions are live here. Type your doubt below.</p>
                 </div>
             </div>
         </div>
@@ -232,25 +232,23 @@
 
         // 🔐 AUTH GATE & VERIFICATION LINK ENGINE
         function triggerVerification() {
-            const promptEmail = prompt("अपना आधिकारिक ईमेल दर्ज करें (एक वेरिफिकेशन लिंक भेजा जाएगा):");
+            const promptEmail = prompt("Enter your official email (A verification link will be sent):");
             if (promptEmail && promptEmail.includes("@")) {
-                alert("🔒 VERIFICATION MATRIX ATTACHED!\nआपके ईमेल पर एक कस्टमाइज्ड एक्टिवेशन लिंक भेज दिया गया है। जब आप उस पर क्लिक करके लौटेंगे, तो आपका RankBot डेटाबेस सक्रिय हो जाएगा।");
+                alert("🔒 VERIFICATION MATRIX ATTACHED!\nA customized activation link has been dispatched to your email. Your RankBot dataset will be active once verified.");
                 
-                // Simulation of automatic authentication redirect
                 IS_AUTHENTICATED = true;
                 document.getElementById('auth-gate').classList.add('opacity-0', 'pointer-events-none');
                 
-                // Set Profile Letter based on email
                 const letter = promptEmail.charAt(0).toUpperCase();
                 document.getElementById('profile-letter').innerText = letter;
                 document.getElementById('menu-user-name').innerText = promptEmail.split('@')[0];
             } else {
-                alert("❌ अमान्य ईमेल! कृपया सुरक्षा मानकों का पालन करें।");
+                alert("❌ INVALID EMAIL! Please adhere to security protocols.");
             }
         }
 
         function bypassToPlans() {
-            alert("चैट करने के लिए ऑथेंटिकेशन अनिवार्य है, लेकिन आप पहले प्लांस और उनके फायदों को देख सकते हैं।");
+            alert("Authentication is mandatory to chat, but you can explore our plans and benefits first.");
             document.getElementById('plans-screen').classList.remove('hidden');
         }
 
@@ -258,7 +256,7 @@
         function openPlans() { document.getElementById('plans-screen').classList.remove('hidden'); }
         function closePlans() { 
             if(!IS_AUTHENTICATED) {
-                alert("चेतावनी: चैट प्रारंभ करने के लिए कृपया पहले साइन-अप/लॉगिन क्रेडेंशियल सत्यापित करें!");
+                alert("Warning: Please verify your login credentials first to initialize the core session!");
                 return;
             }
             document.getElementById('plans-screen').classList.add('hidden'); 
@@ -269,7 +267,6 @@
             document.getElementById('user-tier-select').value = tierName;
             document.getElementById('menu-user-tier').innerText = tierName;
             
-            // Adjust Notices & Interfaces based on selection
             const notice = document.getElementById('bottom-ad-notice');
             if (tierName.includes("Tier 0")) {
                 notice.innerText = "⚠️ Constant Core Warning: Premium algorithms locked. Upgrade Plan for 100% unrestricted priority bandwidth.";
@@ -280,7 +277,7 @@
             }
             
             if(!IS_AUTHENTICATED) {
-                alert(`आपने ${tierName} चुना है। इसका उपयोग करने के लिए कृपया अपना अकाउंट वेरिफाई करें!`);
+                alert(`You selected ${tierName}. Please verify your account to unlock full access!`);
                 triggerVerification();
             } else {
                 alert(`🚀 RankBot Core Updated Successfully: Shifted to ${tierName}`);
@@ -294,9 +291,9 @@
             const statusLabel = document.getElementById('file-status');
             if (!file) return;
 
-            const maxSizeBytes = 100 * 1024 * 1024; // 100 Megabytes STRICT BOUNDARY
+            const maxSizeBytes = 100 * 1024 * 1024; 
             if (file.size > maxSizeBytes) {
-                alert(`❌ FILE REJECTED MATRIX!\nआपकी फ़ाइल का आकार (${(file.size / (1024*1024)).toFixed(1)} MB) हमारे अधिकतम 100MB के सुरक्षा पैरामीटर को पार कर गया है। कृपया संपीड़ित करें!`);
+                alert(`❌ FILE REJECTED MATRIX!\nYour file size (${(file.size / (1024*1024)).toFixed(1)} MB) exceeds our 100MB security threshold. Please compress it!`);
                 input.value = "";
                 statusLabel.innerText = "";
             } else {
@@ -305,7 +302,7 @@
             }
         }
 
-        // 👤 ALL-IN-ONE PROFILE MENU OVERLAY
+        // 👤 PROFILE MENU OVERLAY
         function toggleProfileMenu() {
             const menu = document.getElementById('profile-menu');
             menu.classList.toggle('hidden');
@@ -316,7 +313,7 @@
             if ('webkitSpeechRecognition' in window || 'speechRecognition' in window) {
                 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
                 const recognition = new SpeechRecognition();
-                recognition.lang = 'hi-IN';
+                recognition.lang = 'en-US';
                 recognition.start();
                 
                 recognition.onresult = function(event) {
@@ -324,14 +321,14 @@
                     document.getElementById('student-query').value = speechText;
                 };
             } else {
-                alert("स्मार्टफोन नेटिव माइक एक्टिवेटेड: कृपया इनपुट बॉक्स पर ध्यान केंद्रित करके अपने डिवाइस कीबोर्ड के इन-बिल्ट माइक बटन का उपयोग करें!");
+                alert("Smartphone Native Mic Activated: Please focus on the input box and use your keyboard's built-in microphone button!");
             }
         }
 
         // ➔ CORE TRANSMISSION PROTOCOL TO HYBRID ENGINE
         async function sendQueryToBot() {
             if(!IS_AUTHENTICATED) {
-                alert("🛑 SYSTEM LOCKDOWN!\nकृपया पहले लॉगिन करें या 'Continue' का उपयोग करके अपनी आईडी वेरिफाई करें।");
+                alert("🛑 SYSTEM LOCKDOWN!\nPlease login first or use 'Continue' to verify your identity parameters.");
                 triggerVerification();
                 return;
             }
@@ -406,7 +403,7 @@
                 };
 
             } catch (error) {
-                document.getElementById(`${botMessageId}-text`).innerText = "रैंकबॉट डेटा स्ट्रीम सिंकिंग हो रहा है। कृपया 5 सेकंड में दोबारा संदेश भेजें।";
+                document.getElementById(`${botMessageId}-text`).innerText = "RankBot core data stream synchronizing. Please try again in 5 seconds.";
             }
         }
     </script>
