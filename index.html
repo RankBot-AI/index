@@ -44,6 +44,20 @@
         }
         .pro-mesh-active { animation: meshFlow 6s infinite linear !important; border-width: 2px !important; }
     </style>
+    
+    <script>
+        // यह स्क्रिप्ट एचटीएमएल बॉडी लोड होने से पहले ही स्क्रीन को लॉक या अनलॉक कर देगी ताकि रिफ्रेश का ग्लिच कभी न आए
+        (function() {
+            const savedAuth = localStorage.getItem('rb_auth');
+            const savedEmail = localStorage.getItem('rb_email');
+            if (savedAuth === 'true' && savedEmail) {
+                // सीएसएस इंजेक्ट करके लॉगिन गेट को रेंडर होने से पहले ही छुपा दो
+                const style = document.createElement('style');
+                style.innerHTML = '#auth-gate { display: none !important; }';
+                document.head.appendChild(style);
+            }
+        })();
+    </script>
 </head>
 <body class="flex h-screen w-screen select-none">
 
@@ -434,15 +448,14 @@
             }
         }
 
-        // 🟢 FIXED: PURE UI WORKSPACE UNLOCK METHOD (NO MORE REFRESH GLITCHES)
+        // 🟢 FIXED: CORE ACTIVE UNLOCK METHOD (HIDES AUTH WINDOW PERMANENTLY WITH NO DELAY)
         function enterWorkspaceDirectly(email, tier) {
             IS_AUTHENTICATED = true;
             CURRENT_TIER = tier || "Free Trial";
             
-            // Instantly remove and hide the login overlay gate completely
             const gate = document.getElementById('auth-gate');
             if(gate) {
-                gate.style.display = 'none';
+                gate.style.setProperty('display', 'none', 'important');
             }
             
             let defaultName = email.split('@')[0];
@@ -454,8 +467,7 @@
             document.getElementById('prof-email-display').value = email;
         }
 
-        // 🗄️ RE-ENGINEERED LOAD LIFECYCLE (CHECKS AND HIDES SCREEN FIRST)
-        window.addEventListener('DOMContentLoaded', () => {
+        window.addEventListener('load', () => {
             const savedAuth = localStorage.getItem('rb_auth');
             const savedEmail = localStorage.getItem('rb_email');
             const savedTier = localStorage.getItem('rb_tier');
@@ -464,7 +476,6 @@
             syncAcousticVoiceList();
 
             if (savedAuth === 'true' && savedEmail) {
-                // Instantly inject variable credentials to destroy login overlay parameters before rendering
                 enterWorkspaceDirectly(savedEmail, savedTier);
                 
                 document.getElementById('prof-name').value = localStorage.getItem('rb_name') || "";
@@ -526,7 +537,6 @@
                     localStorage.setItem('rb_loc', 'Delhi, India');
                     localStorage.setItem('rb_country_code', '+91');
                     
-                    // FIXED: Changes window status directly without firing glitch reloads
                     enterWorkspaceDirectly(email, CURRENT_TIER);
                 } else {
                     localStorage.setItem('rb_email', email);
@@ -658,12 +668,7 @@
         function openPlans() { document.getElementById('profile-menu').classList.add('hidden'); document.getElementById('plans-screen').classList.remove('hidden'); }
         function closePlans() { document.getElementById('plans-screen').classList.add('hidden'); }
         function toggleProfileMenu() { document.getElementById('profile-menu').classList.toggle('hidden'); }
-        
-        // Dynamic hard logout to completely flush cache states smoothly
-        function logoutSystem() { 
-            localStorage.clear(); 
-            location.reload(); 
-        }
+        function logoutSystem() { localStorage.clear(); location.reload(); }
         function deleteAccountSystem() { if(confirm("Wipe all data cache vault permanently?")) { logoutSystem(); } }
         function validateAndUploadFile(i) { alert("Document registered safely under 100MB constraints."); }
     </script>
