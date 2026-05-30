@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RankBot AI - Ultimate Educational Matrix</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2 family=Space+Grotesk:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;600;700&family=Lexend:wght@400;600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;600;700&family=Lexend:wght@400;600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     
     <style>
         body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #050507; color: #e4e4e7; overflow: hidden; transition: background-color 0.3s, color 0.3s; }
@@ -34,7 +34,7 @@
         ::-webkit-scrollbar { width: 5px; }
         ::-webkit-scrollbar-thumb { background: #27272a; border-radius: 10px; }
 
-        /* 🌈 PRO EXCLUSIVE RGB FLOW MESH ANIMATION WITH TEXT TEXT GRADIENT SUPPORT */
+        /* 🌈 PRO EXCLUSIVE RGB MESH ANIMATION FIXED FOR TEXT & RING CORE */
         @keyframes meshFlow {
             0% { border-color: #3b82f6; box-shadow: 0 0 15px rgba(59, 130, 246, 0.4); color: #3b82f6; }
             33% { border-color: #ec4899; box-shadow: 0 0 15px rgba(236, 72, 153, 0.4); color: #ec4899; }
@@ -42,7 +42,15 @@
             100% { border-color: #3b82f6; box-shadow: 0 0 15px rgba(59, 130, 246, 0.4); color: #3b82f6; }
         }
         .pro-mesh-active { animation: meshFlow 6s infinite linear !important; border-width: 2px !important; }
-        .pro-text-flow { animation: meshFlow 6s infinite linear !important; background: transparent !important; }
+        
+        /* Pure Linear Gradient Loop for Pro Plan Text */
+        @keyframes textMesh {
+            0% { color: #3b82f6; }
+            33% { color: #ec4899; }
+            66% { color: #8b5cf6; }
+            100% { color: #3b82f6; }
+        }
+        .pro-text-flow { animation: textMesh 6s infinite linear !important; background: transparent !important; }
     </style>
     
     <script>
@@ -116,8 +124,8 @@
             <div onclick="openSettingsModal()" class="w-full text-left px-3 py-3 hover:bg-zinc-900/80 rounded-xl transition-colors flex items-center gap-3 cursor-pointer">⚙️ Advanced Control Center</div>
         </div>
         
-        <div class="pt-3 border-t border-gray-900 space-y-1 text-center">
-            <div onclick="logoutSystem()" class="w-full bg-zinc-900/50 hover:bg-red-950/30 border border-gray-900 text-red-400 py-2 rounded-xl text-[11px] font-medium transition-colors cursor-pointer select-none">Logout Current Session</div>
+        <div class="pt-3 border-t border-gray-900 text-center">
+            <div onclick="logoutSystem()" class="w-full bg-zinc-900/50 hover:bg-red-950/30 border border-gray-900 text-red-400 py-2 rounded-xl text-[11px] font-medium transition-colors cursor-pointer select-none">Logout Session</div>
         </div>
     </div>
 
@@ -444,15 +452,12 @@
             const userSpeed = parseFloat(document.getElementById('set-voice-speed').value || '0.95');
             if ('speechSynthesis' in window) {
                 window.speechSynthesis.cancel();
-                
-                // 🗣️ ENHANCED SPEECH INTELLECT NODES TO BLOCK HUMMING ROBOTS
-                const utterance = new SpeechSynthesisUtterance("Hi, I am RankBot AI. Your customized premium conversational logic sequences are completely live now.");
+                const utterance = new SpeechSynthesisUtterance("Hi, I am RankBot AI. Your customized premium conversational logic sequences are completely active now.");
                 utterance.rate = userSpeed;
                 
                 const systemVoices = window.speechSynthesis.getVoices();
                 if(systemVoices.length > 0) {
-                    // Pull highest quality high definition speech notes natively out of active hardware engines
-                    const targetVoice = systemVoices.find(v => v.lang.includes('en') && (v.name.includes('Natural') || v.name.includes('Google') || v.name.includes('Microsoft'))) || systemVoices[0];
+                    const targetVoice = systemVoices.find(v => v.lang.includes('en') && (v.name.includes('Natural') || v.name.includes('Google'))) || systemVoices[0];
                     utterance.voice = targetVoice;
                 }
                 if (selectedVoice.includes("jarvis") || selectedVoice.includes("titan")) utterance.pitch = 0.95;
@@ -550,7 +555,7 @@
                 item.innerHTML = `
                     <div class="w-full truncate pr-1">${folder.title}</div>
                     <div class="flex items-center gap-3 border-t border-gray-900/40 pt-1.5 mt-0.5 text-[10px] text-gray-500">
-                        <span onclick="renameFolderNodeElement('${id}', event)" class="hover:text-purple-400">✏️ Rename</span>
+                        <span onclick="renameFolderNodeElement('${id}', event)'" class="hover:text-purple-400">✏️ Rename</span>
                         <span onclick="shareFolderNodeElement('${id}', event)" class="hover:text-blue-400">📢 Share</span>
                         <span onclick="deleteFolderNodeElement('${id}', event)" class="hover:text-red-400 ml-auto">🗑️ Delete</span>
                     </div>`;
@@ -558,27 +563,24 @@
             });
         }
 
-        // 🌟 4. FIXED: CUSTOM DYNAMIC PLAN-COLOR THEMED WELCOME RENDERING SCHEME
+        // 🌟 FIXED PER SCREENSHOT: EXCLUSIVE PLAN COLOR RESOLUTION LOGIC
         function renderActiveStreamMessages() {
             const streamContainer = document.getElementById('chat-workspace-container');
             if(!streamContainer) return;
             
             if(!ACTIVE_FOLDER_ID || !CHAT_FOLDERS_MAP[ACTIVE_FOLDER_ID]) {
                 document.getElementById('active-folder-label').innerText = "";
-                
-                // Read metadata parameters to resolve correct text theme configurations
                 const userRawName = localStorage.getItem('rb_name') || "Student";
-                let textStyleClass = "text-blue-400"; // Free Trial Default
                 
+                let textStyleClass = "text-blue-400"; // Free Default
                 if(CURRENT_TIER === "Lite Plan") textStyleClass = "text-pink-400";
                 else if(CURRENT_TIER === "Plus Plan") textStyleClass = "text-purple-400";
                 else if(CURRENT_TIER === "Pro Plan") textStyleClass = "pro-text-flow font-bold bg-gradient-to-r from-blue-400 via-pink-400 to-purple-400 bg-clip-text text-transparent";
                 
-                // FIXED PER REQUEST: Slid up beautiful central layout completely clean of generic tags
                 streamContainer.innerHTML = `
-                    <div class="w-full flex items-center justify-center min-h-[40vh] text-center px-4">
+                    <div class="w-full flex items-center justify-center min-h-[50vh] text-center px-4">
                         <div class="space-y-2 max-w-xl">
-                            <h2 class="heading-font text-3xl font-bold tracking-tight ${textStyleClass}">Hi ${userRawName},</h2>
+                            <h2 class="heading-font text-4xl font-bold tracking-tight ${textStyleClass}">Hi ${userRawName},</h2>
                             <p class="text-gray-400 text-sm font-semibold">Start your conversation with RankBot AI</p>
                         </div>
                     </div>`;
@@ -600,27 +602,16 @@
             applyFontStyles();
         }
 
-        // 📁 SIDE SLIDER DRIVING RIGS INTERFACES
-        function openMasterHubModal() { document.getElementById('master-hub-sidebar').classList.remove('-translate-x-full'); }
-        function closeMasterHubModal() { document.getElementById('master-hub-sidebar').classList.add('-translate-x-full'); }
+        function openMasterHubModal() { const sidebar = document.getElementById('master-hub-sidebar'); if(sidebar) sidebar.classList.remove('-translate-x-full'); }
+        function closeMasterHubModal() { document.getElementById('master-hub-sidebar').classList.add('hidden'); document.getElementById('master-hub-sidebar').classList.add('-translate-x-full'); }
         
-        // 👤 FIXED: RIGHT DRAWER TOGGLE METHOD ACCELERATOR
         function toggleProfileMenuSidebar(event) {
             if(event) event.stopPropagation();
             const sidebar = document.getElementById('profile-menu-sidebar');
             sidebar.classList.toggle('translate-x-full');
         }
-
-        function closeProfileMenuSidebar() {
-            const sidebar = document.getElementById('profile-menu-sidebar');
-            if(sidebar) sidebar.classList.add('translate-x-full');
-        }
-
-        // Auto Close Sidebar Panels upon Clicking Anywhere onto Core Screen Layers
-        function autoCloseDrawersOnMainClick(event) {
-            closeMasterHubModal();
-            closeProfileMenuSidebar();
-        }
+        function closeProfileMenuSidebar() { const sidebar = document.getElementById('profile-menu-sidebar'); if(sidebar) sidebar.classList.add('translate-x-full'); }
+        function autoCloseDrawersOnMainClick(event) { closeMasterHubModal(); closeProfileMenuSidebar(); }
 
         function loadNotesCanvasVaultFiles() {
             const fileContainer = document.getElementById('saved-canvas-files-stream'); if(!fileContainer) return; fileContainer.innerHTML = "";
@@ -696,19 +687,44 @@
         }
         function clearDrawingCanvasBoard() { if(confirm("🧹 Clear note surface layers?")) ctx.clearRect(0, 0, canvas.width, canvas.height); }
 
+        // 📁 FIXED FOR ALL LOAD AND FORCE IMMUNITY RECOVERY
+        function initGalaxy() {
+            const bg = document.getElementById('galaxy-bg');
+            if(!bg) return; bg.innerHTML = "";
+            const starCount = 60;
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                const size = Math.random() * 2 + 1;
+                star.style.width = `${size}px`; star.style.height = `${size}px`;
+                star.style.animationDelay = `${Math.random() * 8}s`;
+                star.style.animationDuration = `${Math.random() * 6 + 6}s`;
+                bg.appendChild(star);
+            }
+        }
+
         function enterWorkspaceDirectly(email, tier) {
             IS_AUTHENTICATED = true; CURRENT_TIER = tier || "Free Trial";
             const gate = document.getElementById('auth-gate'); if(gate) gate.style.setProperty('display', 'none', 'important');
+            
             let defaultName = email.split('@')[0]; let activeName = localStorage.getItem('rb_name') || defaultName;
             document.getElementById('profile-letter').innerText = activeName.charAt(0).toUpperCase();
             document.getElementById('drawer-pfp-letter').innerText = activeName.charAt(0).toUpperCase();
             document.getElementById('menu-user-name').innerText = `Hi, ${activeName}`;
-            applyTierStylesAndRings(CURRENT_TIER); document.getElementById('prof-email-display').value = email;
+            
+            // 🚨 CRITICAL FORCE INJECTION: Makes sure rings and welcome screens fire simultaneously
+            applyTierStylesAndRings(CURRENT_TIER); 
+            document.getElementById('prof-email-display').value = email;
+            
             loadChatFolderVault();
+            initGalaxy(); // Instantly spin galaxy back up on smooth entry frames
         }
 
         window.addEventListener('DOMContentLoaded', () => {
             const savedAuth = localStorage.getItem('rb_auth'); const savedEmail = localStorage.getItem('rb_email'); const savedTier = localStorage.getItem('rb_tier');
+            syncAcousticVoiceList();
             if (savedAuth === 'true' && savedEmail) {
                 enterWorkspaceDirectly(savedEmail, savedTier);
                 document.getElementById('prof-name').value = localStorage.getItem('rb_name') || "";
@@ -722,10 +738,11 @@
                 if(localStorage.getItem('rb_set_lang')) document.getElementById('set-ai-lang').value = localStorage.getItem('rb_set_lang');
                 if(localStorage.getItem('rb_font_sz')) { document.getElementById('set-font-size').value = localStorage.getItem('rb_font_sz'); document.getElementById('set-font-fam').value = localStorage.getItem('rb_font_fam'); }
                 if(localStorage.getItem('rb_theme') === 'light') toggleThemeState('light');
+            } else {
+                initGalaxy(); // Fired fallback inside login overlay states
             }
         });
 
-        // 🧠 AUTO-RENAME CORE ARCHITECTURE FEED ENGINE
         async function sendQueryToBot() {
             if(!IS_AUTHENTICATED) return;
             let currentFreeChats = parseInt(localStorage.getItem('rb_free_chats') || '0');
