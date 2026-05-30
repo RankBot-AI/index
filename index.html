@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RankBot AI - Ultimate Educational Matrix v1.5.0</title>
+    <title>RankBot AI - Ultimate Educational Matrix v2.0.0</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;600;700&family=Lexend:wght@400;600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     
@@ -38,10 +38,10 @@
         @keyframes twinkle {
             0% { transform: translateY(0) scale(0.5); opacity: 0; }
             50% { opacity: 0.8; }
-            100% { transform: translateY(-100px) scale(1.2); opacity: 0; }
+            100% { transform: translateY(-10px) scale(1.2); opacity: 0; }
         }
 
-        /* LIGHT MODE OVERRIDE STATE CORE */
+        /* LIGHT MODE OVERRIDE STATE FOR ENTIRE CONTAINER LAYOUT */
         body.light-mode-active { background: #f4f4f5 !important; color: #09090b !important; }
         body.light-mode-active #galaxy-bg { display: none !important; }
         body.light-mode-active .glass-panel { background: rgba(255, 255, 255, 0.8) !important; border: 1px solid rgba(0, 0, 0, 0.08) !important; color: #09090b !important; }
@@ -55,7 +55,7 @@
         ::-webkit-scrollbar { width: 5px; }
         ::-webkit-scrollbar-thumb { background: #27272a; border-radius: 10px; }
 
-        /* 🌈 PRO EXCLUSIVE RGB FLOW MESH ANIMATION FIXED FOR TEXT & RING CORE */
+        /* 🌈 PRO EXCLUSIVE RGB FLOW MESH ANIMATION CODE PIPELINES */
         @keyframes meshFlow {
             0% { border-color: #3b82f6; box-shadow: 0 0 15px rgba(59, 130, 246, 0.4); color: #3b82f6; }
             33% { border-color: #ec4899; box-shadow: 0 0 15px rgba(236, 72, 153, 0.4); color: #ec4899; }
@@ -64,7 +64,7 @@
         }
         .pro-mesh-active { animation: meshFlow 6s infinite linear !important; border-width: 2px !important; }
         
-        /* Pure Linear Gradient Loop for Pro Plan Text Elements */
+        /* Pure Linear Gradient Loop for Pro Plan Text */
         @keyframes textMesh {
             0% { color: #3b82f6; }
             33% { color: #ec4899; }
@@ -132,7 +132,7 @@
         </div>
     </div>
 
-    <div id="profile-menu-sidebar" class="fixed inset-y-0 right-0 w-72 h-full bg-[#050508]/98 border-l border-gray-900 z-[800] transform translate-x-full transition-transform duration-300 flex flex-col p-5 shadow-2xl" onclick="event.stopPropagation()">
+    <div id="profile-menu-sidebar" class="fixed inset-y-0 right-0 w-72 h-full bg-[#050507] border-l border-gray-900 z-[800] transform translate-x-full transition-transform duration-300 flex flex-col p-5 shadow-2xl" onclick="event.stopPropagation()">
         <div class="text-center pb-4 border-b border-gray-900 mt-2">
             <div class="w-14 h-14 bg-zinc-900 rounded-full mx-auto flex items-center justify-center font-bold text-xl text-purple-400 border border-gray-800 mb-2 heading-font" id="drawer-pfp-letter">U</div>
             <p id="menu-user-name" class="font-bold text-sm text-white">Hi, User</p>
@@ -140,13 +140,19 @@
         </div>
         
         <div class="py-4 flex-1 space-y-2 text-xs text-gray-300 overflow-y-auto smooth-scroll">
-            <div onclick="openProfileModal()" class="w-full text-left px-3 py-3 hover:bg-zinc-900/80 rounded-xl transition-colors flex items-center gap-3 cursor-pointer">👤 View Profile Metadata</div>
-            <div onclick="openPlans()" class="w-full text-left px-3 py-3 hover:bg-zinc-900/80 rounded-xl transition-colors flex items-center gap-3 cursor-pointer">💎 Upgrade Bandwidth Plans</div>
-            <div onclick="openSettingsModal()" class="w-full text-left px-3 py-3 hover:bg-zinc-900/80 rounded-xl transition-colors flex items-center gap-3 cursor-pointer">⚙️ Advanced Control Center</div>
+            <div onclick="openProfileModal()" class="w-full text-left px-4 py-3.5 hover:bg-zinc-900/80 rounded-xl transition-colors flex items-center gap-3 cursor-pointer font-semibold border border-transparent hover:border-gray-900">
+                👤 Profile
+            </div>
+            <div onclick="openPlans()" class="w-full text-left px-4 py-3.5 hover:bg-zinc-900/80 rounded-xl transition-colors flex items-center gap-3 cursor-pointer font-semibold border border-transparent hover:border-gray-900">
+                💎 Plans
+            </div>
+            <div onclick="openSettingsModal()" class="w-full text-left px-4 py-3.5 hover:bg-zinc-900/80 rounded-xl transition-colors flex items-center gap-3 cursor-pointer font-semibold border border-transparent hover:border-gray-900">
+                ⚙️ Settings
+            </div>
         </div>
         
-        <div class="pt-3 border-t border-gray-900 text-center">
-            <div onclick="logoutSystem()" class="w-full bg-zinc-900/50 hover:bg-red-950/30 border border-gray-800 text-red-400 py-2 rounded-xl text-[11px] font-medium transition-colors cursor-pointer select-none">Logout Current Session</div>
+        <div class="pb-2 text-center text-[10px] text-gray-700 font-mono tracking-wider">
+            RankBot Vault Node Integrated Securely
         </div>
     </div>
 
@@ -200,8 +206,11 @@
                         </select>
                     </div>
                 </div>
+                
                 <div class="pt-4 border-t border-gray-800 space-y-2">
                     <div onclick="saveProfileData()" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold py-2.5 rounded-xl transition-all cursor-pointer text-center select-none">Save Profile Matrix</div>
+                    <div onclick="logoutSystem()" class="w-full bg-zinc-900 hover:bg-red-950/20 border border-gray-800 text-red-400 py-2 rounded-xl text-center cursor-pointer font-medium select-none">🚪 Logout Current Session</div>
+                    <div onclick="deleteAccountSystem()" class="w-full text-center text-[10px] text-gray-600 hover:text-red-500 underline block pt-1 cursor-pointer select-none">Delete Account Permanently</div>
                 </div>
             </div>
         </div>
@@ -217,19 +226,15 @@
             <div class="space-y-4 px-1 pb-2">
                 <div onclick="selectTier('Free Trial')" class="glass-panel p-5 rounded-2xl border border-blue-500/30 hover:border-blue-500/60 transition-all cursor-pointer">
                     <h3 class="font-bold text-lg text-blue-400">Free Trial - Activate</h3>
-                    <p class="text-gray-500 text-xs mt-1">Basic core loops mapping allocations total.</p>
                 </div>
                 <div onclick="selectTier('Lite Plan')" class="glass-panel p-5 rounded-2xl border border-pink-500/30 hover:border-pink-500/60 transition-all cursor-pointer">
                     <h3 class="font-bold text-lg text-pink-400">Lite Plan - Select</h3>
-                    <p class="text-gray-500 text-xs mt-1">50 priority ad-free answers track array allocations.</p>
                 </div>
                 <div onclick="selectTier('Plus Plan')" class="glass-panel p-5 rounded-2xl border border-purple-500/30 hover:border-purple-500/60 transition-all cursor-pointer">
                     <h3 class="font-bold text-lg text-purple-400">Plus Plan - Select</h3>
-                    <p class="text-gray-500 text-xs mt-1">150 advanced logical streams multithread variables.</p>
                 </div>
                 <div id="pro-vertical-card" onclick="selectTier('Pro Plan')" class="glass-panel p-5 rounded-2xl pro-mesh-active transition-all cursor-pointer">
                     <h3 class="font-bold text-lg text-white">Pro Plan - Unlock VIP CONTROL MATRIX</h3>
-                    <p class="text-gray-200 text-xs mt-1">100% unrestricted absolute reasoning bandwidth pipelines infinite storage loops.</p>
                 </div>
             </div>
         </div>
@@ -241,29 +246,29 @@
             <h3 class="heading-font text-xl font-bold text-white mb-4 border-b border-gray-800 pb-2 flex items-center gap-2">⚙️ Advanced Control Center</h3>
             <div class="space-y-4 text-xs">
                 <div class="bg-[#0c0c12] p-3 rounded-xl border border-gray-800 space-y-3">
-                    <p class="font-bold text-purple-400 tracking-wider uppercase text-[9px]">🤖 RankBot AI Acoustic Voice Customizer Center</p>
+                    <p class="font-bold text-purple-400 tracking-wider uppercase text-[9px]">🤖 RankBot AI Acoustic Voice Core</p>
                     <div class="grid grid-cols-2 gap-2">
                         <div>
-                            <label class="block text-gray-500 mb-1">Gender Node</label>
+                            <label class="block text-gray-400 mb-1">AI Voice Variations</label>
                             <select id="set-voice-gender" onchange="syncAcousticVoiceList()" class="w-full bg-[#050508] border border-gray-800 rounded-xl p-2 text-gray-300 focus:outline-none">
-                                <option value="male">Male Engine Voice</option>
-                                <option value="female">Female Engine Voice</option>
+                                <option value="male">Male Node Engine (6 Parts)</option>
+                                <option value="female">Female Node Engine (6 Parts)</option>
                             </select>
                         </div>
                         <div>
-                            <label class="block text-gray-500 mb-1">Wave Pattern</label>
+                            <label class="block text-gray-400 mb-1">Acoustic Vector Wave</label>
                             <select id="set-voice" class="w-full bg-[#050508] border border-gray-800 rounded-xl p-2 text-gray-300 focus:outline-none"></select>
                         </div>
                     </div>
                     <div>
-                        <label class="block text-gray-500 mb-1">Tempo Vector Rate</label>
+                        <label class="block text-gray-400 mb-1">Voice Tempo / Pacing Speed</label>
                         <select id="set-voice-speed" class="w-full bg-[#050508] border border-gray-800 rounded-xl p-2 text-gray-300 focus:outline-none">
                             <option value="0.75">Slow Modulated Pacing</option>
                             <option value="0.95" selected>Medium Balanced Cadence (Default)</option>
                             <option value="1.25">Fast Priority Bandwidth Core</option>
                         </select>
                     </div>
-                    <div onclick="testActiveVoiceOutputSound()" class="w-full bg-purple-600/20 text-purple-300 border border-purple-500/30 hover:bg-purple-600/40 font-bold py-2 rounded-xl text-center cursor-pointer select-none">🔊 Test Active Audio Synthesis Vector Track</div>
+                    <div onclick="testActiveVoiceOutputSound()" class="w-full bg-purple-600/20 text-purple-300 border border-purple-500/30 hover:bg-purple-600/40 font-bold py-2 rounded-xl text-center cursor-pointer select-none">🔊 Play Active Audio Track Sample (Test)</div>
                 </div>
                 
                 <div class="bg-[#0c0c12] p-3 rounded-xl border border-gray-800 space-y-2">
@@ -285,8 +290,9 @@
                     </div>
                 </div>
 
-                <div class="pt-3 border-t border-gray-800">
-                    <div onclick="saveSettingsForm()" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold py-2.5 rounded-xl text-center cursor-pointer select-none">Save Workspace Config Parameters</div>
+                <div class="pt-3 border-t border-gray-800 space-y-2">
+                    <div onclick="saveSettingsForm()" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold py-2.5 rounded-xl text-center cursor-pointer select-none">Save Config Parameters</div>
+                    <div onclick="logoutSystem()" class="w-full bg-zinc-900 hover:bg-red-950/20 border border-gray-800 text-red-400 py-2 rounded-xl text-center cursor-pointer font-medium select-none">🚪 Logout Current Session</div>
                 </div>
             </div>
         </div>
@@ -296,7 +302,7 @@
         
         <div class="w-full flex items-center justify-between px-6 py-4 glass-panel border-b border-b-gray-900 z-50">
             <div class="flex items-center gap-4">
-                <div onclick="openMasterHubModal(); event.stopPropagation();" class="text-2xl cursor-pointer active:scale-95 transition-transform select-none" title="Open Sidebar Panel">🤖</div>
+                <div onclick="openMasterHubModal(); event.stopPropagation();" class="text-2xl cursor-pointer active:scale-95 transition-transform select-none" title="Open Sidebar">🤖</div>
                 <div onclick="toggleNotesCanvasWorkspace()" id="notes-tab-btn" class="bg-zinc-800/80 hover:bg-purple-900/40 text-gray-300 border border-gray-800 text-[11px] px-4 py-1.5 rounded-xl font-bold cursor-pointer transition-all select-none">
                     Notes
                 </div>
@@ -319,7 +325,7 @@
             <div id="chat-workspace-container" class="absolute inset-0 overflow-y-auto px-4 py-8 md:px-32 space-y-6 smooth-scroll z-10">
                 </div>
 
-            <div id="notes-workspace-container" class="absolute inset-0 bg-[#07070c] hidden flex-col md:flex-row p-4 gap-4 z-20 overflow-hidden">
+            <div id="notes-workspace-container" class="absolute inset-0 bg-[#07070c] hidden flex-col md:flex-row p-4 gap-4 z-20 overflow-hidden animate-fade-in">
                 <div class="flex-1 h-full flex flex-col">
                     <div class="w-full glass-panel border border-gray-900 rounded-2xl p-3 flex flex-wrap items-center justify-between text-xs mb-3 relative">
                         <button onclick="toggleNotesCanvasWorkspace()" class="absolute top-3 right-4 text-gray-500 hover:text-white font-bold text-xs select-none">✕ Close Board</button>
@@ -346,8 +352,8 @@
                         </div>
                         
                         <div class="flex items-center gap-2 pr-28 select-none">
-                            <div onclick="clearDrawingCanvasBoard()" class="bg-zinc-900 border border-gray-800 text-gray-400 hover:text-white px-3 py-1 rounded-xl cursor-pointer text-[10px] font-semibold transition-colors">Clear Drawing Surface</div>
-                            <div onclick="saveDrawingCanvasMatrix()" class="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-4 py-1 rounded-xl cursor-pointer text-[10px] font-bold transition-all shadow-md">Save Note File Asset</div>
+                            <div onclick="clearDrawingCanvasBoard()" class="bg-zinc-900 border border-gray-800 text-gray-400 hover:text-white px-3 py-1 rounded-xl cursor-pointer text-[10px] font-semibold transition-colors">Clear Surface</div>
+                            <div onclick="saveDrawingCanvasMatrix()" class="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-4 py-1 rounded-xl cursor-pointer text-[10px] font-bold transition-all shadow-md">Save Note Asset</div>
                         </div>
                     </div>
                     
@@ -357,9 +363,8 @@
                 </div>
 
                 <div class="w-full md:w-64 h-48 md:h-full glass-panel border border-gray-900 rounded-3xl p-4 flex flex-col overflow-hidden">
-                    <p class="text-[10px] uppercase font-bold text-gray-500 mb-3 border-b border-gray-900 pb-1.5 tracking-wider">💾 My Saved Note Files</p>
-                    <div id="saved-canvas-files-stream" class="flex-1 overflow-y-auto space-y-2 smooth-scroll text-xs text-gray-400">
-                        </div>
+                    <p class="text-[10px] uppercase font-bold text-gray-500 mb-3 border-b border-gray-900 pb-1.5 tracking-wider">💾 Saved Note Assets</p>
+                    <div id="saved-canvas-files-stream" class="flex-1 overflow-y-auto space-y-2 smooth-scroll text-xs text-gray-400"></div>
                 </div>
             </div>
 
@@ -372,7 +377,7 @@
                     <label class="p-2 text-gray-400 hover:text-white text-xs font-semibold cursor-pointer transition-colors select-none">➕ Add Core File (Max 100MB)</label>
                     
                     <div class="flex items-center gap-2 select-none">
-                        <div onclick="triggerVoiceInput()" class="w-9 h-9 hover:bg-zinc-800/80 rounded-xl flex items-center justify-center cursor-pointer text-gray-400 hover:text-white transition-colors" title="Voice Assist Search Layer">
+                        <div onclick="triggerVoiceInput()" class="w-9 h-9 hover:bg-zinc-800/80 rounded-xl flex items-center justify-center cursor-pointer text-gray-400 hover:text-white transition-colors" title="Voice Assist">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"></path>
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M19 10v1a7 7 0 01-14 0v-1M12 19v4M8 23h8"></path>
@@ -396,10 +401,7 @@
         let CHAT_FOLDERS_MAP = {};
         let ACTIVE_FOLDER_ID = null;
 
-        let canvas, ctx;
-        let isDrawing = false;
-        let lastX = 0, lastY = 0;
-        let isNotesCanvasModeActive = false;
+        let canvas, ctx, isDrawing = false, lastX = 0, lastY = 0, isNotesCanvasModeActive = false;
 
         function syncAcousticVoiceList() {
             const gender = document.getElementById('set-voice-gender').value;
@@ -422,7 +424,7 @@
             const userSpeed = parseFloat(document.getElementById('set-voice-speed').value || '0.95');
             if ('speechSynthesis' in window) {
                 window.speechSynthesis.cancel();
-                const utterance = new SpeechSynthesisUtterance("Hi, I am RankBot AI. Your customized premium speech synthesis logic flows are fully integrated.");
+                const utterance = new SpeechSynthesisUtterance("Hi, I am RankBot AI. Speech synthesis matrix nodes fully integrated safely.");
                 utterance.rate = userSpeed;
                 
                 const systemVoices = window.speechSynthesis.getVoices();
@@ -430,22 +432,15 @@
                     const targetVoice = systemVoices.find(v => v.lang.includes('en') && (v.name.includes('Natural') || v.name.includes('Google'))) || systemVoices[0];
                     utterance.voice = targetVoice;
                 }
-                
                 if (selectedVoice.includes("jarvis") || selectedVoice.includes("titan")) utterance.pitch = 0.94;
                 else utterance.pitch = 1.08;
-                
                 window.speechSynthesis.speak(utterance);
             }
         }
 
         function loadChatFolderVault() {
             const stored = localStorage.getItem('rb_folders');
-            if(stored) {
-                CHAT_FOLDERS_MAP = JSON.parse(stored);
-            } else {
-                CHAT_FOLDERS_MAP = {};
-                localStorage.setItem('rb_folders', JSON.stringify(CHAT_FOLDERS_MAP));
-            }
+            CHAT_FOLDERS_MAP = stored ? JSON.parse(stored) : {};
             ACTIVE_FOLDER_ID = localStorage.getItem('rb_active_folder_id') || null;
             if (ACTIVE_FOLDER_ID && !CHAT_FOLDERS_MAP[ACTIVE_FOLDER_ID]) ACTIVE_FOLDER_ID = null;
             
@@ -502,20 +497,16 @@
         function renderFolderSidebarView() {
             const list = document.getElementById('folder-stream-list');
             if(!list) return; list.innerHTML = "";
-            
             if(Object.keys(CHAT_FOLDERS_MAP).length === 0) {
-                list.innerHTML = `<p class="text-[11px] text-gray-600 px-1 py-4 text-center italic">No active directories mapped.<br>Ask a doubt below to auto-spin directories.</p>`;
+                list.innerHTML = `<p class="text-[11px] text-gray-600 px-1 py-4 text-center italic">No active chat folders log.<br>Ask a doubt below to auto-spin rows.</p>`;
                 return;
             }
-            
             Object.keys(CHAT_FOLDERS_MAP).forEach(id => {
                 const folder = CHAT_FOLDERS_MAP[id];
                 const isActive = (id === ACTIVE_FOLDER_ID);
-                
                 const item = document.createElement('div');
                 item.className = `w-full text-left p-2.5 rounded-xl text-xs flex flex-col gap-2 cursor-pointer transition-all border ${isActive ? 'bg-purple-600/10 border-purple-500/40 text-purple-300 font-bold' : 'hover:bg-zinc-900/40 border-transparent text-gray-400 hover:text-white'}`;
                 item.setAttribute('onclick', `switchActiveFolderNode('${id}')`);
-                
                 item.innerHTML = `
                     <div class="w-full truncate pr-1">${folder.title}</div>
                     <div class="flex items-center gap-3 border-t border-gray-900/40 pt-1.5 mt-0.5 text-[10px] text-gray-500">
@@ -565,12 +556,15 @@
                 }
             });
             streamContainer.scrollTop = streamContainer.scrollHeight;
-            applyFontStyles();
         }
 
         function openMasterHubModal() { document.getElementById('master-hub-sidebar').classList.remove('-translate-x-full'); }
         function closeMasterHubModal() { document.getElementById('master-hub-sidebar').classList.add('-translate-x-full'); }
-        function toggleProfileMenuSidebar(event) { if(event) event.stopPropagation(); document.getElementById('profile-menu-sidebar').classList.toggle('translate-x-full'); }
+        
+        function toggleProfileMenuSidebar(event) {
+            if(event) event.stopPropagation();
+            document.getElementById('profile-menu-sidebar').classList.toggle('translate-x-full');
+        }
         function closeProfileMenuSidebar() { document.getElementById('profile-menu-sidebar').classList.add('translate-x-full'); }
         function autoCloseDrawersOnMainClick() { closeMasterHubModal(); closeProfileMenuSidebar(); }
 
@@ -597,17 +591,16 @@
         function saveDrawingCanvasMatrix() {
             const noteName = prompt("💾 Name your note file entry:", "Lecture Note " + (new Date().toLocaleDateString()));
             if(!noteName || noteName.trim() === "") return;
-            
             const dataUrl = canvas.toDataURL();
             const vaultData = localStorage.getItem('rb_canvas_vault');
             let notesArray = vaultData ? JSON.parse(vaultData) : [];
-            
             notesArray.push({ name: noteName.trim(), data: dataUrl });
             localStorage.setItem('rb_canvas_vault', JSON.stringify(notesArray));
             alert("💾 Note sheet archived smoothly!");
             loadNotesCanvasVaultFiles();
         }
 
+        // Recovery Frameworks For Chalk Board Layers
         function restoreSavedCanvasFile(dataUrl) {
             if(confirm("🎨 Render this saved file data onto whiteboards?")) {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -618,7 +611,7 @@
         }
 
         function deleteSavedCanvasFile(index) {
-            if(confirm("🗑️ Permanently remove note asset file from disk data memory cells?")) {
+            if(confirm("🗑️ Remove note asset entry permanently?")) {
                 const vaultData = localStorage.getItem('rb_canvas_vault');
                 let notesArray = JSON.parse(vaultData);
                 notesArray.splice(index, 1);
@@ -651,20 +644,15 @@
             canvas = document.getElementById('digital-notes-canvas'); ctx = canvas.getContext('2d');
             const rect = canvas.parentElement.getBoundingClientRect();
             canvas.width = rect.width; canvas.height = rect.height;
-            
             ctx.lineJoin = 'round'; ctx.lineCap = 'round';
-            ctx.strokeStyle = document.getElementById('canvas-brush-color').value;
-            ctx.lineWidth = document.getElementById('canvas-brush-size').value;
             
             canvas.addEventListener('mousedown', startDrawingAction);
             canvas.addEventListener('mousemove', executeDrawingStroke);
             canvas.addEventListener('mouseup', () => isDrawing = false);
             canvas.addEventListener('mouseout', () => isDrawing = false);
-            
             canvas.addEventListener('touchstart', (e) => startDrawingAction(e.touches[0]));
             canvas.addEventListener('touchmove', (e) => { executeDrawingStroke(e.touches[0]); e.preventDefault(); }, { passive: false });
             canvas.addEventListener('touchend', () => isDrawing = false);
-            
             loadNotesCanvasVaultFiles();
         }
 
@@ -676,17 +664,13 @@
         function executeDrawingStroke(e) {
             if(!isDrawing) return; const rect = canvas.getBoundingClientRect();
             const currX = e.clientX - rect.left; const currY = e.clientY - rect.top;
-            
             ctx.beginPath(); ctx.moveTo(lastX, lastY); ctx.lineTo(currX, currY);
             ctx.strokeStyle = document.getElementById('canvas-brush-color').value;
             ctx.lineWidth = document.getElementById('canvas-brush-size').value;
-            ctx.stroke();
-            lastX = currX; lastY = currY;
+            ctx.stroke(); lastX = currX; lastY = currY;
         }
 
-        function clearDrawingCanvasBoard() {
-            if(confirm("🧹 Wipe blackboard clean?")) ctx.clearRect(0, 0, canvas.width, canvas.height);
-        }
+        function clearDrawingCanvasBoard() { if(confirm("🧹 Wipe blackboard clean?")) ctx.clearRect(0, 0, canvas.width, canvas.height); }
 
         function initGalaxy() {
             const bg = document.getElementById('galaxy-bg'); if(!bg) return; bg.innerHTML = "";
@@ -708,10 +692,9 @@
             document.getElementById('drawer-pfp-letter').innerText = activeName.charAt(0).toUpperCase();
             document.getElementById('menu-user-name').innerText = `Hi, ${activeName}`;
             
-            // 🌈 RESOLVE ACTIVE TIERS FRAME BOUND RINGS
             const ring = document.getElementById('pfp-ring-wrapper');
             if(ring) {
-                ring.classList.remove('pro-mesh-active');
+                ring.className = "w-11 h-11 rounded-full p-[2px] cursor-pointer active:scale-95 transition-all shadow-lg border border-transparent";
                 if(CURRENT_TIER === "Free Trial") ring.style.borderColor = "#3b82f6";
                 else if(CURRENT_TIER === "Lite Plan") ring.style.borderColor = "#ec4899";
                 else if(CURRENT_TIER === "Plus Plan") ring.style.borderColor = "#8b5cf6";
@@ -759,7 +742,6 @@
             enterWorkspaceDirectly(email, CURRENT_TIER);
         }
 
-        // 🧠 AUTO-RENAME GENERATIVE DISCOVERY PIPELINES
         async function sendQueryToBot() {
             if(!IS_AUTHENTICATED) return; const queryInput = document.getElementById('student-query');
             let messageText = queryInput.value.trim(); if(!messageText) return;
@@ -811,7 +793,7 @@
         function closePlans() { document.getElementById('plans-screen').classList.add('hidden'); }
         function toggleThemeState(mode) { const body = document.body; if(mode==='light') { body.classList.add('light-mode-active'); localStorage.setItem('rb_theme','light'); } else { body.classList.remove('light-mode-active'); localStorage.setItem('rb_theme','dark'); initGalaxy(); } }
         function logoutSystem() { localStorage.clear(); location.reload(); }
-        function deleteAccountSystem() { if(confirm("Wipe all system cache array?")) logoutSystem(); }
+        function deleteAccountSystem() { if(confirm("Wipe all data arrays?")) logoutSystem(); }
         function applyFontStyles() {}
         function saveSettingsForm() {}
         function validateAndUploadFile() {}
