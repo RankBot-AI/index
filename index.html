@@ -81,7 +81,7 @@
         </div>
     </div>
 
-    <div id="master-hub-sidebar" class="fixed inset-y-0 left-0 w-72 h-full glass-panel border-r border-gray-900/80 z-[500] transform -translate-x-full transition-transform duration-300 flex flex-col p-5 shadow-2xl">
+    <div id="master-hub-sidebar" class="fixed inset-y-0 left-0 w-80 h-full glass-panel border-r border-gray-900/80 z-[500] transform -translate-x-full transition-transform duration-300 flex flex-col p-5 shadow-2xl">
         <button onclick="closeMasterHubModal()" class="absolute top-4 right-4 text-gray-500 hover:text-white text-xs font-bold select-none">✕</button>
         
         <div class="flex items-center gap-2 mb-6 border-b border-gray-900 pb-3 mt-2">
@@ -90,17 +90,13 @@
         </div>
         
         <div class="space-y-4 flex-1 flex flex-col overflow-hidden">
-            <div onclick="openNotesCanvasWorkspace()" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:opacity-95 text-white font-bold rounded-xl p-3 text-xs flex items-center justify-center gap-2 cursor-pointer transition-all shadow-md select-none">
-                📝 Open Notes Board Board
+            <div onclick="createNewChatFolderNode()" class="w-full bg-zinc-800 hover:bg-zinc-700 border border-gray-800 text-gray-200 font-semibold rounded-xl p-3 text-xs flex items-center justify-center gap-2 cursor-pointer transition-all select-none shadow-md">
+                📂 Open New Chat Topic
             </div>
-
+            
             <div class="pt-2 flex flex-col flex-1 overflow-hidden">
-                <div onclick="createNewChatFolderNode()" class="w-full bg-zinc-800 hover:bg-zinc-700/80 border border-gray-800 text-gray-200 font-semibold rounded-xl p-2.5 text-xs flex items-center justify-center gap-2 cursor-pointer transition-all mb-4 select-none">
-                    📂 Create New Topic Folder
-                </div>
-                
-                <p class="text-[10px] uppercase font-bold text-gray-500 tracking-wider mb-2 px-1">Select Active Folder / History</p>
-                <div id="folder-stream-list" class="flex-1 overflow-y-auto space-y-1.5 pr-1 smooth-scroll">
+                <p class="text-[10px] uppercase font-bold text-gray-500 tracking-wider mb-2 px-1">Current Chat Topics</p>
+                <div id="folder-stream-list" class="flex-1 overflow-y-auto space-y-2 pr-1 smooth-scroll">
                     </div>
             </div>
         </div>
@@ -332,7 +328,7 @@
                     <p class="font-bold text-amber-400 tracking-wider uppercase text-[9px]">🛠️ Core AI Operational Modules</p>
                     <div class="space-y-2">
                         <div class="grid grid-cols-1 gap-2 select-none">
-                            <div onclick="localStorage.removeItem('rb_folders'); localStorage.removeItem('rb_free_chats'); localStorage.removeItem('rb_canvas_data'); alert('All storage memory arrays successfully reset.'); location.reload();" class="bg-zinc-900 border border-gray-800 text-gray-300 font-medium py-2 rounded-lg hover:text-white transition-colors text-[11px] text-center cursor-pointer">
+                            <div onclick="localStorage.removeItem('rb_folders'); localStorage.removeItem('rb_free_chats'); localStorage.removeItem('rb_canvas_vault'); alert('All storage memory arrays successfully reset.'); location.reload();" class="bg-zinc-900 border border-gray-800 text-gray-300 font-medium py-2 rounded-lg hover:text-white transition-colors text-[11px] text-center cursor-pointer">
                                 🗑️ Clear Cache & Reset All Memory Arrays
                             </div>
                         </div>
@@ -353,6 +349,10 @@
         <div class="w-full flex items-center justify-between px-6 py-4 glass-panel border-b border-b-gray-900 z-50">
             <div class="flex items-center gap-3">
                 <div onclick="openMasterHubModal()" class="text-2xl cursor-pointer active:scale-95 transition-transform select-none" title="Open RankBot Sidebar Node">🤖</div>
+                
+                <div onclick="toggleNotesCanvasWorkspace()" id="notes-tab-btn" class="bg-zinc-800/80 hover:bg-purple-900/40 text-gray-300 border border-gray-800 text-[11px] px-3.5 py-1.5 rounded-xl font-bold cursor-pointer transition-all transition-colors select-none">
+                    Notes
+                </div>
                 
                 <div>
                     <h1 class="heading-font text-sm font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-pink-500 bg-clip-text text-transparent">
@@ -385,41 +385,48 @@
             <div id="chat-workspace-container" class="absolute inset-0 overflow-y-auto px-4 py-8 md:px-32 space-y-6 smooth-scroll z-10">
                 </div>
 
-            <div id="notes-workspace-container" class="absolute inset-0 bg-[#07070c] hidden flex-col p-4 z-20 animate-fade-in">
-                <div class="w-full glass-panel border border-gray-900 rounded-2xl p-3 flex flex-wrap items-center justify-between gap-3 text-xs mb-3 relative">
-                    <button onclick="toggleNotesCanvasWorkspace()" class="absolute top-3 right-4 text-gray-500 hover:text-white text-xs font-bold select-none">✕ Close Board</button>
-                    
-                    <div class="flex items-center gap-4">
-                        <span class="font-bold text-purple-400">📝 Notes Workspace</span>
-                        <div class="flex items-center gap-1.5">
-                            <span class="text-gray-500 text-[11px]">Size:</span>
-                            <select id="canvas-brush-size" class="bg-[#0f0f15] border border-gray-800 rounded-lg p-1 text-gray-300 focus:outline-none">
-                                <option value="2">Thin Tip</option>
-                                <option value="5" selected>Medium Marker</option>
-                                <option value="10">Thick Board Brush</option>
-                            </select>
+            <div id="notes-workspace-container" class="absolute inset-0 bg-[#07070c] hidden flex-col md:flex-row p-4 gap-4 z-20 overflow-hidden animate-fade-in">
+                
+                <div class="flex-1 h-full flex flex-col">
+                    <div class="w-full glass-panel border border-gray-900 rounded-2xl p-3 flex flex-wrap items-center justify-between gap-3 text-xs mb-3 relative">
+                        <button onclick="toggleNotesCanvasWorkspace()" class="absolute top-3 right-4 text-gray-500 hover:text-white text-xs font-bold select-none">✕ Close Board</button>
+                        
+                        <div class="flex items-center gap-4">
+                            <div class="flex items-center gap-1">
+                                <span class="text-gray-500 text-[11px]">Size:</span>
+                                <select id="canvas-brush-size" class="bg-[#0f0f15] border border-gray-800 rounded-lg p-1 text-gray-300 focus:outline-none">
+                                    <option value="2">Thin Tip</option>
+                                    <option value="5" selected>Medium Marker</option>
+                                    <option value="10">Thick Brush</option>
+                                </select>
+                            </div>
+                            <div class="flex items-center gap-1">
+                                <span class="text-gray-500 text-[11px]">Color:</span>
+                                <select id="canvas-brush-color" class="bg-[#0f0f15] border border-gray-800 rounded-lg p-1 text-gray-300 focus:outline-none">
+                                    <option value="#ffffff">⚪ Chalk White</option>
+                                    <option value="#ef4444">🔴 Critical Red</option>
+                                    <option value="#3b82f6">🔵 Royal Blue</option>
+                                    <option value="#eab308">🟡 Caution Yellow</option>
+                                    <option value="#22c55e">🟢 Matrix Green</option>
+                                </select>
+                            </div>
                         </div>
-                        <div class="flex items-center gap-1.5">
-                            <span class="text-gray-500 text-[11px]">Color:</span>
-                            <select id="canvas-brush-color" class="bg-[#0f0f15] border border-gray-800 rounded-lg p-1 text-gray-300 focus:outline-none">
-                                <option value="#ffffff">⚪ Chalk White</option>
-                                <option value="#ef4444">🔴 Critical Red</option>
-                                <option value="#3b82f6">🔵 Royal Blue</option>
-                                <option value="#eab308">🟡 Caution Yellow</option>
-                                <option value="#22c55e">🟢 Matrix Green</option>
-                            </select>
+                        <div class="flex items-center gap-2 pr-28 select-none">
+                            <div onclick="clearDrawingCanvasBoard()" class="bg-zinc-900 border border-gray-800 text-gray-400 hover:text-white px-3 py-1 rounded-xl cursor-pointer text-[11px] font-semibold transition-colors">Clear Board</div>
+                            <div onclick="saveDrawingCanvasMatrix()" class="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-4 py-1 rounded-xl cursor-pointer text-[11px] font-bold transition-all shadow-md">Save Board</div>
                         </div>
                     </div>
-                    
-                    <div class="flex items-center gap-2 pr-28 select-none">
-                        <div onclick="clearDrawingCanvasBoard()" class="bg-zinc-900 border border-gray-800 text-gray-400 hover:text-white px-3 py-1 rounded-xl cursor-pointer text-[11px] font-semibold transition-colors">🗑️ Clear Board</div>
-                        <div onclick="saveDrawingCanvasMatrix()" class="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-4 py-1 rounded-xl cursor-pointer text-[11px] font-bold transition-all shadow-md">💾 Save Board Meta</div>
+                    <div class="flex-1 w-full bg-[#030305] border border-gray-900/60 rounded-3xl relative overflow-hidden shadow-inner">
+                        <canvas id="digital-notes-canvas" class="w-full h-full cursor-crosshair block"></canvas>
                     </div>
                 </div>
 
-                <div class="flex-1 w-full bg-[#030305] border border-gray-900/60 rounded-3xl relative overflow-hidden shadow-inner">
-                    <canvas id="digital-notes-canvas" class="w-full h-full cursor-crosshair block"></canvas>
+                <div class="w-full md:w-64 h-48 md:h-full glass-panel border border-gray-900 rounded-3xl p-4 flex flex-col overflow-hidden">
+                    <p class="text-[10px] uppercase font-bold text-gray-500 tracking-wider mb-3 px-1 border-b border-gray-900 pb-1.5">💾 My Saved Note Files</p>
+                    <div id="saved-canvas-files-stream" class="flex-1 overflow-y-auto space-y-2 pr-1 smooth-scroll text-xs text-gray-400">
+                        </div>
                 </div>
+
             </div>
 
         </div>
@@ -452,7 +459,7 @@
         const MAX_FREE_CHATS = 10;
         
         let CHAT_FOLDERS_MAP = {};
-        let ACTIVE_FOLDER_ID = "default_topic";
+        let ACTIVE_FOLDER_ID = null;
 
         let canvas, ctx;
         let isDrawing = false;
@@ -484,53 +491,58 @@
             }
         }
 
-        // 🗣️ ENHANCED HIGH INTELLECT NATURAL HUMAN SYNTH INTELLIGENCE MODULE
+        // 🗣️ DYNAMIC REALISTIC CONVERSATIONAL HUMAN VOICE MODULATION LAYER
         function testActiveVoiceOutputSound() {
-            const selectedVoice = document.getElementById('set-voice');
+            const selectedVoice = document.getElementById('set-voice').value;
             const userSpeed = parseFloat(document.getElementById('set-voice-speed').value || '0.95');
             if ('speechSynthesis' in window) {
                 window.speechSynthesis.cancel();
-                
-                // Binding conversational human tone speech patterns variables straight onto web instances
-                const utterance = new SpeechSynthesisUtterance("Hi, I am RankBot AI. Your customized premium mental logic flows are completely active now.");
+                const utterance = new SpeechSynthesisUtterance("Hi, I am RankBot AI. Your customized premium conversational logic sequences are completely live now.");
                 utterance.rate = userSpeed;
                 
-                // Auto discovery of top level systemic clear voices inside user browser frameworks
                 const systemVoices = window.speechSynthesis.getVoices();
                 if(systemVoices.length > 0) {
-                    // Lock directly onto highest quality local human speech nodes available
-                    const targetVoice = systemVoices.find(v => v.lang.includes('en') && v.name.includes('Natural')) || systemVoices[0];
+                    const targetVoice = systemVoices.find(v => v.lang.includes('en') && (v.name.includes('Natural') || v.name.includes('Google'))) || systemVoices[0];
                     utterance.voice = targetVoice;
                 }
-                
-                if (selectedVoice.value.includes("jarvis") || selectedVoice.value.includes("titan")) utterance.pitch = 0.95;
-                else if (selectedVoice.value.includes("friday") || selectedVoice.value.includes("alexa")) utterance.pitch = 1.08;
-                else utterance.pitch = 1.00;
-                
+                if (selectedVoice.includes("jarvis") || selectedVoice.includes("titan")) utterance.pitch = 0.95;
+                else if (selectedVoice.includes("friday") || selectedVoice.includes("alexa")) utterance.pitch = 1.08;
                 window.speechSynthesis.speak(utterance);
             }
         }
 
+        // 📁 FIXED PER VISION: 100% CLEAN EMPTY DATA STARTER LOGIC FRAMEWORKS
         function loadChatFolderVault() {
             const stored = localStorage.getItem('rb_folders');
-            if(stored) CHAT_FOLDERS_MAP = JSON.parse(stored);
-            else {
-                CHAT_FOLDERS_MAP = { "default_topic": { title: "📚 General Core Workspace", stream: [] } };
+            if(stored) {
+                CHAT_FOLDERS_MAP = JSON.parse(stored);
+            } else {
+                // FIXED PER REQUEST: Completely wiped and empty default lists at launch state
+                CHAT_FOLDERS_MAP = {};
                 localStorage.setItem('rb_folders', JSON.stringify(CHAT_FOLDERS_MAP));
             }
-            ACTIVE_FOLDER_ID = localStorage.getItem('rb_active_folder_id') || "default_topic";
-            if (!CHAT_FOLDERS_MAP[ACTIVE_FOLDER_ID]) ACTIVE_FOLDER_ID = Object.keys(CHAT_FOLDERS_MAP)[0];
+            
+            ACTIVE_FOLDER_ID = localStorage.getItem('rb_active_folder_id') || null;
+            if (ACTIVE_FOLDER_ID && !CHAT_FOLDERS_MAP[ACTIVE_FOLDER_ID]) {
+                ACTIVE_FOLDER_ID = null;
+            }
+            
             renderFolderSidebarView();
             renderActiveStreamMessages();
         }
 
-        function createNewChatFolderNode() {
-            const folderName = prompt("📂 Enter Topic / Subject Name for this Chat Folder:");
-            if(!folderName || folderName.trim() === "") return;
+        function createNewChatFolderNode(customTitle = null) {
             const uniqueId = "folder_" + Date.now();
-            CHAT_FOLDERS_MAP[uniqueId] = { title: `📁 ${folderName.trim()}`, stream: [] };
+            const titleText = customTitle || prompt("📂 Enter Topic Name for this Chat Folder:");
+            if(!titleText || titleText.trim() === "") return null;
+            
+            CHAT_FOLDERS_MAP[uniqueId] = {
+                title: titleText.startsWith("📁") ? titleText.trim() : `📁 ${titleText.trim()}`,
+                stream: []
+            };
             localStorage.setItem('rb_folders', JSON.stringify(CHAT_FOLDERS_MAP));
             switchActiveFolderNode(uniqueId);
+            return uniqueId;
         }
 
         function switchActiveFolderNode(id) {
@@ -541,27 +553,75 @@
             closeMasterHubModal();
         }
 
+        // ✏️ TRIGGER DIRECT RE-MANIPULATION PROTOCOLS FOR TITLE LABELS
+        function renameFolderNodeElement(id, event) {
+            if(event) event.stopPropagation();
+            const currentTitle = CHAT_FOLDERS_MAP[id].title.replace("📁 ", "");
+            const newTitle = prompt("✏️ Edit Topic Title Name:", currentTitle);
+            if(!newTitle || newTitle.trim() === "") return;
+            
+            CHAT_FOLDERS_MAP[id].title = `📁 ${newTitle.trim()}`;
+            localStorage.setItem('rb_folders', JSON.stringify(CHAT_FOLDERS_MAP));
+            loadChatFolderVault();
+        }
+
         function deleteFolderNodeElement(id, event) {
             if(event) event.stopPropagation();
-            if(Object.keys(CHAT_FOLDERS_MAP).length <= 1) { alert("❌ Cannot wipe the final remaining active root core directory."); return; }
-            if(confirm("⚠️ WIPE CHAT HISTORY?\nAre you sure you want to permanently delete this folder and its chat cache?")) {
+            if(confirm("🗑️ Permanent deletion checkpoint.\nAre you sure you want to completely destroy this active folder history?")) {
                 delete CHAT_FOLDERS_MAP[id];
                 localStorage.setItem('rb_folders', JSON.stringify(CHAT_FOLDERS_MAP));
-                if(ACTIVE_FOLDER_ID === id) { ACTIVE_FOLDER_ID = Object.keys(CHAT_FOLDERS_MAP)[0]; localStorage.setItem('rb_active_folder_id', ACTIVE_FOLDER_ID); }
+                if(ACTIVE_FOLDER_ID === id) {
+                    ACTIVE_FOLDER_ID = Object.keys(CHAT_FOLDERS_MAP).length > 0 ? Object.keys(CHAT_FOLDERS_MAP)[0] : null;
+                    localStorage.setItem('rb_active_folder_id', ACTIVE_FOLDER_ID);
+                }
                 loadChatFolderVault();
             }
+        }
+
+        // 📢 EXCLUSIVE COST-FREE NATIVE SYSTEM SHARE TRIGGER MECHANISMS
+        function shareFolderNodeElement(id, event) {
+            if(event) event.stopPropagation();
+            const appShareUrl = window.location.href;
+            const topicTitle = CHAT_FOLDERS_MAP[id].title.replace("📁 ", "");
+            const nativeText = `Hey! Check out my active study topic folder [${topicTitle}] inside RankBot AI Mentor Workspace:\n👉 ${appShareUrl}`;
+            
+            if(navigator.share) {
+                navigator.share({ title: 'RankBot AI Study Folder', text: nativeText, url: appShareUrl })
+                    .catch(() => { copyShareFallbackText(nativeText); });
+            } else {
+                copyShareFallbackText(nativeText);
+            }
+        }
+
+        function copyShareFallbackText(text) {
+            navigator.clipboard.writeText(text);
+            alert("📢 SHARE META COPIED SAFELY!\nLink context successfully bound onto device clipboard with zero server transactional fees.");
         }
 
         function renderFolderSidebarView() {
             const list = document.getElementById('folder-stream-list');
             if(!list) return; list.innerHTML = "";
+            
+            if(Object.keys(CHAT_FOLDERS_MAP).length === 0) {
+                list.innerHTML = `<p class="text-[11px] text-gray-600 px-1 py-4 text-center italic">No active chat directories found.<br>Type a question to begin setup logs automatically.</p>`;
+                return;
+            }
+            
             Object.keys(CHAT_FOLDERS_MAP).forEach(id => {
                 const folder = CHAT_FOLDERS_MAP[id];
                 const isActive = (id === ACTIVE_FOLDER_ID);
+                
                 const item = document.createElement('div');
-                item.className = `w-full text-left p-2.5 rounded-xl text-xs flex items-center justify-between cursor-pointer group transition-all truncate select-none ${isActive ? 'bg-purple-600/20 border border-purple-500/40 text-purple-300 font-bold' : 'hover:bg-zinc-900/50 text-gray-400 hover:text-white border border-transparent'}`;
+                item.className = `w-full text-left p-2.5 rounded-xl text-xs flex flex-col gap-2 cursor-pointer transition-all border ${isActive ? 'bg-purple-600/10 border-purple-500/40 text-purple-300' : 'hover:bg-zinc-900/40 border-transparent text-gray-400 hover:text-white'}`;
                 item.setAttribute('onclick', `switchActiveFolderNode('${id}')`);
-                item.innerHTML = `<span class="truncate pr-1">${folder.title}</span><span onclick="deleteFolderNodeElement('${id}', event)" class="opacity-0 group-hover:opacity-100 text-[10px] text-gray-600 hover:text-red-400 font-bold px-1 transition-opacity">✕</span>`;
+                
+                item.innerHTML = `
+                    <div class="w-full truncate font-medium select-none pr-1">${folder.title}</div>
+                    <div class="flex items-center gap-3 border-t border-gray-900/40 pt-1.5 mt-0.5 text-[10px] text-gray-500">
+                        <span onclick="renameFolderNodeElement('${id}', event)" class="hover:text-purple-400 transition-colors">✏️ Rename</span>
+                        <span onclick="shareFolderNodeElement('${id}', event)" class="hover:text-blue-400 transition-colors">📢 Share</span>
+                        <span onclick="deleteFolderNodeElement('${id}', event)" class="hover:text-red-400 transition-colors ml-auto">🗑️ Delete</span>
+                    </div>`;
                 list.appendChild(item);
             });
         }
@@ -569,266 +629,165 @@
         function renderActiveStreamMessages() {
             const streamContainer = document.getElementById('chat-workspace-container');
             if(!streamContainer) return;
-            const currentFolder = CHAT_FOLDERS_MAP[ACTIVE_FOLDER_ID];
-            document.getElementById('active-folder-label').innerText = `|  ${currentFolder.title}`;
             
-            if(currentFolder.stream.length === 0) {
+            if(!ACTIVE_FOLDER_ID || !CHAT_FOLDERS_MAP[ACTIVE_FOLDER_ID]) {
+                document.getElementById('active-folder-label').innerText = "";
                 streamContainer.innerHTML = `
                     <div class="flex items-start gap-4 max-w-3xl">
                         <div class="w-9 h-9 rounded-xl bg-purple-600/20 border border-purple-500/30 flex items-center justify-center text-lg flex-shrink-0">🤖</div>
                         <div class="space-y-1">
                             <p class="text-xs font-bold text-purple-400 uppercase tracking-widest">RankBot AI</p>
-                            <p id="welcome-message-text" class="text-gray-200 text-sm leading-relaxed bg-[#0f0f14]/80 p-4 rounded-2xl border border-gray-900">Hello brother! I am your customized **RankBot AI** Mentor. Your studies, daily timetable, and complete setups to solve complex IIT-JEE / NEET questions are live here inside this topic folder. Type your doubt below.</p>
+                            <p id="welcome-message-text" class="text-gray-200 text-sm leading-relaxed bg-[#0f0f14]/80 p-4 rounded-2xl border border-gray-900">Hello brother! I am your customized **RankBot AI** Mentor. Ready to log your studies? Type your first doubt below to instantly spin up a dedicated auto-renamed folder vault array.</p>
                         </div>
                     </div>`;
-            } else {
-                streamContainer.innerHTML = "";
-                currentFolder.stream.forEach(msg => {
-                    if(msg.sender === 'user') {
-                        streamContainer.innerHTML += `<div class="flex items-start gap-4 justify-end max-w-3xl ml-auto"><div class="space-y-1 text-right"><p class="text-xs font-bold text-gray-500 uppercase tracking-widest">You</p><div class="bg-gradient-to-br from-purple-600 to-pink-600 px-4 py-2.5 text-white inline-block text-left text-sm rounded-2xl shadow-md leading-relaxed">${msg.text}</div></div></div>`;
-                    } else {
-                        streamContainer.innerHTML += `<div class="flex items-start gap-4 max-w-3xl"><div class="w-9 h-9 rounded-xl bg-purple-600/20 border border-purple-500/30 flex items-center justify-center text-lg flex-shrink-0">🤖</div><div class="space-y-1"><p class="text-xs font-bold text-purple-400 uppercase tracking-widest">RankBot AI</p><p class="text-gray-200 text-sm leading-relaxed bg-[#0f0f14]/80 p-4 rounded-2xl border border-gray-900">${msg.text}</p></div></div>`;
-                    }
-                });
+                return;
             }
+            
+            const currentFolder = CHAT_FOLDERS_MAP[ACTIVE_FOLDER_ID];
+            document.getElementById('active-folder-label').innerText = `|  ${currentFolder.title}`;
+            streamContainer.innerHTML = "";
+            
+            currentFolder.stream.forEach(msg => {
+                if(msg.sender === 'user') {
+                    streamContainer.innerHTML += `<div class="flex items-start gap-4 justify-end max-w-3xl ml-auto"><div class="space-y-1 text-right"><p class="text-xs font-bold text-gray-500 uppercase tracking-widest">You</p><div class="bg-gradient-to-br from-purple-600 to-pink-600 px-4 py-2.5 text-white inline-block text-left text-sm rounded-2xl shadow-md leading-relaxed">${msg.text}</div></div></div>`;
+                } else {
+                    streamContainer.innerHTML += `<div class="flex items-start gap-4 max-w-3xl"><div class="w-9 h-9 rounded-xl bg-purple-600/20 border border-purple-500/30 flex items-center justify-center text-lg flex-shrink-0">🤖</div><div class="space-y-1"><p class="text-xs font-bold text-purple-400 uppercase tracking-widest">RankBot AI</p><p class="text-gray-200 text-sm leading-relaxed bg-[#0f0f14]/80 p-4 rounded-2xl border border-gray-900">${msg.text}</p></div></div>`;
+                }
+            });
             streamContainer.scrollTop = streamContainer.scrollHeight;
             applyFontStyles();
         }
 
-        // 📁 FIXED PER VISION: DYNAMIC GEMINI SIDE SLIDER MODAL METHOD RULES
-        function openMasterHubModal() {
-            const sidebar = document.getElementById('master-hub-sidebar');
-            if(sidebar) sidebar.classList.remove('-translate-x-full');
+        // 📝 ADVANCED NOTES VAULT SAVED ENTRIES ARCHITECTURE LIST ENGINE
+        function loadNotesCanvasVaultFiles() {
+            const fileContainer = document.getElementById('saved-canvas-files-stream');
+            if(!fileContainer) return; fileContainer.innerHTML = "";
+            
+            const vaultData = localStorage.getItem('rb_canvas_vault');
+            let notesArray = vaultData ? JSON.parse(vaultData) : [];
+            
+            if(notesArray.length === 0) {
+                fileContainer.innerHTML = `<p class="text-[10px] text-gray-600 italic px-1 text-center py-4">No saved layout cells detected.</p>`;
+                return;
+            }
+            
+            notesArray.forEach((note, index) => {
+                const item = document.createElement('div');
+                item.className = "w-full bg-[#0d0d12] border border-gray-900 rounded-xl p-2 flex items-center justify-between group hover:border-purple-500/30 transition-all";
+                item.innerHTML = `
+                    <span onclick="restoreSavedCanvasFile('${note.data}')" class="truncate font-medium cursor-pointer text-gray-300 hover:text-purple-300 flex-1 pr-1">${note.name}</span>
+                    <span onclick="deleteSavedCanvasFile(${index})" class="text-[10px] text-gray-600 hover:text-red-400 font-bold px-1 cursor-pointer opacity-0 group-hover:opacity-100 transition-opacity">✕</span>`;
+                fileContainer.appendChild(item);
+            });
         }
 
-        function closeMasterHubModal() {
-            const sidebar = document.getElementById('master-hub-sidebar');
-            if(sidebar) sidebar.classList.add('-translate-x-full');
+        function saveDrawingCanvasMatrix() {
+            const noteName = prompt("💾 Name your note file entry:", "Lecture Note " + (new Date().toLocaleDateString()));
+            if(!noteName || noteName.trim() === "") return;
+            
+            const dataUrl = canvas.toDataURL();
+            const vaultData = localStorage.getItem('rb_canvas_vault');
+            let notesArray = vaultData ? JSON.parse(vaultData) : [];
+            
+            notesArray.push({ name: noteName.trim(), data: dataUrl });
+            localStorage.setItem('rb_canvas_vault', JSON.stringify(notesArray));
+            alert("💾 Note saved successfully!");
+            loadNotesCanvasVaultFiles();
+        }
+
+        function restoreSavedCanvasFile(dataUrl) {
+            if(confirm("🎨 Open note file cell onto canvas drawing layers?")) {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                const img = new Image();
+                img.onload = function() { ctx.drawImage(img, 0, 0); };
+                img.src = dataUrl;
+            }
+        }
+
+        function deleteSavedCanvasFile(index) {
+            if(confirm("🗑️ Remove note asset entry cell from disk permanently?")) {
+                const vaultData = localStorage.getItem('rb_canvas_vault');
+                let notesArray = JSON.parse(vaultData);
+                notesArray.splice(index, 1);
+                localStorage.setItem('rb_canvas_vault', JSON.stringify(notesArray));
+                loadNotesCanvasVaultFiles();
+            }
         }
 
         function openNotesCanvasWorkspace() {
-            closeMasterHubModal();
-            isNotesCanvasModeActive = true;
+            closeMasterHubModal(); isNotesCanvasModeActive = true;
             document.getElementById('chat-workspace-container').classList.add('hidden');
             document.getElementById('bottom-input-bar-wrap').classList.add('hidden');
-            
             const notesBox = document.getElementById('notes-workspace-container');
             notesBox.classList.remove('hidden'); notesBox.classList.add('flex');
             setupCanvasDimensionsEngine();
         }
 
         function toggleNotesCanvasWorkspace() {
-            isNotesCanvasModeActive = false;
-            document.getElementById('notes-workspace-container').classList.remove('flex');
-            document.getElementById('notes-workspace-container').classList.add('hidden');
-            document.getElementById('chat-workspace-container').classList.remove('hidden');
-            document.getElementById('bottom-input-bar-wrap').classList.remove('hidden');
-            renderActiveStreamMessages();
+            isNotesCanvasModeActive = !isNotesCanvasModeActive;
+            const btn = document.getElementById('notes-tab-btn');
+            if(isNotesCanvasModeActive) {
+                openNotesCanvasWorkspace();
+                btn.className = "bg-purple-600 text-white border border-purple-500 text-[11px] px-3.5 py-1.5 rounded-xl font-bold cursor-pointer transition-all select-none";
+            } else {
+                document.getElementById('notes-workspace-container').classList.remove('flex');
+                document.getElementById('notes-workspace-container').classList.add('hidden');
+                document.getElementById('chat-workspace-container').classList.remove('hidden');
+                document.getElementById('bottom-input-bar-wrap').classList.remove('hidden');
+                btn.className = "bg-zinc-800/80 hover:bg-purple-900/40 text-gray-300 border border-gray-800 text-[11px] px-3.5 py-1.5 rounded-xl font-bold cursor-pointer transition-all select-none";
+                renderActiveStreamMessages();
+            }
         }
 
         function setupCanvasDimensionsEngine() {
-            canvas = document.getElementById('digital-notes-canvas');
-            if(!canvas) return; ctx = canvas.getContext('2d');
+            canvas = document.getElementById('digital-notes-canvas'); if(!canvas) return; ctx = canvas.getContext('2d');
             const rect = canvas.parentElement.getBoundingClientRect();
             canvas.width = rect.width; canvas.height = rect.height;
             ctx.lineJoin = 'round'; ctx.lineCap = 'round';
-            
-            const savedState = localStorage.getItem('rb_canvas_data');
-            if(savedState) {
-                const img = new Image();
-                img.onload = function() { ctx.drawImage(img, 0, 0); };
-                img.src = savedState;
-            }
+            loadNotesCanvasVaultFiles();
             
             canvas.addEventListener('mousedown', startDrawingAction);
             canvas.addEventListener('mousemove', executeDrawingStroke);
             canvas.addEventListener('mouseup', () => isDrawing = false);
             canvas.addEventListener('mouseout', () => isDrawing = false);
-            
-            canvas.addEventListener('touchstart', (e) => { startDrawingAction(e.touches[0]); });
+            canvas.addEventListener('touchstart', (e) => startDrawingAction(e.touches[0]));
             canvas.addEventListener('touchmove', (e) => { executeDrawingStroke(e.touches[0]); e.preventDefault(); }, { passive: false });
             canvas.addEventListener('touchend', () => isDrawing = false);
         }
 
         function startDrawingAction(e) {
-            isDrawing = true;
-            const rect = canvas.getBoundingClientRect();
+            isDrawing = true; const rect = canvas.getBoundingClientRect();
             lastX = e.clientX - rect.left; lastY = e.clientY - rect.top;
         }
 
         function executeDrawingStroke(e) {
-            if(!isDrawing) return;
-            const rect = canvas.getBoundingClientRect();
+            if(!isDrawing) return; const rect = canvas.getBoundingClientRect();
             const currX = e.clientX - rect.left; const currY = e.clientY - rect.top;
-            
             ctx.beginPath(); ctx.moveTo(lastX, lastY); ctx.lineTo(currX, currY);
             ctx.strokeStyle = document.getElementById('canvas-brush-color').value;
             ctx.lineWidth = document.getElementById('canvas-brush-size').value;
-            ctx.stroke();
-            lastX = currX; lastY = currY;
+            ctx.stroke(); lastX = currX; lastY = currY;
         }
 
         function clearDrawingCanvasBoard() {
-            if(confirm("🧹 Wipe entire note board board clean?")) {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                localStorage.removeItem('rb_canvas_data');
-            }
+            if(confirm("🧹 Clear entire drawing surface layers?")) { ctx.clearRect(0, 0, canvas.width, canvas.height); }
         }
 
-        function saveDrawingCanvasMatrix() {
-            const dataUrl = canvas.toDataURL();
-            localStorage.setItem('rb_canvas_data', dataUrl);
-            alert("💾 Notes Canvas saved successfully!");
-        }
-
-        function enterWorkspaceDirectly(email, tier) {
-            IS_AUTHENTICATED = true; CURRENT_TIER = tier || "Free Trial";
-            const gate = document.getElementById('auth-gate');
-            if(gate) gate.style.setProperty('display', 'none', 'important');
-            
-            let defaultName = email.split('@')[0];
-            let activeName = localStorage.getItem('rb_name') || defaultName;
-            document.getElementById('profile-letter').innerText = activeName.charAt(0).toUpperCase();
-            document.getElementById('menu-user-name').innerText = `Hi, ${activeName}`;
-            
-            applyTierStylesAndRings(CURRENT_TIER);
-            document.getElementById('prof-email-display').value = email;
-            loadChatFolderVault();
-        }
-
-        window.addEventListener('DOMContentLoaded', () => {
-            const savedAuth = localStorage.getItem('rb_auth');
-            const savedEmail = localStorage.getItem('rb_email');
-            const savedTier = localStorage.getItem('rb_tier');
-            syncAcousticVoiceList();
-            if (savedAuth === 'true' && savedEmail) {
-                enterWorkspaceDirectly(savedEmail, savedTier);
-                document.getElementById('prof-name').value = localStorage.getItem('rb_name') || "";
-                document.getElementById('prof-phone').value = localStorage.getItem('rb_phone') || "";
-                document.getElementById('prof-loc').value = localStorage.getItem('rb_loc') || "";
-                document.getElementById('prof-school').value = localStorage.getItem('rb_school') || "";
-                document.getElementById('prof-class').value = localStorage.getItem('rb_class') || "9th Standard";
-                document.getElementById('prof-country-code').value = localStorage.getItem('rb_country_code') || "+91";
-                if(localStorage.getItem('rb_set_gender')) {
-                    document.getElementById('set-voice-gender').value = localStorage.getItem('rb_set_gender');
-                    syncAcousticVoiceList(); document.getElementById('set-voice').value = localStorage.getItem('rb_set_voice');
-                }
-                if(localStorage.getItem('rb_set_speed')) document.getElementById('set-voice-speed').value = localStorage.getItem('rb_set_speed');
-                if(localStorage.getItem('rb_set_lang')) document.getElementById('set-ai-lang').value = localStorage.getItem('rb_set_lang');
-                if(localStorage.getItem('rb_font_sz')) {
-                    document.getElementById('set-font-size').value = localStorage.getItem('rb_font_sz');
-                    document.getElementById('set-font-fam').value = localStorage.getItem('rb_font_fam');
-                }
-                if(localStorage.getItem('rb_theme') === 'light') toggleThemeState('light');
-            }
-            if ('speechSynthesis' in window) {
-                window.speechSynthesis.getVoices();
-            }
-        });
-
-        function applyTierStylesAndRings(tier) {
-            const badge = document.getElementById('menu-user-tier');
-            const ring = document.getElementById('pfp-ring-wrapper');
-            const notice = document.getElementById('bottom-ad-notice');
-            badge.className = "text-[10px] px-2 py-0.5 rounded-full font-bold inline-block mt-1 ";
-            ring.className = "w-11 h-11 rounded-full p-[2px] cursor-pointer active:scale-95 transition-all shadow-lg border border-transparent";
-            
-            if (tier === "Free Trial") {
-                badge.innerText = "Free Trial Active"; badge.classList.add('bg-blue-500/20', 'text-blue-400'); ring.classList.add('border-blue-500');
-                let count = parseInt(localStorage.getItem('rb_free_chats') || '0');
-                notice.innerText = `⚠️ Free Trial Active: ${MAX_FREE_CHATS - count} messages remaining. Upgrade to Premium.`;
-                notice.style.color = "#60a5fa";
-            } else if (tier === "Lite Plan") {
-                badge.innerText = "Lite Plan Active"; badge.classList.add('bg-pink-500/20', 'text-pink-400'); ring.classList.add('border-pink-500');
-                notice.innerText = "✨ VIP SECURE CONNECTION: Lite Plan Active.";
-                notice.style.color = "#f472b6";
-            } else if (tier === "Plus Plan") {
-                badge.innerText = "Plus Plan Active"; badge.classList.add('bg-purple-500/20', 'text-purple-400'); ring.classList.add('border-purple-500');
-                notice.innerText = "✨ VIP SECURE CONNECTION: Plus Plan Active.";
-                notice.style.color = "#c084fc";
-            } else if (tier === "Pro Plan") {
-                badge.innerText = "Pro Plan Active"; badge.classList.add('bg-gradient-to-r', 'from-blue-500', 'via-pink-500', 'to-purple-500', 'text-white'); ring.classList.add('pro-mesh-active');
-                notice.innerText = "✨ VIP SECURE OMNISCIENT CORE CONNECTION: Pro Plan Active.";
-                notice.style.color = "#34d399"; notice.classList.remove('animate-pulse');
-            }
-        }
-
-        function verifyEmailFormat() {
-            const emailInput = document.getElementById('auth-email-input');
-            if(!emailInput) return; const email = emailInput.value.trim();
-            if (email && email.includes("@") && email.includes(".")) {
-                const encOwner = ["ayushkumar", "in2011", "gmail.com"].join(".");
-                if(email.toLowerCase() === encOwner.replace(".gmail", "@gmail")) {
-                    CURRENT_TIER = "Pro Plan";
-                    localStorage.setItem('rb_auth', 'true'); localStorage.setItem('rb_email', email); localStorage.setItem('rb_tier', CURRENT_TIER);
-                    localStorage.setItem('rb_name', 'Ayush Kumar'); localStorage.setItem('rb_school', 'RankBot Headquarters');
-                    localStorage.setItem('rb_class', '11th Standard'); localStorage.setItem('rb_loc', 'Delhi, India'); localStorage.setItem('rb_country_code', '+91');
-                    enterWorkspaceDirectly(email, CURRENT_TIER);
-                } else {
-                    localStorage.setItem('rb_email', email);
-                    document.getElementById('auth-gate').classList.add('opacity-0', 'pointer-events-none');
-                    document.getElementById('plans-screen').classList.remove('hidden');
-                }
-            } else { alert("❌ INVALID EMAIL MATRIX FORMAT."); }
-        }
-
-        function selectTier(tierName) {
-            CURRENT_TIER = tierName; localStorage.setItem('rb_tier', tierName); localStorage.setItem('rb_auth', 'true');
-            if (tierName === 'Free Trial') localStorage.setItem('rb_free_chats', '0');
-            const email = localStorage.getItem('rb_email') || "student@example.com";
-            enterWorkspaceDirectly(email, CURRENT_TIER); closePlans();
-        }
-
-        function saveProfileData() {
-            localStorage.setItem('rb_name', document.getElementById('prof-name').value.trim());
-            localStorage.setItem('rb_phone', document.getElementById('prof-phone').value.trim());
-            localStorage.setItem('rb_loc', document.getElementById('prof-loc').value.trim());
-            localStorage.setItem('rb_school', document.getElementById('prof-school').value.trim());
-            localStorage.setItem('rb_class', document.getElementById('prof-class').value);
-            localStorage.setItem('rb_country_code', document.getElementById('prof-country-code').value);
-            alert("🚀 STUDENT PROFILE META UPDATED!"); closeProfileModal();
-            let activeName = localStorage.getItem('rb_name') || localStorage.getItem('rb_email').split('@')[0];
-            document.getElementById('profile-letter').innerText = activeName.charAt(0).toUpperCase();
-            document.getElementById('menu-user-name').innerText = `Hi, ${activeName}`;
-        }
-
-        function toggleThemeState(mode) {
-            const body = document.body; const darkBtn = document.getElementById('theme-dark-btn'); const lightBtn = document.getElementById('theme-light-btn');
-            if (mode === 'light') {
-                body.classList.add('light-mode-active'); localStorage.setItem('rb_theme', 'light');
-                lightBtn.className = "py-2 rounded-xl font-bold border border-purple-600 bg-purple-600/20 text-purple-600 text-center cursor-pointer";
-                darkBtn.className = "py-2 rounded-xl font-bold border border-gray-300 bg-transparent text-gray-400 text-center cursor-pointer";
-            } else {
-                body.classList.remove('light-mode-active'); localStorage.setItem('rb_theme', 'dark');
-                darkBtn.className = "py-2 rounded-xl font-bold border border-purple-600 bg-purple-600/20 text-white text-center cursor-pointer";
-                lightBtn.className = "py-2 rounded-xl font-bold border border-gray-800 bg-transparent text-gray-400 text-center cursor-pointer";
-                initGalaxy();
-            }
-        }
-
-        function applyFontStyles() {
-            const sz = document.getElementById('set-font-size').value; const fam = document.getElementById('set-font-fam').value;
-            const welcomeBlock = document.getElementById('welcome-message-text');
-            if(welcomeBlock) welcomeBlock.className = `text-gray-200 leading-relaxed bg-[#0f0f14]/80 p-4 rounded-2xl border border-gray-900 ${sz} ${fam}`;
-            localStorage.setItem('rb_font_sz', sz); localStorage.setItem('rb_font_fam', fam);
-        }
-
-        function saveSettingsForm() {
-            localStorage.setItem('rb_set_gender', document.getElementById('set-voice-gender').value);
-            localStorage.setItem('rb_set_voice', document.getElementById('set-voice').value);
-            localStorage.setItem('rb_set_speed', document.getElementById('set-voice-speed').value);
-            localStorage.setItem('rb_set_lang', document.getElementById('set-ai-lang').value);
-            localStorage.setItem('rb_font_sz', document.getElementById('set-font-size').value);
-            localStorage.setItem('rb_font_fam', document.getElementById('set-font-fam').value);
-            alert("⚙️ CONFIGURATION PARAMETERS REGISTERED."); closeSettingsModal(); renderActiveStreamMessages();
-        }
-
+        // 🧠 AUTO-RENAME PROCESSOR ARRAYS FLOW
         async function sendQueryToBot() {
             if(!IS_AUTHENTICATED) return;
             let currentFreeChats = parseInt(localStorage.getItem('rb_free_chats') || '0');
-            if (CURRENT_TIER === "Free Trial" && currentFreeChats >= MAX_FREE_CHATS) { alert("🛑 FREE TRIAL LIMIT EXCEEDED! Please upgrade to premium."); return; }
+            if (CURRENT_TIER === "Free Trial" && currentFreeChats >= MAX_FREE_CHATS) { alert("🛑 FREE TRIAL LIMIT EXCEEDED!"); return; }
+            
             const queryInput = document.getElementById('student-query'); const streamContainer = document.getElementById('chat-workspace-container');
             let messageText = queryInput.value.trim(); if(!messageText) return;
+
+            // 🌟 GEMINI LOGIC INSTANT SPINNER ARRAY: Folds dynamically up from zero statements on first typing execution
+            if (!ACTIVE_FOLDER_ID) {
+                const wordsArray = messageText.split(" ");
+                const cleanAutoTitle = wordsArray.slice(0, 3).join(" ") + "...";
+                ACTIVE_FOLDER_ID = createNewChatFolderNode(cleanAutoTitle);
+            }
 
             CHAT_FOLDERS_MAP[ACTIVE_FOLDER_ID].stream.push({ sender: 'user', text: messageText });
             localStorage.setItem('rb_folders', JSON.stringify(CHAT_FOLDERS_MAP));
@@ -836,7 +795,7 @@
             if (CURRENT_TIER === "Free Trial") { currentFreeChats++; localStorage.setItem('rb_free_chats', currentFreeChats.toString()); }
 
             const botMessageId = "rankbot-msg-" + Date.now();
-            streamContainer.innerHTML += `<div class="flex items-start gap-4 max-w-3xl" id="${botMessageId}"><div class="w-9 h-9 rounded-xl bg-purple-600/20 border border-purple-500/30 flex items-center justify-center text-lg flex-shrink-0">🤖</div><div class="space-y-1"><p class="text-xs font-bold text-purple-400 uppercase tracking-widest">RankBot AI</p><p class="text-gray-400 text-sm animate-pulse" id="${botMessageId}-text">Processing query streams safely inside topic console...</p></div></div>`;
+            streamContainer.innerHTML += `<div class="flex items-start gap-4 max-w-3xl" id="${botMessageId}"><div class="w-9 h-9 rounded-xl bg-purple-600/20 border border-purple-500/30 flex items-center justify-center text-lg flex-shrink-0">🤖</div><div class="space-y-1"><p class="text-xs font-bold text-purple-400 uppercase tracking-widest">RankBot AI</p><p class="text-gray-400 text-sm animate-pulse" id="${botMessageId}-text">Processing query streams inside folder console...</p></div></div>`;
             streamContainer.scrollTop = streamContainer.scrollHeight;
 
             try {
@@ -856,6 +815,62 @@
             } catch (error) { document.getElementById(`${botMessageId}-text`).innerText = "Sync Error. Please retry."; }
         }
 
+        function openMasterHubModal() { const sidebar = document.getElementById('master-hub-sidebar'); if(sidebar) sidebar.classList.remove('-translate-x-full'); }
+        function closeMasterHubModal() { const sidebar = document.getElementById('master-hub-sidebar'); if(sidebar) sidebar.classList.add('-translate-x-full'); }
+        function enterWorkspaceDirectly(email, tier) {
+            IS_AUTHENTICATED = true; CURRENT_TIER = tier || "Free Trial";
+            const gate = document.getElementById('auth-gate'); if(gate) gate.style.setProperty('display', 'none', 'important');
+            let defaultName = email.split('@')[0]; let activeName = localStorage.getItem('rb_name') || defaultName;
+            document.getElementById('profile-letter').innerText = activeName.charAt(0).toUpperCase();
+            document.getElementById('menu-user-name').innerText = `Hi, ${activeName}`;
+            applyTierStylesAndRings(CURRENT_TIER); document.getElementById('prof-email-display').value = email;
+            loadChatFolderVault();
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedAuth = localStorage.getItem('rb_auth'); const savedEmail = localStorage.getItem('rb_email'); const savedTier = localStorage.getItem('rb_tier');
+            if (savedAuth === 'true' && savedEmail) {
+                enterWorkspaceDirectly(savedEmail, savedTier);
+                document.getElementById('prof-name').value = localStorage.getItem('rb_name') || "";
+                document.getElementById('prof-phone').value = localStorage.getItem('rb_phone') || "";
+                document.getElementById('prof-loc').value = localStorage.getItem('rb_loc') || "";
+                document.getElementById('prof-school').value = localStorage.getItem('rb_school') || "";
+                document.getElementById('prof-class').value = localStorage.getItem('rb_class') || "9th Standard";
+                document.getElementById('prof-country-code').value = localStorage.getItem('rb_country_code') || "+91";
+                if(localStorage.getItem('rb_set_gender')) { document.getElementById('set-voice-gender').value = localStorage.getItem('rb_set_gender'); syncAcousticVoiceList(); document.getElementById('set-voice').value = localStorage.getItem('rb_set_voice'); }
+                if(localStorage.getItem('rb_set_speed')) document.getElementById('set-voice-speed').value = localStorage.getItem('rb_set_speed');
+                if(localStorage.getItem('rb_set_lang')) document.getElementById('set-ai-lang').value = localStorage.getItem('rb_set_lang');
+                if(localStorage.getItem('rb_font_sz')) { document.getElementById('set-font-size').value = localStorage.getItem('rb_font_sz'); document.getElementById('set-font-fam').value = localStorage.getItem('rb_font_fam'); }
+                if(localStorage.getItem('rb_theme') === 'light') toggleThemeState('light');
+            }
+        });
+
+        function applyTierStylesAndRings(tier) {
+            const badge = document.getElementById('menu-user-tier'); const ring = document.getElementById('pfp-ring-wrapper'); const notice = document.getElementById('bottom-ad-notice');
+            badge.className = "text-[10px] px-2 py-0.5 rounded-full font-bold inline-block mt-1 "; ring.className = "w-11 h-11 rounded-full p-[2px] cursor-pointer active:scale-95 transition-all shadow-lg border border-transparent";
+            if (tier === "Free Trial") { badge.innerText = "Free Trial Active"; badge.classList.add('bg-blue-500/20', 'text-blue-400'); ring.classList.add('border-blue-500'); notice.innerText = `⚠️ Free Trial Active: ${MAX_FREE_CHATS - count} messages remaining.`; notice.style.color = "#60a5fa"; }
+            else if (tier === "Lite Plan") { badge.innerText = "Lite Plan Active"; badge.classList.add('bg-pink-500/20', 'text-pink-400'); ring.classList.add('border-pink-500'); notice.innerText = "✨ VIP SECURE CONNECTION: Lite Plan Active."; notice.style.color = "#f472b6"; }
+            else if (tier === "Plus Plan") { badge.innerText = "Plus Plan Active"; badge.classList.add('bg-purple-500/20', 'text-purple-400'); ring.classList.add('border-purple-500'); notice.innerText = "✨ VIP SECURE CONNECTION: Plus Plan Active."; notice.style.color = "#c084fc"; }
+            else if (tier === "Pro Plan") { badge.innerText = "Pro Plan Active"; badge.classList.add('bg-gradient-to-r', 'from-blue-500', 'via-pink-500', 'to-purple-500', 'text-white'); ring.classList.add('pro-mesh-active'); notice.innerText = "✨ VIP SECURE OMNISCIENT CORE CONNECTION: Pro Plan Active."; notice.style.color = "#34d399"; notice.classList.remove('animate-pulse'); }
+        }
+
+        function verifyEmailFormat() {
+            const emailInput = document.getElementById('auth-email-input'); if(!emailInput) return; const email = emailInput.value.trim();
+            if (email && email.includes("@") && email.includes(".")) {
+                const encOwner = ["ayushkumar", "in2011", "gmail.com"].join(".");
+                if(email.toLowerCase() === encOwner.replace(".gmail", "@gmail")) {
+                    CURRENT_TIER = "Pro Plan"; localStorage.setItem('rb_auth', 'true'); localStorage.setItem('rb_email', email); localStorage.setItem('rb_tier', CURRENT_TIER);
+                    localStorage.setItem('rb_name', 'Ayush Kumar'); localStorage.setItem('rb_school', 'RankBot Headquarters'); localStorage.setItem('rb_class', '11th Standard'); localStorage.setItem('rb_loc', 'Delhi, India'); localStorage.setItem('rb_country_code', '+91'); enterWorkspaceDirectly(email, CURRENT_TIER);
+                } else { localStorage.setItem('rb_email', email); document.getElementById('auth-gate').classList.add('opacity-0', 'pointer-events-none'); document.getElementById('plans-screen').classList.remove('hidden'); }
+            } else { alert("❌ INVALID EMAIL MATRIX FORMAT."); }
+        }
+
+        function selectTier(tierName) { CURRENT_TIER = tierName; localStorage.setItem('rb_tier', tierName); localStorage.setItem('rb_auth', 'true'); if (tierName === 'Free Trial') localStorage.setItem('rb_free_chats', '0'); const email = localStorage.getItem('rb_email') || "student@example.com"; enterWorkspaceDirectly(email, CURRENT_TIER); closePlans(); }
+        function saveProfileData() { localStorage.setItem('rb_name', document.getElementById('prof-name').value.trim()); localStorage.setItem('rb_phone', document.getElementById('prof-phone').value.trim()); localStorage.setItem('rb_loc', document.getElementById('prof-loc').value.trim()); localStorage.setItem('rb_school', document.getElementById('prof-school').value.trim()); localStorage.setItem('rb_class', document.getElementById('prof-class').value); localStorage.setItem('rb_country_code', document.getElementById('prof-country-code').value); alert("🚀 STUDENT PROFILE META UPDATED!"); closeProfileModal(); let activeName = localStorage.getItem('rb_name') || localStorage.getItem('rb_email').split('@')[0]; document.getElementById('profile-letter').innerText = activeName.charAt(0).toUpperCase(); document.getElementById('menu-user-name').innerText = `Hi, ${activeName}`; }
+        function toggleThemeState(mode) { const body = document.body; const darkBtn = document.getElementById('theme-dark-btn'); const lightBtn = document.getElementById('theme-light-btn'); if (mode === 'light') { body.classList.add('light-mode-active'); localStorage.setItem('rb_theme', 'light'); lightBtn.className = "py-2 rounded-xl font-bold border border-purple-600 bg-purple-600/20 text-purple-600 text-center cursor-pointer"; darkBtn.className = "py-2 rounded-xl font-bold border border-gray-300 bg-transparent text-gray-400 text-center cursor-pointer"; } else { body.classList.remove('light-mode-active'); localStorage.setItem('rb_theme', 'dark'); darkBtn.className = "py-2 rounded-xl font-bold border border-purple-600 bg-purple-600/20 text-white text-center cursor-pointer"; lightBtn.className = "py-2 rounded-xl font-bold border border-gray-800 bg-transparent text-gray-400 text-center cursor-pointer"; initGalaxy(); } }
+        function applyFontStyles() { const sz = document.getElementById('set-font-size').value; const fam = document.getElementById('set-font-fam').value; const welcomeBlock = document.getElementById('welcome-message-text'); if(welcomeBlock) welcomeBlock.className = `text-gray-200 leading-relaxed bg-[#0f0f14]/80 p-4 rounded-2xl border border-gray-900 ${sz} ${fam}`; localStorage.setItem('rb_font_sz', sz); localStorage.setItem('rb_font_fam', fam); }
+        function saveSettingsForm() { localStorage.setItem('rb_set_gender', document.getElementById('set-voice-gender').value); localStorage.setItem('rb_set_voice', document.getElementById('set-voice').value); localStorage.setItem('rb_set_speed', document.getElementById('set-voice-speed').value); localStorage.setItem('rb_set_lang', document.getElementById('set-ai-lang').value); localStorage.setItem('rb_font_sz', document.getElementById('set-font-size').value); localStorage.setItem('rb_font_fam', document.getElementById('set-font-fam').value); alert("⚙️ CONFIGURATION PARAMETERS REGISTERED."); closeSettingsModal(); renderActiveStreamMessages(); }
+        function toggleMobileSidebarPanel() { const panel = document.getElementById('master-hub-sidebar'); panel.classList.toggle('-translate-x-full'); }
         function openProfileModal() { document.getElementById('profile-menu').classList.add('hidden'); document.getElementById('prof-email-display').value = localStorage.getItem('rb_email') || ""; document.getElementById('profile-modal').classList.remove('hidden'); }
         function closeProfileModal() { document.getElementById('profile-modal').classList.add('hidden'); }
         function openSettingsModal() { document.getElementById('profile-menu').classList.add('hidden'); document.getElementById('settings-modal').classList.remove('hidden'); }
