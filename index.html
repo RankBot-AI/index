@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RankBot AI - Ultimate Educational Matrix</title>
+    <title>RankBot AI - Ultimate Educational Matrix v1.0.9</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;600;700&family=Lexend:wght@400;600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     
@@ -31,10 +31,10 @@
         .blur-bg { backdrop-filter: blur(40px); background: rgba(3, 3, 5, 0.85); }
         
         .smooth-scroll { scroll-behavior: smooth; }
-        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-webkit-scrollbar { width: 5px; }
         ::-webkit-scrollbar-thumb { background: #27272a; border-radius: 10px; }
 
-        /* 🌈 PRO EXCLUSIVE RGB MESH ANIMATION FIXED FOR TEXT & RING CORE */
+        /* 🌈 PRO EXCLUSIVE RGB FLOW ANIMATION FIXED FOR TEXT & RING CORE */
         @keyframes meshFlow {
             0% { border-color: #3b82f6; box-shadow: 0 0 15px rgba(59, 130, 246, 0.4); color: #3b82f6; }
             33% { border-color: #ec4899; box-shadow: 0 0 15px rgba(236, 72, 153, 0.4); color: #ec4899; }
@@ -125,7 +125,7 @@
         </div>
         
         <div class="pt-3 border-t border-gray-900 text-center">
-            <div onclick="logoutSystem()" class="w-full bg-zinc-900/50 hover:bg-red-950/30 border border-gray-900 text-red-400 py-2 rounded-xl text-[11px] font-medium transition-colors cursor-pointer select-none">Logout Session</div>
+            <div onclick="logoutSystem()" class="w-full bg-zinc-900/50 hover:bg-red-950/30 border border-gray-900 text-red-400 py-2 rounded-xl text-[11px] font-medium transition-colors cursor-pointer select-none">Logout Current Session</div>
         </div>
     </div>
 
@@ -452,12 +452,12 @@
             const userSpeed = parseFloat(document.getElementById('set-voice-speed').value || '0.95');
             if ('speechSynthesis' in window) {
                 window.speechSynthesis.cancel();
-                const utterance = new SpeechSynthesisUtterance("Hi, I am RankBot AI. Your customized premium conversational logic sequences are completely active now.");
+                const utterance = new SpeechSynthesisUtterance("Hi, I am RankBot AI.");
                 utterance.rate = userSpeed;
                 
                 const systemVoices = window.speechSynthesis.getVoices();
                 if(systemVoices.length > 0) {
-                    const targetVoice = systemVoices.find(v => v.lang.includes('en') && (v.name.includes('Natural') || v.name.includes('Google'))) || systemVoices[0];
+                    const targetVoice = systemVoices.find(v => v.lang.includes('en')) || systemVoices[0];
                     utterance.voice = targetVoice;
                 }
                 if (selectedVoice.includes("jarvis") || selectedVoice.includes("titan")) utterance.pitch = 0.95;
@@ -555,7 +555,7 @@
                 item.innerHTML = `
                     <div class="w-full truncate pr-1">${folder.title}</div>
                     <div class="flex items-center gap-3 border-t border-gray-900/40 pt-1.5 mt-0.5 text-[10px] text-gray-500">
-                        <span onclick="renameFolderNodeElement('${id}', event)'" class="hover:text-purple-400">✏️ Rename</span>
+                        <span onclick="renameFolderNodeElement('${id}', event)" class="hover:text-purple-400">✏️ Rename</span>
                         <span onclick="shareFolderNodeElement('${id}', event)" class="hover:text-blue-400">📢 Share</span>
                         <span onclick="deleteFolderNodeElement('${id}', event)" class="hover:text-red-400 ml-auto">🗑️ Delete</span>
                     </div>`;
@@ -563,7 +563,7 @@
             });
         }
 
-        // 🌟 FIXED PER SCREENSHOT: EXCLUSIVE PLAN COLOR RESOLUTION LOGIC
+        // 🌟 DYNAMIC WELCOME SCHEME RENDERER
         function renderActiveStreamMessages() {
             const streamContainer = document.getElementById('chat-workspace-container');
             if(!streamContainer) return;
@@ -572,7 +572,7 @@
                 document.getElementById('active-folder-label').innerText = "";
                 const userRawName = localStorage.getItem('rb_name') || "Student";
                 
-                let textStyleClass = "text-blue-400"; // Free Default
+                let textStyleClass = "text-blue-400"; // Free Trial Default
                 if(CURRENT_TIER === "Lite Plan") textStyleClass = "text-pink-400";
                 else if(CURRENT_TIER === "Plus Plan") textStyleClass = "text-purple-400";
                 else if(CURRENT_TIER === "Pro Plan") textStyleClass = "pro-text-flow font-bold bg-gradient-to-r from-blue-400 via-pink-400 to-purple-400 bg-clip-text text-transparent";
@@ -602,8 +602,8 @@
             applyFontStyles();
         }
 
-        function openMasterHubModal() { const sidebar = document.getElementById('master-hub-sidebar'); if(sidebar) sidebar.classList.remove('-translate-x-full'); }
-        function closeMasterHubModal() { document.getElementById('master-hub-sidebar').classList.add('hidden'); document.getElementById('master-hub-sidebar').classList.add('-translate-x-full'); }
+        function openMasterHubModal() { document.getElementById('master-hub-sidebar').classList.remove('-translate-x-full'); }
+        function closeMasterHubModal() { document.getElementById('master-hub-sidebar').classList.add('-translate-x-full'); }
         
         function toggleProfileMenuSidebar(event) {
             if(event) event.stopPropagation();
@@ -687,7 +687,7 @@
         }
         function clearDrawingCanvasBoard() { if(confirm("🧹 Clear note surface layers?")) ctx.clearRect(0, 0, canvas.width, canvas.height); }
 
-        // 📁 FIXED FOR ALL LOAD AND FORCE IMMUNITY RECOVERY
+        // 📁 FIXED GALAXY SYSTEM TRIGGER ARRAY
         function initGalaxy() {
             const bg = document.getElementById('galaxy-bg');
             if(!bg) return; bg.innerHTML = "";
@@ -714,12 +714,11 @@
             document.getElementById('drawer-pfp-letter').innerText = activeName.charAt(0).toUpperCase();
             document.getElementById('menu-user-name').innerText = `Hi, ${activeName}`;
             
-            // 🚨 CRITICAL FORCE INJECTION: Makes sure rings and welcome screens fire simultaneously
             applyTierStylesAndRings(CURRENT_TIER); 
             document.getElementById('prof-email-display').value = email;
             
             loadChatFolderVault();
-            initGalaxy(); // Instantly spin galaxy back up on smooth entry frames
+            initGalaxy(); // Forced loading node execution sequence
         }
 
         window.addEventListener('DOMContentLoaded', () => {
@@ -739,7 +738,7 @@
                 if(localStorage.getItem('rb_font_sz')) { document.getElementById('set-font-size').value = localStorage.getItem('rb_font_sz'); document.getElementById('set-font-fam').value = localStorage.getItem('rb_font_fam'); }
                 if(localStorage.getItem('rb_theme') === 'light') toggleThemeState('light');
             } else {
-                initGalaxy(); // Fired fallback inside login overlay states
+                initGalaxy();
             }
         });
 
