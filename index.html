@@ -30,12 +30,11 @@
         .glass-panel { background: rgba(15, 15, 20, 0.7); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.05); }
         .blur-bg { backdrop-filter: blur(40px); background: rgba(3, 3, 5, 0.85); }
         
-        /* SMOOTH SCROLLING */
         .smooth-scroll { scroll-behavior: smooth; }
         ::-webkit-scrollbar { width: 5px; }
         ::-webkit-scrollbar-thumb { background: #27272a; border-radius: 10px; }
 
-        /* 🌈 PRO EXCLUSIVE RGB MESH ANIMATION FOR BOX & PROFILE RING */
+        /* 🌈 PRO EXCLUSIVE RGB MESH ANIMATION */
         @keyframes meshFlow {
             0% { border-color: #3b82f6; box-shadow: 0 0 15px rgba(59, 130, 246, 0.4); }
             33% { border-color: #ec4899; box-shadow: 0 0 15px rgba(236, 72, 153, 0.4); }
@@ -46,12 +45,10 @@
     </style>
     
     <script>
-        // यह स्क्रिप्ट एचटीएमएल बॉडी लोड होने से पहले ही स्क्रीन को लॉक या अनलॉक कर देगी ताकि रिफ्रेश का ग्लिच कभी न आए
         (function() {
             const savedAuth = localStorage.getItem('rb_auth');
             const savedEmail = localStorage.getItem('rb_email');
             if (savedAuth === 'true' && savedEmail) {
-                // सीएसएस इंजेक्ट करके लॉगिन गेट को रेंडर होने से पहले ही छुपा दो
                 const style = document.createElement('style');
                 style.innerHTML = '#auth-gate { display: none !important; }';
                 document.head.appendChild(style);
@@ -81,6 +78,21 @@
                     Continue to Workspace
                 </div>
             </div>
+        </div>
+    </div>
+
+    <div id="sidebar-panel" class="w-64 h-full glass-panel border-r border-gray-900 flex flex-col justify-between hidden md:flex z-20 transition-all duration-300">
+        <div class="p-4 flex flex-col h-full overflow-hidden">
+            <div onclick="createNewChatFolderNode()" class="w-full bg-gradient-to-r from-purple-900/40 to-pink-900/40 hover:from-purple-900/60 hover:to-pink-900/60 border border-purple-500/30 text-white font-semibold rounded-xl p-3 text-xs flex items-center justify-center gap-2 cursor-pointer transition-all mb-4 select-none shadow-md">
+                <span>➕</span> New Topic Folder
+            </div>
+            
+            <p class="text-[10px] uppercase font-bold text-gray-500 tracking-wider mb-2 px-1">Active Folders / History</p>
+            <div id="folder-stream-list" class="flex-1 overflow-y-auto space-y-1.5 pr-1 smooth-scroll">
+                </div>
+        </div>
+        <div class="p-3 border-t border-gray-900 bg-[#07070a]/60 text-center text-[10px] text-gray-600 font-mono">
+            RankBot Cache Ledger Active
         </div>
     </div>
 
@@ -236,22 +248,43 @@
             
             <div class="space-y-4 text-xs">
                 <div class="bg-[#0c0c12] p-3 rounded-xl border border-gray-800 space-y-3">
-                    <p class="font-bold text-purple-400 tracking-wider uppercase text-[9px]">🤖 AI Voice Customization Panel</p>
+                    <p class="font-bold text-purple-400 tracking-wider uppercase text-[9px]">🤖 RankBot AI Acoustic Voice Core</p>
                     <div class="grid grid-cols-2 gap-2">
                         <div>
-                            <label class="block text-gray-400 mb-1">AI Voice Gender</label>
+                            <label class="block text-gray-400 mb-1">AI Voice Variations</label>
                             <select id="set-voice-gender" onchange="syncAcousticVoiceList()" class="w-full bg-[#050508] border border-gray-800 rounded-xl p-2 text-gray-300 focus:outline-none">
-                                <option value="male">Male Vector Core</option>
-                                <option value="female">Female Vector Core</option>
+                                <option value="male">Male Node Engine (6 Parts)</option>
+                                <option value="female">Female Node Engine (6 Parts)</option>
                             </select>
                         </div>
                         <div>
-                            <label class="block text-gray-400 mb-1">Acoustic Engine Name</label>
+                            <label class="block text-gray-400 mb-1">Acoustic Vector Wave</label>
                             <select id="set-voice" class="w-full bg-[#050508] border border-gray-800 rounded-xl p-2 text-gray-300 focus:outline-none"></select>
                         </div>
                     </div>
+                    
+                    <div>
+                        <label class="block text-gray-400 mb-1">Voice Tempo / Pacing Speed</label>
+                        <select id="set-voice-speed" class="w-full bg-[#050508] border border-gray-800 rounded-xl p-2 text-gray-300 focus:outline-none">
+                            <option value="0.75">Slow Modulated Pacing</option>
+                            <option value="0.95" selected>Medium Balanced Cadence (Default)</option>
+                            <option value="1.25">Fast Priority Bandwidth Core</option>
+                        </select>
+                    </div>
+
                     <div onclick="testActiveVoiceOutputSound()" class="w-full bg-purple-600/20 text-purple-300 border border-purple-500/30 hover:bg-purple-600/40 font-bold py-2 rounded-xl flex items-center justify-center gap-2 transition-all cursor-pointer text-center select-none">
                         🔊 Play Active Audio Track Sample (Test)
+                    </div>
+                </div>
+
+                <div class="bg-[#0c0c12] p-3 rounded-xl border border-gray-800 space-y-2">
+                    <p class="font-bold text-teal-400 tracking-wider uppercase text-[9px]">🌐 Language Synthesis Controller</p>
+                    <div>
+                        <select id="set-ai-lang" class="w-full bg-[#050508] border border-gray-800 rounded-xl p-2 text-gray-300 focus:outline-none">
+                            <option value="auto">Default Auto-Detect (Matches User Tone)</option>
+                            <option value="hi-IN">Pure Hindi Logic Stream</option>
+                            <option value="en-US">English Academic Vector</option>
+                        </select>
                     </div>
                 </div>
 
@@ -288,36 +321,11 @@
                 <div class="bg-[#0c0c12] p-3 rounded-xl border border-gray-800 space-y-3">
                     <p class="font-bold text-amber-400 tracking-wider uppercase text-[9px]">🛠️ Core AI Operational Modules</p>
                     <div class="space-y-2">
-                        <div>
-                            <label class="block text-gray-500 mb-1 text-[10px]">AI Response Stream Length</label>
-                            <select id="set-ai-len" class="w-full bg-[#050508] border border-gray-800 rounded-xl p-1.5 text-gray-300 focus:outline-none">
-                                <option value="compact">Compact Concise Points Only</option>
-                                <option value="balanced">Standard Analytical Answers (Default)</option>
-                                <option value="deep">Detailed Step-By-Step Mathematical Breakdown</option>
-                            </select>
-                        </div>
-                        <div class="grid grid-cols-2 gap-2 pt-1 select-none">
-                            <div onclick="localStorage.removeItem('rb_free_chats'); alert('Cache Matrix Emptied successfully.');" class="bg-zinc-900 border border-gray-800 text-gray-300 font-medium py-1.5 rounded-lg hover:text-white transition-colors text-[10px] text-center cursor-pointer">
-                                🗑️ Clear Cache Memory
-                            </div>
-                            <div onclick="alert('Bandwidth Multiplier Switched.');" class="bg-zinc-900 border border-gray-800 text-gray-300 font-medium py-1.5 rounded-lg hover:text-white transition-colors text-[10px] text-center cursor-pointer">
-                                ⚡ Optimize Bandwidth Node
+                        <div class="grid grid-cols-1 gap-2 select-none">
+                            <div onclick="localStorage.removeItem('rb_folders'); localStorage.removeItem('rb_free_chats'); localStorage.removeItem('rb_canvas_data'); alert('Folder memory arrays successfully wiped.'); location.reload();" class="bg-zinc-900 border border-gray-800 text-gray-300 font-medium py-2 rounded-lg hover:text-white transition-colors text-[11px] text-center cursor-pointer">
+                                🗑️ Clear Cache & Reset All Memory Arrays
                             </div>
                         </div>
-                    </div>
-                </div>
-
-                <div class="bg-[#0c0c12] p-3 rounded-xl border border-gray-800 space-y-2">
-                    <p class="font-bold text-emerald-400 tracking-wider uppercase text-[9px]">🛡️ Privacy & Security Shields</p>
-                    <div class="space-y-2 text-[11px] text-gray-300">
-                        <label class="flex items-center gap-2 cursor-pointer">
-                            <input type="checkbox" checked class="rounded bg-[#0d0d11] border-gray-800 text-purple-600 focus:ring-0">
-                            <span>Encrypt Cloud History Stream</span>
-                        </label>
-                        <label class="flex items-center gap-2 cursor-pointer">
-                            <input type="checkbox" checked class="rounded bg-[#0d0d11] border-gray-800 text-purple-600 focus:ring-0">
-                            <span>Enable Academic Parental Guardian Lock</span>
-                        </label>
                     </div>
                 </div>
 
@@ -334,10 +342,19 @@
         
         <div class="w-full flex items-center justify-between px-6 py-4 glass-panel border-b border-b-gray-900">
             <div class="flex items-center gap-3">
-                <span class="text-2xl">🤖</span>
+                <div onclick="toggleMobileSidebarPanel()" class="text-xl cursor-pointer md:hidden active:scale-95 transition-transform select-none mr-1">☰</div>
+                
+                <div class="flex items-center gap-2 select-none">
+                    <span class="text-2xl">🤖</span>
+                    <div onclick="toggleNotesCanvasWorkspace()" id="notes-tab-btn" class="bg-zinc-800/80 hover:bg-purple-900/40 text-gray-300 border border-gray-800 text-[11px] px-3 py-1.5 rounded-xl font-bold cursor-pointer transition-all transition-colors">
+                        📝 Notes Board
+                    </div>
+                </div>
+                
                 <div>
-                    <h1 class="heading-font text-lg font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-pink-500 bg-clip-text text-transparent">RankBot AI</h1>
-                    <p class="text-[10px] text-gray-500 tracking-widest uppercase">Elite Hybrid Intelligence</p>
+                    <h1 class="heading-font text-sm font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-pink-500 bg-clip-text text-transparent hidden sm:inline-block">
+                        RankBot AI <span id="active-folder-label" class="text-xs text-gray-500 font-normal tracking-normal ml-1"></span>
+                    </h1>
                 </div>
             </div>
             
@@ -360,41 +377,64 @@
             </div>
         </div>
 
-        <div id="chat-stream" class="flex-1 overflow-y-auto px-4 py-8 md:px-32 space-y-6 smooth-scroll">
-            <div class="flex items-start gap-4 max-w-3xl">
-                <div class="w-9 h-9 rounded-xl bg-purple-600/20 border border-purple-500/30 flex items-center justify-center text-lg flex-shrink-0">🤖</div>
-                <div class="space-y-1">
-                    <p class="text-xs font-bold text-purple-400 uppercase tracking-widest">RankBot AI</p>
-                    <p id="welcome-message-text" class="text-gray-200 text-sm leading-relaxed bg-[#0f0f14]/80 p-4 rounded-2xl border border-gray-900">Hello brother! I am your customized **RankBot AI** Mentor. Your studies, daily timetable, and complete setups to solve complex IIT-JEE / NEET questions are live here. Type your doubt below.</p>
+        <div class="flex-1 w-full relative overflow-hidden">
+            
+            <div id="chat-workspace-container" class="absolute inset-0 overflow-y-auto px-4 py-8 md:px-32 space-y-6 smooth-scroll">
                 </div>
-            </div>
-        </div>
 
-        <div class="px-4 pb-6 md:px-32 bg-gradient-to-t from-[#050507] via-[#050507] to-transparent">
-            <div class="max-w-4xl mx-auto glass-panel rounded-2xl flex flex-col p-2 transition-all duration-200 focus-within:border-purple-500/40 shadow-2xl">
-                
-                <input type="text" id="student-query" placeholder="Ask RankBot anything..." class="w-full bg-transparent text-gray-200 placeholder-gray-600 text-sm px-4 py-3 focus:outline-none" onkeypress="if(event.key === 'Enter') sendQueryToBot()">
-                
-                <div class="flex items-center justify-between border-t border-gray-900/60 pt-2 px-2">
-                    <div class="flex items-center gap-2">
-                        <label for="file-upload" class="p-2 hover:bg-zinc-800/60 rounded-xl text-gray-400 hover:text-white cursor-pointer transition-colors text-sm flex items-center gap-1.5" title="Upload Document (Max 100MB)">
-                            ➕ <span class="text-xs hidden sm:inline">Add File</span>
-                        </label>
-                        <input type="file" id="file-upload" class="hidden" onchange="validateAndUploadFile(this)">
-                        <span id="file-status" class="text-[10px] text-gray-500 font-medium"></span>
+            <div id="notes-workspace-container" class="absolute inset-0 bg-[#07070c] hidden flex-col p-4 z-10 animate-fade-in">
+                <div class="w-full glass-panel border border-gray-900 rounded-2xl p-3 flex flex-wrap items-center justify-between gap-3 text-xs mb-3">
+                    <div class="flex items-center gap-4">
+                        <span class="font-bold text-purple-400">📝 Notes Workspace Canvas</span>
+                        <div class="flex items-center gap-1.5">
+                            <span class="text-gray-500 text-[11px]">Size:</span>
+                            <select id="canvas-brush-size" class="bg-[#0f0f15] border border-gray-800 rounded-lg p-1 text-gray-300 focus:outline-none">
+                                <option value="2">Thin Tip</option>
+                                <option value="5" selected>Medium Marker</option>
+                                <option value="10">Thick Board Brush</option>
+                            </select>
+                        </div>
+                        <div class="flex items-center gap-1.5">
+                            <span class="text-gray-500 text-[11px]">Color:</span>
+                            <select id="canvas-brush-color" class="bg-[#0f0f15] border border-gray-800 rounded-lg p-1 text-gray-300 focus:outline-none">
+                                <option value="#ffffff">⚪ Chalk White</option>
+                                <option value="#ef4444">🔴 Critical Red</option>
+                                <option value="#3b82f6">🔵 Royal Blue</option>
+                                <option value="#eab308">🟡 Caution Yellow</option>
+                                <option value="#22c55e">🟢 Matrix Green</option>
+                            </select>
+                        </div>
                     </div>
                     
                     <div class="flex items-center gap-2 select-none">
-                        <div onclick="triggerVoiceInput()" class="p-2.5 hover:bg-zinc-800/60 rounded-xl text-gray-400 hover:text-white transition-colors cursor-pointer" title="Voice Search System">
-                            🎙️
-                        </div>
-                        <div onclick="sendQueryToBot()" class="p-2.5 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-xl hover:opacity-90 transition-all font-bold text-xs flex items-center justify-center shadow-md cursor-pointer">
-                            ➔
-                        </div>
+                        <div onclick="clearDrawingCanvasBoard()" class="bg-zinc-900 border border-gray-800 text-gray-400 hover:text-white px-3 py-1 rounded-xl cursor-pointer text-[11px] font-semibold transition-colors">🗑️ Clear Board</div>
+                        <div onclick="saveDrawingCanvasMatrix()" class="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-4 py-1 rounded-xl cursor-pointer text-[11px] font-bold transition-all shadow-md">💾 Save Board Meta</div>
+                    </div>
+                </div>
+
+                <div class="flex-1 w-full bg-[#030305] border border-gray-900/60 rounded-3xl relative overflow-hidden shadow-inner">
+                    <canvas id="digital-notes-canvas" class="w-full h-full cursor-crosshair block"></canvas>
+                </div>
+            </div>
+
+        </div>
+
+        <div id="bottom-input-bar-wrap" class="px-4 pb-6 md:px-32 bg-gradient-to-t from-[#050507] via-[#050507] to-transparent">
+            <div class="max-w-4xl mx-auto glass-panel rounded-2xl flex flex-col p-2 transition-all duration-200 focus-within:border-purple-500/40 shadow-2xl">
+                <input type="text" id="student-query" placeholder="Ask RankBot anything..." class="w-full bg-transparent text-gray-200 placeholder-gray-600 text-sm px-4 py-3 focus:outline-none" onkeypress="if(event.key === 'Enter') sendQueryToBot()">
+                <div class="flex items-center justify-between border-t border-gray-900/60 pt-2 px-2">
+                    <div class="flex items-center gap-2">
+                        <label for="file-upload" class="p-2 hover:bg-zinc-800/60 rounded-xl text-gray-400 hover:text-white cursor-pointer transition-colors text-sm flex items-center gap-1.5">
+                            ➕ <span class="text-xs hidden sm:inline">Add File</span>
+                        </label>
+                        <input type="file" id="file-upload" class="hidden" onchange="validateAndUploadFile(this)">
+                    </div>
+                    <div class="flex items-center gap-2 select-none">
+                        <div onclick="triggerVoiceInput()" class="p-2.5 hover:bg-zinc-800/60 rounded-xl text-gray-400 hover:text-white cursor-pointer transition-colors">🎙️</div>
+                        <div onclick="sendQueryToBot()" class="p-2.5 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-xl hover:opacity-90 transition-all font-bold text-xs flex items-center justify-center shadow-md cursor-pointer">➔</div>
                     </div>
                 </div>
             </div>
-            
             <p id="bottom-ad-notice" class="text-center text-[10px] text-purple-400/60 mt-3 font-medium animate-pulse">⚠️ Constant Core Warning: Premium algorithms locked. Upgrade Plan for 100% unrestricted priority bandwidth.</p>
         </div>
 
@@ -405,59 +445,229 @@
         let CURRENT_TIER = "Free Trial";
         let IS_AUTHENTICATED = false;
         const MAX_FREE_CHATS = 10;
+        
+        let CHAT_FOLDERS_MAP = {};
+        let ACTIVE_FOLDER_ID = "default_topic";
+
+        // Canvas Sketch Drawing Global Track Registry State Nodes
+        let canvas, ctx;
+        let isDrawing = false;
+        let lastX = 0, lastY = 0;
+        let isNotesCanvasModeActive = false;
 
         function syncAcousticVoiceList() {
             const gender = document.getElementById('set-voice-gender').value;
             const voiceSelect = document.getElementById('set-voice');
             voiceSelect.innerHTML = "";
-            
             if(gender === 'male') {
                 voiceSelect.innerHTML = `
-                    <option value="jarvis_alpha">Jarvis Natural Resonant</option>
-                    <option value="matrix_acoustic">RankBot Acoustic Clear</option>
-                    <option value="titan_heavy">Titan Deep Bass Articulate</option>
-                    <option value="orion_omega">Orion Omega Studio Voice</option>
-                    <option value="quantum_male">Quantum Human Speech</option>
-                    <option value="apex_instructor">Apex Clear Mentor</option>
+                    <option value="jarvis_alpha">Jarvis Natural Resonant (Part 1)</option>
+                    <option value="matrix_acoustic">RankBot Acoustic Clear (Part 2)</option>
+                    <option value="titan_heavy">Titan Deep Bass Articulate (Part 3)</option>
+                    <option value="orion_omega">Orion Omega Studio Voice (Part 4)</option>
+                    <option value="quantum_male">Quantum Human Speech (Part 5)</option>
+                    <option value="apex_instructor">Apex Clear Mentor (Part 6)</option>
                 `;
             } else {
                 voiceSelect.innerHTML = `
-                    <option value="friday_adaptive">Friday Smart Adaptive</option>
-                    <option value="alexa_pulse">Alexa Premium Smooth</option>
-                    <option value="nova_stellar">Nova Crisp Acoustic</option>
-                    <option value="athena_logic">Athena Natural Cadence</option>
-                    <option value="aura_calm">Aura Serene Human Speech</option>
-                    <option value="valkyrie_pro">Valkyrie High Definition</option>
+                    <option value="friday_adaptive">Friday Smart Adaptive (Part 1)</option>
+                    <option value="alexa_pulse">Alexa Premium Smooth (Part 2)</option>
+                    <option value="nova_stellar">Nova Crisp Acoustic (Part 3)</option>
+                    <option value="athena_logic">Athena Natural Cadence (Part 4)</option>
+                    <option value="aura_calm">Aura Serene Human Speech (Part 5)</option>
+                    <option value="valkyrie_pro">Valkyrie High Definition (Part 6)</option>
                 `;
             }
         }
 
         function testActiveVoiceOutputSound() {
             const selectedVoice = document.getElementById('set-voice').value;
+            const userSpeed = parseFloat(document.getElementById('set-voice-speed').value || '0.95');
             if ('speechSynthesis' in window) {
                 window.speechSynthesis.cancel();
                 const utterance = new SpeechSynthesisUtterance("Hi, I am RankBot AI.");
-                if (selectedVoice.includes("jarvis") || selectedVoice.includes("titan")) {
-                    utterance.pitch = 0.92; utterance.rate = 0.90;
-                } else if (selectedVoice.includes("friday") || selectedVoice.includes("alexa") || selectedVoice.includes("nova")) {
-                    utterance.pitch = 1.10; utterance.rate = 0.95;
-                } else {
-                    utterance.pitch = 1.00; utterance.rate = 0.95;
-                }
+                utterance.rate = userSpeed;
+                if (selectedVoice.includes("jarvis") || selectedVoice.includes("titan")) utterance.pitch = 0.92;
+                else if (selectedVoice.includes("friday") || selectedVoice.includes("alexa")) utterance.pitch = 1.10;
                 window.speechSynthesis.speak(utterance);
             }
         }
 
-        // 🟢 FIXED: CORE ACTIVE UNLOCK METHOD (HIDES AUTH WINDOW PERMANENTLY WITH NO DELAY)
-        function enterWorkspaceDirectly(email, tier) {
-            IS_AUTHENTICATED = true;
-            CURRENT_TIER = tier || "Free Trial";
+        // 📁 GEMINI STYLE TOPIC MANAGEMENT VAULT REDIRECTIONS
+        function loadChatFolderVault() {
+            const stored = localStorage.getItem('rb_folders');
+            if(stored) CHAT_FOLDERS_MAP = JSON.parse(stored);
+            else {
+                CHAT_FOLDERS_MAP = { "default_topic": { title: "📚 General Core Workspace", stream: [] } };
+                localStorage.setItem('rb_folders', JSON.stringify(CHAT_FOLDERS_MAP));
+            }
+            ACTIVE_FOLDER_ID = localStorage.getItem('rb_active_folder_id') || "default_topic";
+            if (!CHAT_FOLDERS_MAP[ACTIVE_FOLDER_ID]) ACTIVE_FOLDER_ID = Object.keys(CHAT_FOLDERS_MAP)[0];
+            renderFolderSidebarView();
+            renderActiveStreamMessages();
+        }
+
+        function createNewChatFolderNode() {
+            const folderName = prompt("📂 Enter Topic / Subject Name for this Chat Folder:");
+            if(!folderName || folderName.trim() === "") return;
+            const uniqueId = "folder_" + Date.now();
+            CHAT_FOLDERS_MAP[uniqueId] = { title: `📁 ${folderName.trim()}`, stream: [] };
+            localStorage.setItem('rb_folders', JSON.stringify(CHAT_FOLDERS_MAP));
+            switchActiveFolderNode(uniqueId);
+        }
+
+        function switchActiveFolderNode(id) {
+            ACTIVE_FOLDER_ID = id;
+            localStorage.setItem('rb_active_folder_id', id);
+            renderFolderSidebarView();
+            renderActiveStreamMessages();
+            if(window.innerWidth < 768) document.getElementById('sidebar-panel').classList.add('hidden');
+        }
+
+        function deleteFolderNodeElement(id, event) {
+            if(event) event.stopPropagation();
+            if(Object.keys(CHAT_FOLDERS_MAP).length <= 1) { alert("❌ Cannot wipe the final remaining active root core directory."); return; }
+            if(confirm("⚠️ WIPE CHAT HISTORY?\nAre you sure you want to permanently delete this folder and its chat cache?")) {
+                delete CHAT_FOLDERS_MAP[id];
+                localStorage.setItem('rb_folders', JSON.stringify(CHAT_FOLDERS_MAP));
+                if(ACTIVE_FOLDER_ID === id) { ACTIVE_FOLDER_ID = Object.keys(CHAT_FOLDERS_MAP)[0]; localStorage.setItem('rb_active_folder_id', ACTIVE_FOLDER_ID); }
+                loadChatFolderVault();
+            }
+        }
+
+        function renderFolderSidebarView() {
+            const list = document.getElementById('folder-stream-list');
+            if(!list) return; list.innerHTML = "";
+            Object.keys(CHAT_FOLDERS_MAP).forEach(id => {
+                const folder = CHAT_FOLDERS_MAP[id];
+                const isActive = (id === ACTIVE_FOLDER_ID);
+                const item = document.createElement('div');
+                item.className = `w-full text-left p-2.5 rounded-xl text-xs flex items-center justify-between cursor-pointer group transition-all truncate select-none ${isActive ? 'bg-purple-600/20 border border-purple-500/40 text-purple-300 font-bold' : 'hover:bg-zinc-900/50 text-gray-400 hover:text-white border border-transparent'}`;
+                item.setAttribute('onclick', `switchActiveFolderNode('${id}')`);
+                item.innerHTML = `<span class="truncate pr-1">${folder.title}</span><span onclick="deleteFolderNodeElement('${id}', event)" class="opacity-0 group-hover:opacity-100 text-[10px] text-gray-600 hover:text-red-400 font-bold px-1 transition-opacity">✕</span>`;
+                list.appendChild(item);
+            });
+        }
+
+        function renderActiveStreamMessages() {
+            const streamContainer = document.getElementById('chat-workspace-container');
+            if(!streamContainer) return;
+            const currentFolder = CHAT_FOLDERS_MAP[ACTIVE_FOLDER_ID];
+            document.getElementById('active-folder-label').innerText = `|  ${currentFolder.title}`;
             
-            const gate = document.getElementById('auth-gate');
-            if(gate) {
-                gate.style.setProperty('display', 'none', 'important');
+            if(currentFolder.stream.length === 0) {
+                streamContainer.innerHTML = `
+                    <div class="flex items-start gap-4 max-w-3xl">
+                        <div class="w-9 h-9 rounded-xl bg-purple-600/20 border border-purple-500/30 flex items-center justify-center text-lg flex-shrink-0">🤖</div>
+                        <div class="space-y-1">
+                            <p class="text-xs font-bold text-purple-400 uppercase tracking-widest">RankBot AI</p>
+                            <p id="welcome-message-text" class="text-gray-200 text-sm leading-relaxed bg-[#0f0f14]/80 p-4 rounded-2xl border border-gray-900">Hello brother! I am your customized **RankBot AI** Mentor. Your studies, daily timetable, and complete setups to solve complex IIT-JEE / NEET questions are live here inside this topic folder. Type your doubt below.</p>
+                        </div>
+                    </div>`;
+            } else {
+                streamContainer.innerHTML = "";
+                currentFolder.stream.forEach(msg => {
+                    if(msg.sender === 'user') {
+                        streamContainer.innerHTML += `<div class="flex items-start gap-4 justify-end max-w-3xl ml-auto"><div class="space-y-1 text-right"><p class="text-xs font-bold text-gray-500 uppercase tracking-widest">You</p><div class="bg-gradient-to-br from-purple-600 to-pink-600 px-4 py-2.5 text-white inline-block text-left text-sm rounded-2xl shadow-md leading-relaxed">${msg.text}</div></div></div>`;
+                    } else {
+                        streamContainer.innerHTML += `<div class="flex items-start gap-4 max-w-3xl"><div class="w-9 h-9 rounded-xl bg-purple-600/20 border border-purple-500/30 flex items-center justify-center text-lg flex-shrink-0">🤖</div><div class="space-y-1"><p class="text-xs font-bold text-purple-400 uppercase tracking-widest">RankBot AI</p><p class="text-gray-200 text-sm leading-relaxed bg-[#0f0f14]/80 p-4 rounded-2xl border border-gray-900">${msg.text}</p></div></div>`;
+                    }
+                });
+            }
+            streamContainer.scrollTop = streamContainer.scrollHeight;
+            applyFontStyles();
+        }
+
+        // 📝 UNIFIED HANDWRITTEN CANVAS BOARD CONTROL SUBSYSTEMS
+        function toggleNotesCanvasWorkspace() {
+            const chatBox = document.getElementById('chat-workspace-container');
+            const notesBox = document.getElementById('notes-workspace-container');
+            const inputBar = document.getElementById('bottom-input-bar-wrap');
+            const btn = document.getElementById('notes-tab-btn');
+            
+            isNotesCanvasModeActive = !isNotesCanvasModeActive;
+            if(isNotesCanvasModeActive) {
+                chatBox.classList.add('hidden'); inputBar.classList.add('hidden');
+                notesBox.classList.remove('hidden'); notesBox.classList.add('flex');
+                btn.className = "bg-purple-600 text-white border border-purple-500 text-[11px] px-3 py-1.5 rounded-xl font-bold cursor-pointer transition-all";
+                setupCanvasDimensionsEngine();
+            } else {
+                notesBox.classList.remove('flex'); notesBox.classList.add('hidden');
+                chatBox.classList.remove('hidden'); inputBar.classList.remove('hidden');
+                btn.className = "bg-zinc-800/80 hover:bg-purple-900/40 text-gray-300 border border-gray-800 text-[11px] px-3 py-1.5 rounded-xl font-bold cursor-pointer transition-all";
+            }
+        }
+
+        function setupCanvasDimensionsEngine() {
+            canvas = document.getElementById('digital-notes-canvas');
+            if(!canvas) return; ctx = canvas.getContext('2d');
+            
+            // Map true physical resolution scale grids
+            const rect = canvas.parentElement.getBoundingClientRect();
+            canvas.width = rect.width; canvas.height = rect.height;
+            
+            // Prime core baseline configurations
+            ctx.lineJoin = 'round'; ctx.lineCap = 'round';
+            
+            // Recover state strings straight back out of memory arrays
+            const savedState = localStorage.getItem('rb_canvas_data');
+            if(savedState) {
+                const img = new Image();
+                img.onload = function() { ctx.drawImage(img, 0, 0); };
+                img.src = savedState;
             }
             
+            // Mobile + Desktop Interactive Drawing Adapters Handlers
+            canvas.addEventListener('mousedown', startDrawingAction);
+            canvas.addEventListener('mousemove', executeDrawingStroke);
+            canvas.addEventListener('mouseup', () => isDrawing = false);
+            canvas.addEventListener('mouseout', () => isDrawing = false);
+            
+            canvas.addEventListener('touchstart', (e) => { startDrawingAction(e.touches[0]); });
+            canvas.addEventListener('touchmove', (e) => { executeDrawingStroke(e.touches[0]); e.preventDefault(); }, { passive: false });
+            canvas.addEventListener('touchend', () => isDrawing = false);
+        }
+
+        function startDrawingAction(e) {
+            isDrawing = true;
+            const rect = canvas.getBoundingClientRect();
+            lastX = e.clientX - rect.left; lastY = e.clientY - rect.top;
+        }
+
+        function executeDrawingStroke(e) {
+            if(!isDrawing) return;
+            const rect = canvas.getBoundingClientRect();
+            const currX = e.clientX - rect.left; const currY = e.clientY - rect.top;
+            
+            ctx.beginPath(); ctx.moveTo(lastX, lastY); ctx.lineTo(currX, currY);
+            
+            ctx.strokeStyle = document.getElementById('canvas-brush-color').value;
+            ctx.lineWidth = document.getElementById('canvas-brush-size').value;
+            ctx.stroke();
+            
+            lastX = currX; lastY = currY;
+        }
+
+        function clearDrawingCanvasBoard() {
+            if(confirm("🧹 Wipe entire note board board clean?")) {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                localStorage.removeItem('rb_canvas_data');
+            }
+        }
+
+        function saveDrawingCanvasMatrix() {
+            const dataUrl = canvas.toDataURL();
+            localStorage.setItem('rb_canvas_data', dataUrl);
+            alert("💾 Notes Canvas saved successfully under client local storage matrix nodes!");
+        }
+
+        // 🟢 PURE UI UNLOCK MATRIX GATEWAYS
+        function enterWorkspaceDirectly(email, tier) {
+            IS_AUTHENTICATED = true; CURRENT_TIER = tier || "Free Trial";
+            const gate = document.getElementById('auth-gate');
+            if(gate) gate.style.setProperty('display', 'none', 'important');
+            
+            document.getElementById('sidebar-panel').classList.remove('hidden');
             let defaultName = email.split('@')[0];
             let activeName = localStorage.getItem('rb_name') || defaultName;
             document.getElementById('profile-letter').innerText = activeName.charAt(0).toUpperCase();
@@ -465,27 +675,32 @@
             
             applyTierStylesAndRings(CURRENT_TIER);
             document.getElementById('prof-email-display').value = email;
+            loadChatFolderVault();
         }
 
-        window.addEventListener('load', () => {
+        window.addEventListener('DOMContentLoaded', () => {
             const savedAuth = localStorage.getItem('rb_auth');
             const savedEmail = localStorage.getItem('rb_email');
             const savedTier = localStorage.getItem('rb_tier');
-            
-            document.getElementById('telemetry-session').innerText = "RB-" + Math.random().toString(36).substring(3, 8).toUpperCase();
             syncAcousticVoiceList();
-
             if (savedAuth === 'true' && savedEmail) {
                 enterWorkspaceDirectly(savedEmail, savedTier);
-                
                 document.getElementById('prof-name').value = localStorage.getItem('rb_name') || "";
                 document.getElementById('prof-phone').value = localStorage.getItem('rb_phone') || "";
                 document.getElementById('prof-loc').value = localStorage.getItem('rb_loc') || "";
                 document.getElementById('prof-school').value = localStorage.getItem('rb_school') || "";
                 document.getElementById('prof-class').value = localStorage.getItem('rb_class') || "9th Standard";
                 document.getElementById('prof-country-code').value = localStorage.getItem('rb_country_code') || "+91";
-
-                applyFontStyles();
+                if(localStorage.getItem('rb_set_gender')) {
+                    document.getElementById('set-voice-gender').value = localStorage.getItem('rb_set_gender');
+                    syncAcousticVoiceList(); document.getElementById('set-voice').value = localStorage.getItem('rb_set_voice');
+                }
+                if(localStorage.getItem('rb_set_speed')) document.getElementById('set-voice-speed').value = localStorage.getItem('rb_set_speed');
+                if(localStorage.getItem('rb_set_lang')) document.getElementById('set-ai-lang').value = localStorage.getItem('rb_set_lang');
+                if(localStorage.getItem('rb_font_sz')) {
+                    document.getElementById('set-font-size').value = localStorage.getItem('rb_font_sz');
+                    document.getElementById('set-font-fam').value = localStorage.getItem('rb_font_fam');
+                }
                 if(localStorage.getItem('rb_theme') === 'light') toggleThemeState('light');
             }
         });
@@ -513,73 +728,51 @@
             } else if (tier === "Pro Plan") {
                 badge.innerText = "Pro Plan Active"; badge.classList.add('bg-gradient-to-r', 'from-blue-500', 'via-pink-500', 'to-purple-500', 'text-white'); ring.classList.add('pro-mesh-active');
                 notice.innerText = "✨ VIP SECURE OMNISCIENT CORE CONNECTION: Pro Plan Active.";
-                notice.style.color = "#34d399";
-                notice.classList.remove('animate-pulse');
+                notice.style.color = "#34d399"; notice.classList.remove('animate-pulse');
             }
         }
 
         function verifyEmailFormat() {
             const emailInput = document.getElementById('auth-email-input');
-            if(!emailInput) return;
-            const email = emailInput.value.trim();
-            
+            if(!emailInput) return; const email = emailInput.value.trim();
             if (email && email.includes("@") && email.includes(".")) {
                 const encOwner = ["ayushkumar", "in2011", "gmail.com"].join(".");
                 if(email.toLowerCase() === encOwner.replace(".gmail", "@gmail")) {
                     CURRENT_TIER = "Pro Plan";
-                    
-                    localStorage.setItem('rb_auth', 'true');
-                    localStorage.setItem('rb_email', email);
-                    localStorage.setItem('rb_tier', CURRENT_TIER);
-                    localStorage.setItem('rb_name', 'Ayush Kumar');
-                    localStorage.setItem('rb_school', 'RankBot Headquarters');
-                    localStorage.setItem('rb_class', '11th Standard');
-                    localStorage.setItem('rb_loc', 'Delhi, India');
-                    localStorage.setItem('rb_country_code', '+91');
-                    
+                    localStorage.setItem('rb_auth', 'true'); localStorage.setItem('rb_email', email); localStorage.setItem('rb_tier', CURRENT_TIER);
+                    localStorage.setItem('rb_name', 'Ayush Kumar'); localStorage.setItem('rb_school', 'RankBot Headquarters');
+                    localStorage.setItem('rb_class', '11th Standard'); localStorage.setItem('rb_loc', 'Delhi, India'); localStorage.setItem('rb_country_code', '+91');
                     enterWorkspaceDirectly(email, CURRENT_TIER);
                 } else {
                     localStorage.setItem('rb_email', email);
                     document.getElementById('auth-gate').classList.add('opacity-0', 'pointer-events-none');
                     document.getElementById('plans-screen').classList.remove('hidden');
                 }
-            } else {
-                alert("❌ INVALID EMAIL MATRIX FORMAT.");
-            }
+            } else { alert("❌ INVALID EMAIL MATRIX FORMAT."); }
         }
 
         function selectTier(tierName) {
-            CURRENT_TIER = tierName;
-            localStorage.setItem('rb_tier', tierName);
-            localStorage.setItem('rb_auth', 'true');
+            CURRENT_TIER = tierName; localStorage.setItem('rb_tier', tierName); localStorage.setItem('rb_auth', 'true');
             if (tierName === 'Free Trial') localStorage.setItem('rb_free_chats', '0');
-            
             const email = localStorage.getItem('rb_email') || "student@example.com";
-            enterWorkspaceDirectly(email, CURRENT_TIER);
-            closePlans();
+            enterWorkspaceDirectly(email, CURRENT_TIER); closePlans();
         }
 
         function saveProfileData() {
-            const masterLoginToken = localStorage.getItem('rb_email');
             localStorage.setItem('rb_name', document.getElementById('prof-name').value.trim());
             localStorage.setItem('rb_phone', document.getElementById('prof-phone').value.trim());
             localStorage.setItem('rb_loc', document.getElementById('prof-loc').value.trim());
             localStorage.setItem('rb_school', document.getElementById('prof-school').value.trim());
             localStorage.setItem('rb_class', document.getElementById('prof-class').value);
             localStorage.setItem('rb_country_code', document.getElementById('prof-country-code').value);
-            
-            alert("🚀 STUDENT PROFILE META UPDATED!");
-            closeProfileModal();
-            
-            let activeName = localStorage.getItem('rb_name') || masterLoginToken.split('@')[0];
+            alert("🚀 STUDENT PROFILE META UPDATED!"); closeProfileModal();
+            let activeName = localStorage.getItem('rb_name') || localStorage.getItem('rb_email').split('@')[0];
             document.getElementById('profile-letter').innerText = activeName.charAt(0).toUpperCase();
             document.getElementById('menu-user-name').innerText = `Hi, ${activeName}`;
         }
 
         function toggleThemeState(mode) {
-            const body = document.body;
-            const darkBtn = document.getElementById('theme-dark-btn');
-            const lightBtn = document.getElementById('theme-light-btn');
+            const body = document.body; const darkBtn = document.getElementById('theme-dark-btn'); const lightBtn = document.getElementById('theme-light-btn');
             if (mode === 'light') {
                 body.classList.add('light-mode-active'); localStorage.setItem('rb_theme', 'light');
                 lightBtn.className = "py-2 rounded-xl font-bold border border-purple-600 bg-purple-600/20 text-purple-600 text-center cursor-pointer";
@@ -593,72 +786,58 @@
         }
 
         function applyFontStyles() {
-            const sz = document.getElementById('set-font-size').value;
-            const fam = document.getElementById('set-font-fam').value;
-            const textBlock = document.getElementById('welcome-message-text');
-            if(textBlock) textBlock.className = `text-gray-200 leading-relaxed bg-[#0f0f14]/80 p-4 rounded-2xl border border-gray-900 ${sz} ${fam}`;
+            const sz = document.getElementById('set-font-size').value; const fam = document.getElementById('set-font-fam').value;
+            const welcomeBlock = document.getElementById('welcome-message-text');
+            if(welcomeBlock) welcomeBlock.className = `text-gray-200 leading-relaxed bg-[#0f0f14]/80 p-4 rounded-2xl border border-gray-900 ${sz} ${fam}`;
             localStorage.setItem('rb_font_sz', sz); localStorage.setItem('rb_font_fam', fam);
         }
 
         function saveSettingsForm() {
             localStorage.setItem('rb_set_gender', document.getElementById('set-voice-gender').value);
             localStorage.setItem('rb_set_voice', document.getElementById('set-voice').value);
+            localStorage.setItem('rb_set_speed', document.getElementById('set-voice-speed').value);
+            localStorage.setItem('rb_set_lang', document.getElementById('set-ai-lang').value);
             localStorage.setItem('rb_font_sz', document.getElementById('set-font-size').value);
             localStorage.setItem('rb_font_fam', document.getElementById('set-font-fam').value);
-            localStorage.setItem('rb_ai_len', document.getElementById('set-ai-len').value);
-            alert("⚙️ CONFIGURATION PARAMETERS REGISTERED.");
-            closeSettingsModal();
+            alert("⚙️ CONFIGURATION PARAMETERS REGISTERED."); closeSettingsModal(); renderActiveStreamMessages();
         }
 
         async function sendQueryToBot() {
             if(!IS_AUTHENTICATED) return;
             let currentFreeChats = parseInt(localStorage.getItem('rb_free_chats') || '0');
-            if (CURRENT_TIER === "Free Trial" && currentFreeChats >= MAX_FREE_CHATS) {
-                alert("🛑 FREE TRIAL LIMIT EXCEEDED! Please upgrade to premium."); return;
-            }
-            const queryInput = document.getElementById('student-query');
-            const streamContainer = document.getElementById('chat-stream');
+            if (CURRENT_TIER === "Free Trial" && currentFreeChats >= MAX_FREE_CHATS) { alert("🛑 FREE TRIAL LIMIT EXCEEDED! Please upgrade to premium."); return; }
+            const queryInput = document.getElementById('student-query'); const streamContainer = document.getElementById('chat-workspace-container');
             let messageText = queryInput.value.trim(); if(!messageText) return;
 
-            streamContainer.innerHTML += `
-                <div class="flex items-start gap-4 justify-end max-w-3xl ml-auto">
-                    <div class="space-y-1 text-right"><p class="text-xs font-bold text-gray-500 uppercase tracking-widest">You</p>
-                    <div class="bg-gradient-to-br from-purple-600 to-pink-600 px-4 py-2.5 text-white inline-block text-left text-sm rounded-2xl shadow-md">${messageText}</div></div>
-                </div>`;
-            queryInput.value = ""; streamContainer.scrollTop = streamContainer.scrollHeight;
-
-            if (CURRENT_TIER === "Free Trial") {
-                currentFreeChats++; localStorage.setItem('rb_free_chats', currentFreeChats.toString());
-            }
+            CHAT_FOLDERS_MAP[ACTIVE_FOLDER_ID].stream.push({ sender: 'user', text: messageText });
+            localStorage.setItem('rb_folders', JSON.stringify(CHAT_FOLDERS_MAP));
+            renderActiveStreamMessages(); queryInput.value = "";
+            if (CURRENT_TIER === "Free Trial") { currentFreeChats++; localStorage.setItem('rb_free_chats', currentFreeChats.toString()); }
 
             const botMessageId = "rankbot-msg-" + Date.now();
-            streamContainer.innerHTML += `
-                <div class="flex items-start gap-4 max-w-3xl" id="${botMessageId}">
-                    <div class="w-9 h-9 rounded-xl bg-purple-600/20 border border-purple-500/30 flex items-center justify-center text-lg flex-shrink-0">🤖</div>
-                    <div class="space-y-1"><p class="text-xs font-bold text-purple-400 uppercase tracking-widest">RankBot AI</p>
-                    <p class="text-gray-400 text-sm animate-pulse" id="${botMessageId}-text">Processing query streams safely under RankBot protocol...</p></div>
-                </div>`;
+            streamContainer.innerHTML += `<div class="flex items-start gap-4 max-w-3xl" id="${botMessageId}"><div class="w-9 h-9 rounded-xl bg-purple-600/20 border border-purple-500/30 flex items-center justify-center text-lg flex-shrink-0">🤖</div><div class="space-y-1"><p class="text-xs font-bold text-purple-400 uppercase tracking-widest">RankBot AI</p><p class="text-gray-400 text-sm animate-pulse" id="${botMessageId}-text">Processing query streams safely inside topic console...</p></div></div>`;
             streamContainer.scrollTop = streamContainer.scrollHeight;
 
             try {
-                const response = await fetch(HUGGINGFACE_SPACE_API, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ data: [messageText, [], CURRENT_TIER] })
-                });
-                const result = await response.json();
-                const eventSource = new EventSource(`${HUGGINGFACE_SPACE_API}/${result.event_id}`);
-                const responseTextBox = document.getElementById(`${botMessageId}-text`);
-                responseTextBox.classList.remove('animate-pulse');
+                const response = await fetch(HUGGINGFACE_SPACE_API, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ data: [messageText, [], CURRENT_TIER] }) });
+                const result = await response.json(); const eventSource = new EventSource(`${HUGGINGFACE_SPACE_API}/${result.event_id}`);
+                const responseTextBox = document.getElementById(`${botMessageId}-text`); responseTextBox.classList.remove('animate-pulse');
 
+                let totalResponseText = "";
                 eventSource.onmessage = function(event) {
                     const data = JSON.parse(event.data);
-                    if (data && data[0]) { responseTextBox.innerText = data[0]; streamContainer.scrollTop = streamContainer.scrollHeight; }
+                    if (data && data[0]) { totalResponseText = data[0]; responseTextBox.innerText = totalResponseText; streamContainer.scrollTop = streamContainer.scrollHeight; }
                 };
-                eventSource.onerror = function() { eventSource.close(); };
-            } catch (error) {
-                document.getElementById(`${botMessageId}-text`).innerText = "Sync Error. Please retry.";
-            }
+                eventSource.onerror = function() { 
+                    eventSource.close();
+                    if(totalResponseText !== "") { CHAT_FOLDERS_MAP[ACTIVE_FOLDER_ID].stream.push({ sender: 'bot', text: totalResponseText }); localStorage.setItem('rb_folders', JSON.stringify(CHAT_FOLDERS_MAP)); }
+                };
+            } catch (error) { document.getElementById(`${botMessageId}-text`).innerText = "Sync Error. Please retry."; }
+        }
+
+        function toggleMobileSidebarPanel() {
+            const panel = document.getElementById('sidebar-panel'); panel.classList.toggle('hidden');
+            if(!panel.classList.contains('hidden')) panel.className = "fixed inset-y-0 left-0 w-64 h-full glass-panel border-r border-gray-900 flex flex-col justify-between z-40 p-1 animate-fade-in";
         }
 
         function openProfileModal() { document.getElementById('profile-menu').classList.add('hidden'); document.getElementById('prof-email-display').value = localStorage.getItem('rb_email') || ""; document.getElementById('profile-modal').classList.remove('hidden'); }
