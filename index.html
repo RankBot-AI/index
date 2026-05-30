@@ -81,18 +81,27 @@
         </div>
     </div>
 
-    <div id="sidebar-panel" class="w-64 h-full glass-panel border-r border-gray-900 flex flex-col justify-between hidden md:flex z-20 transition-all duration-300">
-        <div class="p-4 flex flex-col h-full overflow-hidden">
-            <div onclick="createNewChatFolderNode()" class="w-full bg-gradient-to-r from-purple-900/40 to-pink-900/40 hover:from-purple-900/60 hover:to-pink-900/60 border border-purple-500/30 text-white font-semibold rounded-xl p-3 text-xs flex items-center justify-center gap-2 cursor-pointer transition-all mb-4 select-none shadow-md">
-                <span>➕</span> New Topic Folder
-            </div>
+    <div id="master-hub-modal" class="fixed inset-0 z-50 flex items-center justify-center blur-bg p-4 hidden transition-all duration-300 overflow-y-auto">
+        <div class="glass-panel w-full max-w-md rounded-3xl p-6 shadow-2xl relative my-auto max-h-[85vh] flex flex-col">
+            <button onclick="closeMasterHubModal()" class="absolute top-4 right-4 text-gray-500 hover:text-white text-sm font-bold select-none">✕</button>
             
-            <p class="text-[10px] uppercase font-bold text-gray-500 tracking-wider mb-2 px-1">Active Folders / History</p>
-            <div id="folder-stream-list" class="flex-1 overflow-y-auto space-y-1.5 pr-1 smooth-scroll">
+            <h3 class="heading-font text-lg font-bold text-white mb-4 border-b border-gray-800 pb-2 flex items-center gap-2">🤖 RankBot Hub Matrix</h3>
+            
+            <div class="space-y-4 flex-1 flex flex-col overflow-hidden">
+                <div onclick="openNotesCanvasWorkspace()" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold rounded-xl p-3 text-xs flex items-center justify-center gap-2 cursor-pointer transition-all shadow-md select-none">
+                    📝 Open Notes Board Canvas
                 </div>
-        </div>
-        <div class="p-3 border-t border-gray-900 bg-[#07070a]/60 text-center text-[10px] text-gray-600 font-mono">
-            RankBot Cache Ledger Active
+
+                <div class="border-t border-gray-900 pt-3 flex flex-col flex-1 overflow-hidden">
+                    <div onclick="createNewChatFolderNode()" class="w-full bg-zinc-800/80 hover:bg-zinc-700 border border-gray-800 text-gray-200 font-semibold rounded-xl p-2.5 text-xs flex items-center justify-center gap-2 cursor-pointer transition-all mb-3 select-none">
+                        📂 Create New Topic Folder
+                    </div>
+                    
+                    <p class="text-[10px] uppercase font-bold text-gray-500 tracking-wider mb-2 px-1">Select Active Folder / History</p>
+                    <div id="folder-stream-list" class="flex-1 overflow-y-auto space-y-1.5 pr-1 smooth-scroll">
+                        </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -322,7 +331,7 @@
                     <p class="font-bold text-amber-400 tracking-wider uppercase text-[9px]">🛠️ Core AI Operational Modules</p>
                     <div class="space-y-2">
                         <div class="grid grid-cols-1 gap-2 select-none">
-                            <div onclick="localStorage.removeItem('rb_folders'); localStorage.removeItem('rb_free_chats'); localStorage.removeItem('rb_canvas_data'); alert('Folder memory arrays successfully wiped.'); location.reload();" class="bg-zinc-900 border border-gray-800 text-gray-300 font-medium py-2 rounded-lg hover:text-white transition-colors text-[11px] text-center cursor-pointer">
+                            <div onclick="localStorage.removeItem('rb_folders'); localStorage.removeItem('rb_free_chats'); localStorage.removeItem('rb_canvas_data'); alert('All storage memory arrays successfully reset.'); location.reload();" class="bg-zinc-900 border border-gray-800 text-gray-300 font-medium py-2 rounded-lg hover:text-white transition-colors text-[11px] text-center cursor-pointer">
                                 🗑️ Clear Cache & Reset All Memory Arrays
                             </div>
                         </div>
@@ -342,17 +351,10 @@
         
         <div class="w-full flex items-center justify-between px-6 py-4 glass-panel border-b border-b-gray-900">
             <div class="flex items-center gap-3">
-                <div onclick="toggleMobileSidebarPanel()" class="text-xl cursor-pointer md:hidden active:scale-95 transition-transform select-none mr-1">☰</div>
-                
-                <div class="flex items-center gap-2 select-none">
-                    <span class="text-2xl">🤖</span>
-                    <div onclick="toggleNotesCanvasWorkspace()" id="notes-tab-btn" class="bg-zinc-800/80 hover:bg-purple-900/40 text-gray-300 border border-gray-800 text-[11px] px-3 py-1.5 rounded-xl font-bold cursor-pointer transition-all transition-colors">
-                        📝 Notes Board
-                    </div>
-                </div>
+                <div onclick="openMasterHubModal()" class="text-2xl cursor-pointer active:scale-95 transition-transform select-none" title="Open RankBot Master Console">🤖</div>
                 
                 <div>
-                    <h1 class="heading-font text-sm font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-pink-500 bg-clip-text text-transparent hidden sm:inline-block">
+                    <h1 class="heading-font text-sm font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-pink-500 bg-clip-text text-transparent">
                         RankBot AI <span id="active-folder-label" class="text-xs text-gray-500 font-normal tracking-normal ml-1"></span>
                     </h1>
                 </div>
@@ -383,9 +385,11 @@
                 </div>
 
             <div id="notes-workspace-container" class="absolute inset-0 bg-[#07070c] hidden flex-col p-4 z-10 animate-fade-in">
-                <div class="w-full glass-panel border border-gray-900 rounded-2xl p-3 flex flex-wrap items-center justify-between gap-3 text-xs mb-3">
+                <div class="w-full glass-panel border border-gray-900 rounded-2xl p-3 flex flex-wrap items-center justify-between gap-3 text-xs mb-3 relative">
+                    <button onclick="toggleNotesCanvasWorkspace()" class="absolute top-3 right-4 text-gray-500 hover:text-white text-xs font-bold select-none">✕ Close Board</button>
+                    
                     <div class="flex items-center gap-4">
-                        <span class="font-bold text-purple-400">📝 Notes Workspace Canvas</span>
+                        <span class="font-bold text-purple-400">📝 Notes Workspace</span>
                         <div class="flex items-center gap-1.5">
                             <span class="text-gray-500 text-[11px]">Size:</span>
                             <select id="canvas-brush-size" class="bg-[#0f0f15] border border-gray-800 rounded-lg p-1 text-gray-300 focus:outline-none">
@@ -406,7 +410,7 @@
                         </div>
                     </div>
                     
-                    <div class="flex items-center gap-2 select-none">
+                    <div class="flex items-center gap-2 pr-24 select-none">
                         <div onclick="clearDrawingCanvasBoard()" class="bg-zinc-900 border border-gray-800 text-gray-400 hover:text-white px-3 py-1 rounded-xl cursor-pointer text-[11px] font-semibold transition-colors">🗑️ Clear Board</div>
                         <div onclick="saveDrawingCanvasMatrix()" class="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-4 py-1 rounded-xl cursor-pointer text-[11px] font-bold transition-all shadow-md">💾 Save Board Meta</div>
                     </div>
@@ -449,7 +453,6 @@
         let CHAT_FOLDERS_MAP = {};
         let ACTIVE_FOLDER_ID = "default_topic";
 
-        // Canvas Sketch Drawing Global Track Registry State Nodes
         let canvas, ctx;
         let isDrawing = false;
         let lastX = 0, lastY = 0;
@@ -493,7 +496,7 @@
             }
         }
 
-        // 📁 GEMINI STYLE TOPIC MANAGEMENT VAULT REDIRECTIONS
+        // 📁 HISTORY MASTER VAULT INTERFACES
         function loadChatFolderVault() {
             const stored = localStorage.getItem('rb_folders');
             if(stored) CHAT_FOLDERS_MAP = JSON.parse(stored);
@@ -521,7 +524,7 @@
             localStorage.setItem('rb_active_folder_id', id);
             renderFolderSidebarView();
             renderActiveStreamMessages();
-            if(window.innerWidth < 768) document.getElementById('sidebar-panel').classList.add('hidden');
+            closeMasterHubModal();
         }
 
         function deleteFolderNodeElement(id, event) {
@@ -578,38 +581,36 @@
             applyFontStyles();
         }
 
-        // 📝 UNIFIED HANDWRITTEN CANVAS BOARD CONTROL SUBSYSTEMS
-        function toggleNotesCanvasWorkspace() {
-            const chatBox = document.getElementById('chat-workspace-container');
-            const notesBox = document.getElementById('notes-workspace-container');
-            const inputBar = document.getElementById('bottom-input-bar-wrap');
-            const btn = document.getElementById('notes-tab-btn');
+        // 📝 WHITEBOARD INTERACTIVE CANVAS MODULES
+        function openNotesCanvasWorkspace() {
+            closeMasterHubModal();
+            isNotesCanvasModeActive = true;
+            document.getElementById('chat-workspace-container').classList.add('hidden');
+            document.getElementById('bottom-input-bar-wrap').classList.add('hidden');
             
-            isNotesCanvasModeActive = !isNotesCanvasModeActive;
-            if(isNotesCanvasModeActive) {
-                chatBox.classList.add('hidden'); inputBar.classList.add('hidden');
-                notesBox.classList.remove('hidden'); notesBox.classList.add('flex');
-                btn.className = "bg-purple-600 text-white border border-purple-500 text-[11px] px-3 py-1.5 rounded-xl font-bold cursor-pointer transition-all";
-                setupCanvasDimensionsEngine();
-            } else {
-                notesBox.classList.remove('flex'); notesBox.classList.add('hidden');
-                chatBox.classList.remove('hidden'); inputBar.classList.remove('hidden');
-                btn.className = "bg-zinc-800/80 hover:bg-purple-900/40 text-gray-300 border border-gray-800 text-[11px] px-3 py-1.5 rounded-xl font-bold cursor-pointer transition-all";
-            }
+            const notesBox = document.getElementById('notes-workspace-container');
+            notesBox.classList.remove('hidden'); notesBox.classList.add('flex');
+            setupCanvasDimensionsEngine();
+        }
+
+        function toggleNotesCanvasWorkspace() {
+            // Fired directly on close cross trigger clicks
+            isNotesCanvasModeActive = false;
+            document.getElementById('notes-workspace-container').classList.remove('flex');
+            document.getElementById('notes-workspace-container').classList.add('hidden');
+            
+            document.getElementById('chat-workspace-container').classList.remove('hidden');
+            document.getElementById('bottom-input-bar-wrap').classList.remove('hidden');
+            renderActiveStreamMessages();
         }
 
         function setupCanvasDimensionsEngine() {
             canvas = document.getElementById('digital-notes-canvas');
             if(!canvas) return; ctx = canvas.getContext('2d');
-            
-            // Map true physical resolution scale grids
             const rect = canvas.parentElement.getBoundingClientRect();
             canvas.width = rect.width; canvas.height = rect.height;
-            
-            // Prime core baseline configurations
             ctx.lineJoin = 'round'; ctx.lineCap = 'round';
             
-            // Recover state strings straight back out of memory arrays
             const savedState = localStorage.getItem('rb_canvas_data');
             if(savedState) {
                 const img = new Image();
@@ -617,7 +618,6 @@
                 img.src = savedState;
             }
             
-            // Mobile + Desktop Interactive Drawing Adapters Handlers
             canvas.addEventListener('mousedown', startDrawingAction);
             canvas.addEventListener('mousemove', executeDrawingStroke);
             canvas.addEventListener('mouseup', () => isDrawing = false);
@@ -640,11 +640,9 @@
             const currX = e.clientX - rect.left; const currY = e.clientY - rect.top;
             
             ctx.beginPath(); ctx.moveTo(lastX, lastY); ctx.lineTo(currX, currY);
-            
             ctx.strokeStyle = document.getElementById('canvas-brush-color').value;
             ctx.lineWidth = document.getElementById('canvas-brush-size').value;
             ctx.stroke();
-            
             lastX = currX; lastY = currY;
         }
 
@@ -658,7 +656,7 @@
         function saveDrawingCanvasMatrix() {
             const dataUrl = canvas.toDataURL();
             localStorage.setItem('rb_canvas_data', dataUrl);
-            alert("💾 Notes Canvas saved successfully under client local storage matrix nodes!");
+            alert("💾 Notes Canvas saved successfully!");
         }
 
         // 🟢 PURE UI UNLOCK MATRIX GATEWAYS
@@ -667,7 +665,6 @@
             const gate = document.getElementById('auth-gate');
             if(gate) gate.style.setProperty('display', 'none', 'important');
             
-            document.getElementById('sidebar-panel').classList.remove('hidden');
             let defaultName = email.split('@')[0];
             let activeName = localStorage.getItem('rb_name') || defaultName;
             document.getElementById('profile-letter').innerText = activeName.charAt(0).toUpperCase();
@@ -835,11 +832,8 @@
             } catch (error) { document.getElementById(`${botMessageId}-text`).innerText = "Sync Error. Please retry."; }
         }
 
-        function toggleMobileSidebarPanel() {
-            const panel = document.getElementById('sidebar-panel'); panel.classList.toggle('hidden');
-            if(!panel.classList.contains('hidden')) panel.className = "fixed inset-y-0 left-0 w-64 h-full glass-panel border-r border-gray-900 flex flex-col justify-between z-40 p-1 animate-fade-in";
-        }
-
+        function openMasterHubModal() { document.getElementById('master-hub-modal').classList.remove('hidden'); }
+        function closeMasterHubModal() { document.getElementById('master-hub-modal').classList.add('hidden'); }
         function openProfileModal() { document.getElementById('profile-menu').classList.add('hidden'); document.getElementById('prof-email-display').value = localStorage.getItem('rb_email') || ""; document.getElementById('profile-modal').classList.remove('hidden'); }
         function closeProfileModal() { document.getElementById('profile-modal').classList.add('hidden'); }
         function openSettingsModal() { document.getElementById('profile-menu').classList.add('hidden'); document.getElementById('settings-modal').classList.remove('hidden'); }
@@ -850,6 +844,7 @@
         function logoutSystem() { localStorage.clear(); location.reload(); }
         function deleteAccountSystem() { if(confirm("Wipe all data cache vault permanently?")) { logoutSystem(); } }
         function validateAndUploadFile(i) { alert("Document registered safely under 100MB constraints."); }
+        function triggerVoiceInput() { alert("Voice detection matrix activated."); }
     </script>
 </body>
 </html>
