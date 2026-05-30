@@ -56,11 +56,11 @@
         })();
     </script>
 </head>
-<body class="flex h-screen w-screen select-none">
+<body class="flex h-screen w-screen select-none overflow-hidden">
 
     <div id="galaxy-bg"></div>
 
-    <div id="auth-gate" class="fixed inset-0 z-50 flex items-center justify-center blur-bg p-4 transition-all duration-500">
+    <div id="auth-gate" class="fixed inset-0 z-[9999] flex items-center justify-center blur-bg p-4 transition-all duration-500">
         <div class="glass-panel w-full max-w-md rounded-3xl p-8 shadow-2xl">
             <div class="text-center mb-6">
                 <div class="text-4xl mb-2">🤖</div>
@@ -81,31 +81,32 @@
         </div>
     </div>
 
-    <div id="master-hub-modal" class="fixed inset-0 z-50 flex items-center justify-center blur-bg p-4 hidden transition-all duration-300 overflow-y-auto">
-        <div class="glass-panel w-full max-w-md rounded-3xl p-6 shadow-2xl relative my-auto max-h-[85vh] flex flex-col">
-            <button onclick="closeMasterHubModal()" class="absolute top-4 right-4 text-gray-500 hover:text-white text-sm font-bold select-none">✕</button>
-            
-            <h3 class="heading-font text-lg font-bold text-white mb-4 border-b border-gray-800 pb-2 flex items-center gap-2">🤖 RankBot Hub Matrix</h3>
-            
-            <div class="space-y-4 flex-1 flex flex-col overflow-hidden">
-                <div onclick="openNotesCanvasWorkspace()" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold rounded-xl p-3 text-xs flex items-center justify-center gap-2 cursor-pointer transition-all shadow-md select-none">
-                    📝 Open Notes Board Canvas
-                </div>
+    <div id="master-hub-sidebar" class="fixed inset-y-0 left-0 w-72 h-full glass-panel border-r border-gray-900/80 z-[500] transform -translate-x-full transition-transform duration-300 flex flex-col p-5 shadow-2xl">
+        <button onclick="closeMasterHubModal()" class="absolute top-4 right-4 text-gray-500 hover:text-white text-xs font-bold select-none">✕</button>
+        
+        <div class="flex items-center gap-2 mb-6 border-b border-gray-900 pb-3 mt-2">
+            <span class="text-xl">🤖</span>
+            <h3 class="heading-font text-sm font-bold text-white tracking-wide">RankBot Navigation Hub</h3>
+        </div>
+        
+        <div class="space-y-4 flex-1 flex flex-col overflow-hidden">
+            <div onclick="openNotesCanvasWorkspace()" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:opacity-95 text-white font-bold rounded-xl p-3 text-xs flex items-center justify-center gap-2 cursor-pointer transition-all shadow-md select-none">
+                📝 Open Notes Board Board
+            </div>
 
-                <div class="border-t border-gray-900 pt-3 flex flex-col flex-1 overflow-hidden">
-                    <div onclick="createNewChatFolderNode()" class="w-full bg-zinc-800/80 hover:bg-zinc-700 border border-gray-800 text-gray-200 font-semibold rounded-xl p-2.5 text-xs flex items-center justify-center gap-2 cursor-pointer transition-all mb-3 select-none">
-                        📂 Create New Topic Folder
-                    </div>
-                    
-                    <p class="text-[10px] uppercase font-bold text-gray-500 tracking-wider mb-2 px-1">Select Active Folder / History</p>
-                    <div id="folder-stream-list" class="flex-1 overflow-y-auto space-y-1.5 pr-1 smooth-scroll">
-                        </div>
+            <div class="pt-2 flex flex-col flex-1 overflow-hidden">
+                <div onclick="createNewChatFolderNode()" class="w-full bg-zinc-800 hover:bg-zinc-700/80 border border-gray-800 text-gray-200 font-semibold rounded-xl p-2.5 text-xs flex items-center justify-center gap-2 cursor-pointer transition-all mb-4 select-none">
+                    📂 Create New Topic Folder
                 </div>
+                
+                <p class="text-[10px] uppercase font-bold text-gray-500 tracking-wider mb-2 px-1">Select Active Folder / History</p>
+                <div id="folder-stream-list" class="flex-1 overflow-y-auto space-y-1.5 pr-1 smooth-scroll">
+                    </div>
             </div>
         </div>
     </div>
 
-    <div id="profile-modal" class="fixed inset-0 z-50 flex items-center justify-center blur-bg p-4 hidden transition-all duration-300 overflow-y-auto">
+    <div id="profile-modal" class="fixed inset-0 z-[2000] flex items-center justify-center blur-bg p-4 hidden transition-all duration-300 overflow-y-auto">
         <div class="glass-panel w-full max-w-md rounded-3xl p-6 shadow-2xl relative my-auto">
             <button onclick="closeProfileModal()" class="absolute top-4 right-4 text-gray-500 hover:text-white">✕</button>
             <h3 class="heading-font text-xl font-bold text-white mb-4 border-b border-gray-800 pb-2 flex items-center gap-2">👤 Complete Student Profile</h3>
@@ -170,7 +171,7 @@
         </div>
     </div>
 
-    <div id="plans-screen" class="fixed inset-0 z-40 flex items-center justify-center blur-bg p-4 hidden transition-all duration-500 overflow-y-auto">
+    <div id="plans-screen" class="fixed inset-0 z-[2000] flex items-center justify-center blur-bg p-4 hidden transition-all duration-500 overflow-y-auto">
         <div class="glass-panel w-full max-w-xl rounded-3xl p-6 shadow-2xl relative my-auto max-h-[90vh] overflow-y-auto smooth-scroll pr-1">
             <button onclick="closePlans()" class="absolute top-4 right-4 text-gray-500 hover:text-white text-sm font-bold select-none">✕</button>
             
@@ -250,7 +251,7 @@
         </div>
     </div>
 
-    <div id="settings-modal" class="fixed inset-0 z-50 flex items-center justify-center blur-bg p-4 hidden transition-all duration-300 overflow-y-auto">
+    <div id="settings-modal" class="fixed inset-0 z-[2000] flex items-center justify-center blur-bg p-4 hidden transition-all duration-300 overflow-y-auto">
         <div class="glass-panel w-full max-w-md rounded-3xl p-6 shadow-2xl relative my-auto max-h-[90vh] overflow-y-auto smooth-scroll">
             <button onclick="closeSettingsModal()" class="absolute top-4 right-4 text-gray-500 hover:text-white">✕</button>
             <h3 class="heading-font text-xl font-bold text-white mb-4 border-b border-gray-800 pb-2 flex items-center gap-2">⚙️ Advanced Control Center</h3>
@@ -347,11 +348,11 @@
         </div>
     </div>
 
-    <div class="flex-1 flex flex-col justify-between h-full relative z-10 w-full">
+    <div class="flex-1 flex flex-col justify-between h-full relative w-full z-10">
         
-        <div class="w-full flex items-center justify-between px-6 py-4 glass-panel border-b border-b-gray-900">
+        <div class="w-full flex items-center justify-between px-6 py-4 glass-panel border-b border-b-gray-900 z-50">
             <div class="flex items-center gap-3">
-                <div onclick="openMasterHubModal()" class="text-2xl cursor-pointer active:scale-95 transition-transform select-none" title="Open RankBot Master Console">🤖</div>
+                <div onclick="openMasterHubModal()" class="text-2xl cursor-pointer active:scale-95 transition-transform select-none" title="Open RankBot Sidebar Node">🤖</div>
                 
                 <div>
                     <h1 class="heading-font text-sm font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-pink-500 bg-clip-text text-transparent">
@@ -360,12 +361,12 @@
                 </div>
             </div>
             
-            <div class="relative">
+            <div class="relative z-[999]">
                 <div id="pfp-ring-wrapper" onclick="toggleProfileMenu()" class="w-11 h-11 rounded-full p-[2px] cursor-pointer active:scale-95 transition-all shadow-lg border border-transparent">
                     <div id="profile-letter" class="w-full h-full bg-[#0d0d11] rounded-full flex items-center justify-center font-bold text-gray-200 text-base heading-font">U</div>
                 </div>
                 
-                <div id="profile-menu" class="absolute top-14 right-0 w-64 glass-panel rounded-2xl p-4 shadow-2xl hidden z-30 select-none">
+                <div id="profile-menu" class="absolute top-14 right-0 w-64 glass-panel rounded-2xl p-4 shadow-2xl hidden z-[1000] select-none">
                     <div class="text-center pb-3 border-b border-gray-800">
                         <p id="menu-user-name" class="font-bold text-sm text-white">Hi, User</p>
                         <span id="menu-user-tier" class="text-[10px] px-2 py-0.5 rounded-full font-bold inline-block mt-1">Free Trial</span>
@@ -379,12 +380,12 @@
             </div>
         </div>
 
-        <div class="flex-1 w-full relative overflow-hidden">
+        <div class="flex-1 w-full relative overflow-hidden z-10">
             
-            <div id="chat-workspace-container" class="absolute inset-0 overflow-y-auto px-4 py-8 md:px-32 space-y-6 smooth-scroll">
+            <div id="chat-workspace-container" class="absolute inset-0 overflow-y-auto px-4 py-8 md:px-32 space-y-6 smooth-scroll z-10">
                 </div>
 
-            <div id="notes-workspace-container" class="absolute inset-0 bg-[#07070c] hidden flex-col p-4 z-10 animate-fade-in">
+            <div id="notes-workspace-container" class="absolute inset-0 bg-[#07070c] hidden flex-col p-4 z-20 animate-fade-in">
                 <div class="w-full glass-panel border border-gray-900 rounded-2xl p-3 flex flex-wrap items-center justify-between gap-3 text-xs mb-3 relative">
                     <button onclick="toggleNotesCanvasWorkspace()" class="absolute top-3 right-4 text-gray-500 hover:text-white text-xs font-bold select-none">✕ Close Board</button>
                     
@@ -410,7 +411,7 @@
                         </div>
                     </div>
                     
-                    <div class="flex items-center gap-2 pr-24 select-none">
+                    <div class="flex items-center gap-2 pr-28 select-none">
                         <div onclick="clearDrawingCanvasBoard()" class="bg-zinc-900 border border-gray-800 text-gray-400 hover:text-white px-3 py-1 rounded-xl cursor-pointer text-[11px] font-semibold transition-colors">🗑️ Clear Board</div>
                         <div onclick="saveDrawingCanvasMatrix()" class="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-4 py-1 rounded-xl cursor-pointer text-[11px] font-bold transition-all shadow-md">💾 Save Board Meta</div>
                     </div>
@@ -423,7 +424,7 @@
 
         </div>
 
-        <div id="bottom-input-bar-wrap" class="px-4 pb-6 md:px-32 bg-gradient-to-t from-[#050507] via-[#050507] to-transparent">
+        <div id="bottom-input-bar-wrap" class="px-4 pb-6 md:px-32 bg-gradient-to-t from-[#050507] via-[#050507] to-transparent z-20">
             <div class="max-w-4xl mx-auto glass-panel rounded-2xl flex flex-col p-2 transition-all duration-200 focus-within:border-purple-500/40 shadow-2xl">
                 <input type="text" id="student-query" placeholder="Ask RankBot anything..." class="w-full bg-transparent text-gray-200 placeholder-gray-600 text-sm px-4 py-3 focus:outline-none" onkeypress="if(event.key === 'Enter') sendQueryToBot()">
                 <div class="flex items-center justify-between border-t border-gray-900/60 pt-2 px-2">
@@ -483,20 +484,33 @@
             }
         }
 
+        // 🗣️ ENHANCED HIGH INTELLECT NATURAL HUMAN SYNTH INTELLIGENCE MODULE
         function testActiveVoiceOutputSound() {
-            const selectedVoice = document.getElementById('set-voice').value;
+            const selectedVoice = document.getElementById('set-voice');
             const userSpeed = parseFloat(document.getElementById('set-voice-speed').value || '0.95');
             if ('speechSynthesis' in window) {
                 window.speechSynthesis.cancel();
-                const utterance = new SpeechSynthesisUtterance("Hi, I am RankBot AI.");
+                
+                // Binding conversational human tone speech patterns variables straight onto web instances
+                const utterance = new SpeechSynthesisUtterance("Hi, I am RankBot AI. Your customized premium mental logic flows are completely active now.");
                 utterance.rate = userSpeed;
-                if (selectedVoice.includes("jarvis") || selectedVoice.includes("titan")) utterance.pitch = 0.92;
-                else if (selectedVoice.includes("friday") || selectedVoice.includes("alexa")) utterance.pitch = 1.10;
+                
+                // Auto discovery of top level systemic clear voices inside user browser frameworks
+                const systemVoices = window.speechSynthesis.getVoices();
+                if(systemVoices.length > 0) {
+                    // Lock directly onto highest quality local human speech nodes available
+                    const targetVoice = systemVoices.find(v => v.lang.includes('en') && v.name.includes('Natural')) || systemVoices[0];
+                    utterance.voice = targetVoice;
+                }
+                
+                if (selectedVoice.value.includes("jarvis") || selectedVoice.value.includes("titan")) utterance.pitch = 0.95;
+                else if (selectedVoice.value.includes("friday") || selectedVoice.value.includes("alexa")) utterance.pitch = 1.08;
+                else utterance.pitch = 1.00;
+                
                 window.speechSynthesis.speak(utterance);
             }
         }
 
-        // 📁 HISTORY MASTER VAULT INTERFACES
         function loadChatFolderVault() {
             const stored = localStorage.getItem('rb_folders');
             if(stored) CHAT_FOLDERS_MAP = JSON.parse(stored);
@@ -581,7 +595,17 @@
             applyFontStyles();
         }
 
-        // 📝 WHITEBOARD INTERACTIVE CANVAS MODULES
+        // 📁 FIXED PER VISION: DYNAMIC GEMINI SIDE SLIDER MODAL METHOD RULES
+        function openMasterHubModal() {
+            const sidebar = document.getElementById('master-hub-sidebar');
+            if(sidebar) sidebar.classList.remove('-translate-x-full');
+        }
+
+        function closeMasterHubModal() {
+            const sidebar = document.getElementById('master-hub-sidebar');
+            if(sidebar) sidebar.classList.add('-translate-x-full');
+        }
+
         function openNotesCanvasWorkspace() {
             closeMasterHubModal();
             isNotesCanvasModeActive = true;
@@ -594,11 +618,9 @@
         }
 
         function toggleNotesCanvasWorkspace() {
-            // Fired directly on close cross trigger clicks
             isNotesCanvasModeActive = false;
             document.getElementById('notes-workspace-container').classList.remove('flex');
             document.getElementById('notes-workspace-container').classList.add('hidden');
-            
             document.getElementById('chat-workspace-container').classList.remove('hidden');
             document.getElementById('bottom-input-bar-wrap').classList.remove('hidden');
             renderActiveStreamMessages();
@@ -659,7 +681,6 @@
             alert("💾 Notes Canvas saved successfully!");
         }
 
-        // 🟢 PURE UI UNLOCK MATRIX GATEWAYS
         function enterWorkspaceDirectly(email, tier) {
             IS_AUTHENTICATED = true; CURRENT_TIER = tier || "Free Trial";
             const gate = document.getElementById('auth-gate');
@@ -699,6 +720,9 @@
                     document.getElementById('set-font-fam').value = localStorage.getItem('rb_font_fam');
                 }
                 if(localStorage.getItem('rb_theme') === 'light') toggleThemeState('light');
+            }
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.getVoices();
             }
         });
 
@@ -832,8 +856,6 @@
             } catch (error) { document.getElementById(`${botMessageId}-text`).innerText = "Sync Error. Please retry."; }
         }
 
-        function openMasterHubModal() { document.getElementById('master-hub-modal').classList.remove('hidden'); }
-        function closeMasterHubModal() { document.getElementById('master-hub-modal').classList.add('hidden'); }
         function openProfileModal() { document.getElementById('profile-menu').classList.add('hidden'); document.getElementById('prof-email-display').value = localStorage.getItem('rb_email') || ""; document.getElementById('profile-modal').classList.remove('hidden'); }
         function closeProfileModal() { document.getElementById('profile-modal').classList.add('hidden'); }
         function openSettingsModal() { document.getElementById('profile-menu').classList.add('hidden'); document.getElementById('settings-modal').classList.remove('hidden'); }
