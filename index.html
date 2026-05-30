@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RankBot AI - Ultimate Educational Matrix v2.0.0</title>
+    <title>RankBot AI - Ultimate Educational Matrix v2.5.0</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;600;700&family=Lexend:wght@400;600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     
@@ -206,7 +206,6 @@
                         </select>
                     </div>
                 </div>
-                
                 <div class="pt-4 border-t border-gray-800 space-y-2">
                     <div onclick="saveProfileData()" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold py-2.5 rounded-xl transition-all cursor-pointer text-center select-none">Save Profile Matrix</div>
                     <div onclick="logoutSystem()" class="w-full bg-zinc-900 hover:bg-red-950/20 border border-gray-800 text-red-400 py-2 rounded-xl text-center cursor-pointer font-medium select-none">🚪 Logout Current Session</div>
@@ -223,18 +222,73 @@
                 <h2 class="heading-font text-2xl font-bold text-white">Choose Your Upgrade Path</h2>
                 <p class="text-gray-400 text-xs mt-1">Unlock unrestricted RankBot AI bandwidth streams</p>
             </div>
+            
             <div class="space-y-4 px-1 pb-2">
-                <div onclick="selectTier('Free Trial')" class="glass-panel p-5 rounded-2xl border border-blue-500/30 hover:border-blue-500/60 transition-all cursor-pointer">
-                    <h3 class="font-bold text-lg text-blue-400">Free Trial - Activate</h3>
+                <div class="glass-panel p-5 rounded-2xl border border-blue-500/30 hover:border-blue-500/60 transition-all">
+                    <div class="flex items-start justify-between">
+                        <div>
+                            <h3 class="font-bold text-lg text-blue-400">Free Trial</h3>
+                            <p class="text-2xl font-bold mt-1 text-white">₹0 <span class="text-xs text-gray-500">/ 3 Days</span></p>
+                        </div>
+                        <div onclick="selectTier('Free Trial')" class="bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold px-5 py-2 rounded-xl transition-all cursor-pointer select-none">Activate</div>
+                    </div>
+                    <ul class="text-xs text-gray-400 mt-3 space-y-2 border-t border-gray-800/60 pt-3 font-medium">
+                        <li class="text-blue-400/90 font-bold">• Limited to 10 RankBot AI Matrix Queries Total</li>
+                        <li>• Complete Customized Academic Timetable Generators Available</li>
+                        <li>• Adaptive Core Study Guidance & Progress Parameter Maps</li>
+                        <li>• Predictive Future Career Path Advisory Mapping Layouts</li>
+                    </ul>
                 </div>
-                <div onclick="selectTier('Lite Plan')" class="glass-panel p-5 rounded-2xl border border-pink-500/30 hover:border-pink-500/60 transition-all cursor-pointer">
-                    <h3 class="font-bold text-lg text-pink-400">Lite Plan - Select</h3>
+                
+                <div class="glass-panel p-5 rounded-2xl border border-pink-500/30 hover:border-pink-500/60 transition-all">
+                    <div class="flex items-start justify-between">
+                        <div>
+                            <h3 class="font-bold text-lg text-pink-400">Lite Plan</h3>
+                            <p class="text-2xl font-bold mt-1 text-white">₹199 <span class="text-xs text-gray-500">/ Month</span></p>
+                        </div>
+                        <div onclick="selectTier('Lite Plan')" class="bg-pink-600 hover:bg-pink-700 text-white text-xs font-bold px-5 py-2 rounded-xl transition-all cursor-pointer select-none">Select Lite</div>
+                    </div>
+                    <ul class="text-xs text-gray-400 mt-3 space-y-2 border-t border-gray-800/60 pt-3 font-medium">
+                        <li class="text-pink-400/90 font-bold">• 50 Ad-Free RankBot AI Priority Messages Capacity</li>
+                        <li>• Enhanced Level RankBot High-Logic Processing Architectures</li>
+                        <li>• Instant Advanced Timetable Generation & Automated Modification Cycles</li>
+                        <li>• Tailored Interactive Revision Roadmaps & Numerical Answer Guides</li>
+                        <li>• Fully Encrypted Student Profile Vault Memory Sync Protection</li>
+                    </ul>
                 </div>
-                <div onclick="selectTier('Plus Plan')" class="glass-panel p-5 rounded-2xl border border-purple-500/30 hover:border-purple-500/60 transition-all cursor-pointer">
-                    <h3 class="font-bold text-lg text-purple-400">Plus Plan - Select</h3>
+
+                <div class="glass-panel p-5 rounded-2xl border border-purple-500/30 hover:border-purple-500/60 transition-all">
+                    <div class="flex items-start justify-between">
+                        <div>
+                            <h3 class="font-bold text-lg text-purple-400">Plus Plan</h3>
+                            <p class="text-2xl font-bold mt-1 text-white">₹499 <span class="text-xs text-gray-500">/ Month</span></p>
+                        </div>
+                        <div onclick="selectTier('Plus Plan')" class="bg-purple-600 hover:bg-purple-700 text-white text-xs font-bold px-5 py-2 rounded-xl transition-all cursor-pointer select-none">Select Plus</div>
+                    </div>
+                    <ul class="text-xs text-gray-400 mt-3 space-y-2 border-t border-gray-800/60 pt-3 font-medium">
+                        <li class="text-purple-400/90 font-bold">• 150 Ad-Free High Priority RankBot AI Allocation Streams</li>
+                        <li>• Multi-Core RankBot AI Advanced Intellectual Cognitive Modules</li>
+                        <li>• Predictive Academic Weakness Telemetry & Deep Correction Models</li>
+                        <li>• Complex Formula Engineering & Multi-Stage Numerical Reasoning Solvers</li>
+                        <li>• Concurrent Live Multi-Account Configuration Sync Engine Layers</li>
+                    </ul>
                 </div>
-                <div id="pro-vertical-card" onclick="selectTier('Pro Plan')" class="glass-panel p-5 rounded-2xl pro-mesh-active transition-all cursor-pointer">
-                    <h3 class="font-bold text-lg text-white">Pro Plan - Unlock VIP CONTROL MATRIX</h3>
+
+                <div id="pro-vertical-card" class="glass-panel p-5 rounded-2xl pro-mesh-active transition-all">
+                    <div class="flex items-start justify-between">
+                        <div>
+                            <h3 class="font-bold text-lg bg-gradient-to-r from-blue-400 via-pink-400 to-purple-400 bg-clip-text text-transparent">Pro Plan</h3>
+                            <p class="text-2xl font-bold mt-1 text-white">₹699 <span class="text-xs text-gray-500">/ Month</span></p>
+                        </div>
+                        <div onclick="selectTier('Pro Plan')" class="bg-gradient-to-r from-blue-500 via-pink-500 to-purple-500 text-white text-xs font-bold px-5 py-2 rounded-xl hover:opacity-90 transition-all cursor-pointer select-none">Unlock VIP</div>
+                    </div>
+                    <ul class="text-xs text-gray-300 mt-3 space-y-2 border-t border-gray-800/60 pt-3 font-medium">
+                        <li class="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent font-bold">• 100% Unlimited Absolute RankBot AI Answers capacity</li>
+                        <li class="text-amber-400 font-bold">• Armed with 5 Elite High-IQ RankBot Specialized Hybrid Engines</li>
+                        <li>• Unrestricted Advanced Multi-Thread Logical Reasoning Allocations</li>
+                        <li>• Immediate Hyper-Priority Bandwidth (No Wait Queues Active)</li>
+                        <li>• Exclusive God-Tier RankBot Custom Administrative Control Matrix Dashboard</li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -371,23 +425,27 @@
         </div>
 
         <div id="bottom-input-bar-wrap" class="px-4 pb-6 md:px-32 bg-gradient-to-t from-[#050507] via-[#050507] to-transparent z-20">
-            <div class="max-w-4xl mx-auto glass-panel rounded-2xl flex flex-col p-2 focus-within:border-purple-500/40 shadow-2xl">
-                <input type="text" id="student-query" placeholder="Ask RankBot anything..." class="w-full bg-transparent text-gray-200 text-sm px-4 py-3 focus:outline-none" onkeypress="if(event.key === 'Enter') sendQueryToBot()">
-                <div class="flex items-center justify-between border-t border-gray-900/60 pt-2 px-2">
-                    <label class="p-2 text-gray-400 hover:text-white text-xs font-semibold cursor-pointer transition-colors select-none">➕ Add Core File (Max 100MB)</label>
-                    
-                    <div class="flex items-center gap-2 select-none">
-                        <div onclick="triggerVoiceInput()" class="w-9 h-9 hover:bg-zinc-800/80 rounded-xl flex items-center justify-center cursor-pointer text-gray-400 hover:text-white transition-colors" title="Voice Assist">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"></path>
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 10v1a7 7 0 01-14 0v-1M12 19v4M8 23h8"></path>
-                            </svg>
-                        </div>
-                        <div onclick="sendQueryToBot()" class="p-2.5 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-xl font-bold text-xs hover:opacity-95 transition-all shadow-md cursor-pointer">➔</div>
-                    </div>
+            <div class="max-w-4xl mx-auto glass-panel rounded-2xl flex items-center p-2.5 transition-all duration-200 focus-within:border-purple-500/40 shadow-2xl gap-3">
+                
+                <label for="file-upload" class="w-9 h-9 hover:bg-zinc-800/80 rounded-xl flex items-center justify-center cursor-pointer text-gray-400 hover:text-white transition-colors flex-shrink-0" title="Add File">
+                    <span class="text-lg font-bold">＋</span>
+                </label>
+                <input type="file" id="file-upload" class="hidden" onchange="validateAndUploadFile(this)">
+                
+                <input type="text" id="student-query" placeholder="Ask RankBot..." class="flex-1 bg-transparent text-gray-200 placeholder-gray-600 text-sm py-2 focus:outline-none" onkeypress="if(event.key === 'Enter') sendQueryToBot()">
+                
+                <div onclick="triggerVoiceInput()" class="w-9 h-9 hover:bg-zinc-800/80 rounded-xl flex items-center justify-center cursor-pointer text-gray-400 hover:text-white transition-colors flex-shrink-0" title="Voice Search">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 10v1a7 7 0 01-14 0v-1M12 19v4M8 23h8"></path>
+                    </svg>
+                </div>
+                
+                <div onclick="sendQueryToBot()" class="w-9 h-9 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-xl flex items-center justify-center font-bold text-xs hover:opacity-95 transition-all shadow-md cursor-pointer flex-shrink-0">
+                    ➔
                 </div>
             </div>
-            <p id="bottom-ad-notice" class="text-center text-[10px] text-purple-400/60 mt-3 font-medium animate-pulse">⚠️ Constant Core Allocation Guard Active. Unrestricted Multithread Pipelines Engaged.</p>
+            <p id="bottom-ad-notice" class="text-center text-[10px] text-purple-400/60 mt-3 font-medium animate-pulse">⚠️ Constant Core Allocation Guard Active. Unrestricted Multithread VIP Pipelines Engaged.</p>
         </div>
 
     </div>
@@ -400,7 +458,6 @@
         
         let CHAT_FOLDERS_MAP = {};
         let ACTIVE_FOLDER_ID = null;
-
         let canvas, ctx, isDrawing = false, lastX = 0, lastY = 0, isNotesCanvasModeActive = false;
 
         function syncAcousticVoiceList() {
@@ -426,7 +483,6 @@
                 window.speechSynthesis.cancel();
                 const utterance = new SpeechSynthesisUtterance("Hi, I am RankBot AI. Speech synthesis matrix nodes fully integrated safely.");
                 utterance.rate = userSpeed;
-                
                 const systemVoices = window.speechSynthesis.getVoices();
                 if(systemVoices.length > 0) {
                     const targetVoice = systemVoices.find(v => v.lang.includes('en') && (v.name.includes('Natural') || v.name.includes('Google'))) || systemVoices[0];
@@ -443,7 +499,6 @@
             CHAT_FOLDERS_MAP = stored ? JSON.parse(stored) : {};
             ACTIVE_FOLDER_ID = localStorage.getItem('rb_active_folder_id') || null;
             if (ACTIVE_FOLDER_ID && !CHAT_FOLDERS_MAP[ACTIVE_FOLDER_ID]) ACTIVE_FOLDER_ID = null;
-            
             renderFolderSidebarView();
             renderActiveStreamMessages();
         }
@@ -475,7 +530,6 @@
             const currentTitle = CHAT_FOLDERS_MAP[id].title.replace("📁 ", "");
             const newTitle = prompt("✏️ Edit Topic Title Name:", currentTitle);
             if(!newTitle || newTitle.trim() === "") return;
-            
             CHAT_FOLDERS_MAP[id].title = `📁 ${newTitle.trim()}`;
             localStorage.setItem('rb_folders', JSON.stringify(CHAT_FOLDERS_MAP));
             loadChatFolderVault();
@@ -498,7 +552,7 @@
             const list = document.getElementById('folder-stream-list');
             if(!list) return; list.innerHTML = "";
             if(Object.keys(CHAT_FOLDERS_MAP).length === 0) {
-                list.innerHTML = `<p class="text-[11px] text-gray-600 px-1 py-4 text-center italic">No active chat folders log.<br>Ask a doubt below to auto-spin rows.</p>`;
+                list.innerHTML = `<p class="text-[11px] text-gray-600 px-1 py-4 text-center italic">No active chat folders log.<br>Ask a doubt below to generate rows.</p>`;
                 return;
             }
             Object.keys(CHAT_FOLDERS_MAP).forEach(id => {
@@ -560,11 +614,7 @@
 
         function openMasterHubModal() { document.getElementById('master-hub-sidebar').classList.remove('-translate-x-full'); }
         function closeMasterHubModal() { document.getElementById('master-hub-sidebar').classList.add('-translate-x-full'); }
-        
-        function toggleProfileMenuSidebar(event) {
-            if(event) event.stopPropagation();
-            document.getElementById('profile-menu-sidebar').classList.toggle('translate-x-full');
-        }
+        function toggleProfileMenuSidebar(event) { if(event) event.stopPropagation(); document.getElementById('profile-menu-sidebar').classList.toggle('translate-x-full'); }
         function closeProfileMenuSidebar() { document.getElementById('profile-menu-sidebar').classList.add('translate-x-full'); }
         function autoCloseDrawersOnMainClick() { closeMasterHubModal(); closeProfileMenuSidebar(); }
 
@@ -573,7 +623,6 @@
             if(!fileContainer) return; fileContainer.innerHTML = "";
             const vaultData = localStorage.getItem('rb_canvas_vault');
             let notesArray = vaultData ? JSON.parse(vaultData) : [];
-            
             if(notesArray.length === 0) {
                 fileContainer.innerHTML = `<p class="text-[10px] text-gray-600 italic text-center py-4">No note sheets compiled yet.</p>`;
                 return;
@@ -600,21 +649,21 @@
             loadNotesCanvasVaultFiles();
         }
 
-        // Recovery Frameworks For Chalk Board Layers
         function restoreSavedCanvasFile(dataUrl) {
             if(confirm("🎨 Render this saved file data onto whiteboards?")) {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
-                const img = new Image();
-                img.onload = function() { ctx.drawImage(img, 0, 0); };
-                img.src = dataUrl;
+                const img = new Image(); img.onload = function() { ctx.drawImage(img, 0, 0); }; img.src = dataUrl;
             }
         }
+
+        document.addEventListener('DOMContentLoaded', () => {
+             if(window.speechSynthesis) { window.speechSynthesis.getVoices(); }
+        });
 
         function deleteSavedCanvasFile(index) {
             if(confirm("🗑️ Remove note asset entry permanently?")) {
                 const vaultData = localStorage.getItem('rb_canvas_vault');
-                let notesArray = JSON.parse(vaultData);
-                notesArray.splice(index, 1);
+                let notesArray = JSON.parse(vaultData); notesArray.splice(index, 1);
                 localStorage.setItem('rb_canvas_vault', JSON.stringify(notesArray));
                 loadNotesCanvasVaultFiles();
             }
@@ -645,32 +694,22 @@
             const rect = canvas.parentElement.getBoundingClientRect();
             canvas.width = rect.width; canvas.height = rect.height;
             ctx.lineJoin = 'round'; ctx.lineCap = 'round';
-            
-            canvas.addEventListener('mousedown', startDrawingAction);
-            canvas.addEventListener('mousemove', executeDrawingStroke);
-            canvas.addEventListener('mouseup', () => isDrawing = false);
-            canvas.addEventListener('mouseout', () => isDrawing = false);
+            canvas.addEventListener('mousedown', startDrawingAction); canvas.addEventListener('mousemove', executeDrawingStroke);
+            canvas.addEventListener('mouseup', () => isDrawing = false); canvas.addEventListener('mouseout', () => isDrawing = false);
             canvas.addEventListener('touchstart', (e) => startDrawingAction(e.touches[0]));
             canvas.addEventListener('touchmove', (e) => { executeDrawingStroke(e.touches[0]); e.preventDefault(); }, { passive: false });
             canvas.addEventListener('touchend', () => isDrawing = false);
             loadNotesCanvasVaultFiles();
         }
 
-        function startDrawingAction(e) {
-            isDrawing = true; const rect = canvas.getBoundingClientRect();
-            lastX = e.clientX - rect.left; lastY = e.clientY - rect.top;
-        }
-
+        function startDrawingAction(e) { isDrawing = true; const rect = canvas.getBoundingClientRect(); lastX = e.clientX - rect.left; lastY = e.clientY - rect.top; }
         function executeDrawingStroke(e) {
-            if(!isDrawing) return; const rect = canvas.getBoundingClientRect();
-            const currX = e.clientX - rect.left; const currY = e.clientY - rect.top;
+            if(!isDrawing) return; const rect = canvas.getBoundingClientRect(); const currX = e.clientX - rect.left; const currY = e.clientY - rect.top;
             ctx.beginPath(); ctx.moveTo(lastX, lastY); ctx.lineTo(currX, currY);
-            ctx.strokeStyle = document.getElementById('canvas-brush-color').value;
-            ctx.lineWidth = document.getElementById('canvas-brush-size').value;
+            ctx.strokeStyle = document.getElementById('canvas-brush-color').value; ctx.lineWidth = document.getElementById('canvas-brush-size').value;
             ctx.stroke(); lastX = currX; lastY = currY;
         }
-
-        function clearDrawingCanvasBoard() { if(confirm("🧹 Wipe blackboard clean?")) ctx.clearRect(0, 0, canvas.width, canvas.height); }
+        function clearDrawingCanvasBoard() { if(confirm("🧹 Clear whiteboard clean?")) ctx.clearRect(0, 0, canvas.width, canvas.height); }
 
         function initGalaxy() {
             const bg = document.getElementById('galaxy-bg'); if(!bg) return; bg.innerHTML = "";
@@ -694,13 +733,12 @@
             
             const ring = document.getElementById('pfp-ring-wrapper');
             if(ring) {
-                ring.className = "w-11 h-11 rounded-full p-[2px] cursor-pointer active:scale-95 transition-all shadow-lg border border-transparent";
+                ring.classList.remove('pro-mesh-active');
                 if(CURRENT_TIER === "Free Trial") ring.style.borderColor = "#3b82f6";
                 else if(CURRENT_TIER === "Lite Plan") ring.style.borderColor = "#ec4899";
                 else if(CURRENT_TIER === "Plus Plan") ring.style.borderColor = "#8b5cf6";
                 else if(CURRENT_TIER === "Pro Plan") ring.classList.add('pro-mesh-active');
             }
-            
             const badge = document.getElementById('menu-user-tier'); if(badge) badge.innerText = CURRENT_TIER;
             loadChatFolderVault();
             initGalaxy();
@@ -720,7 +758,7 @@
                     document.getElementById('auth-gate').style.setProperty('display', 'none', 'important');
                     document.getElementById('plans-screen').classList.remove('hidden');
                 }
-            } else { alert("❌ INVALID SECURE MAIL PARAMETERS FORM."); }
+            } else { alert("❌ INVALID SECURE MAIL."); }
         }
 
         function selectTier(tierName) {
@@ -745,17 +783,14 @@
         async function sendQueryToBot() {
             if(!IS_AUTHENTICATED) return; const queryInput = document.getElementById('student-query');
             let messageText = queryInput.value.trim(); if(!messageText) return;
-            
             if (!ACTIVE_FOLDER_ID) { 
                 const wordsArray = messageText.split(" ");
                 const cleanAutoTitle = wordsArray.slice(0, 3).join(" ") + "...";
                 ACTIVE_FOLDER_ID = createNewChatFolderNode(cleanAutoTitle); 
             }
-            
             CHAT_FOLDERS_MAP[ACTIVE_FOLDER_ID].stream.push({ sender: 'user', text: messageText });
             localStorage.setItem('rb_folders', JSON.stringify(CHAT_FOLDERS_MAP));
             renderActiveStreamMessages(); queryInput.value = "";
-            
             const botMessageId = "rankbot-msg-" + Date.now();
             const streamContainer = document.getElementById('chat-workspace-container');
             streamContainer.innerHTML += `<div class="flex gap-4 max-w-3xl" id="${botMessageId}"><div class="w-9 h-9 rounded-xl bg-purple-600/20 border border-purple-500/30 flex items-center justify-center flex-shrink-0">🤖</div><div class="bg-[#0f0f14]/80 p-4 rounded-2xl text-sm border border-gray-900 text-gray-400 animate-pulse" id="${botMessageId}-text">Processing matrix logical pipeline nodes securely...</div></div>`;
@@ -765,7 +800,6 @@
                 const response = await fetch(HUGGINGFACE_SPACE_API, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ data: [messageText, [], CURRENT_TIER] }) });
                 const result = await response.json(); const eventSource = new EventSource(`${HUGGINGFACE_SPACE_API}/${result.event_id}`);
                 const responseTextBox = document.getElementById(`${botMessageId}-text`); responseTextBox.classList.remove('animate-pulse');
-
                 let totalResponseText = "";
                 eventSource.onmessage = function(event) {
                     const data = JSON.parse(event.data);
@@ -775,7 +809,7 @@
                     eventSource.close();
                     if(totalResponseText !== "") { CHAT_FOLDERS_MAP[ACTIVE_FOLDER_ID].stream.push({ sender: 'bot', text: totalResponseText }); localStorage.setItem('rb_folders', JSON.stringify(CHAT_FOLDERS_MAP)); }
                 };
-            } catch (error) { document.getElementById(`${botMessageId}-text`).innerText = "Workspace link stream synchronization issue. Please retry."; }
+            } catch (error) { document.getElementById(`${botMessageId}-text`).innerText = "Workspace link stream issue. Please retry."; }
         }
 
         window.addEventListener('DOMContentLoaded', () => {
@@ -786,6 +820,7 @@
         });
 
         function openProfileModal() { closeProfileMenuSidebar(); document.getElementById('profile-modal').classList.remove('hidden'); }
+        // Modal toggles closures
         function closeProfileModal() { document.getElementById('profile-modal').classList.add('hidden'); }
         function openSettingsModal() { closeProfileMenuSidebar(); document.getElementById('settings-modal').classList.remove('hidden'); }
         function closeSettingsModal() { document.getElementById('settings-modal').classList.add('hidden'); }
@@ -793,7 +828,7 @@
         function closePlans() { document.getElementById('plans-screen').classList.add('hidden'); }
         function toggleThemeState(mode) { const body = document.body; if(mode==='light') { body.classList.add('light-mode-active'); localStorage.setItem('rb_theme','light'); } else { body.classList.remove('light-mode-active'); localStorage.setItem('rb_theme','dark'); initGalaxy(); } }
         function logoutSystem() { localStorage.clear(); location.reload(); }
-        function deleteAccountSystem() { if(confirm("Wipe all data arrays?")) logoutSystem(); }
+        function deleteAccountSystem() { if(confirm("Wipe cache?")) logoutSystem(); }
         function applyFontStyles() {}
         function saveSettingsForm() {}
         function validateAndUploadFile() {}
