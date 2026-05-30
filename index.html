@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RankBot AI - Ultimate Educational Matrix</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;600;700&family=Lexend:wght@400;600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2 family=Space+Grotesk:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;600;700&family=Lexend:wght@400;600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     
     <style>
         body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #050507; color: #e4e4e7; overflow: hidden; transition: background-color 0.3s, color 0.3s; }
@@ -34,14 +34,15 @@
         ::-webkit-scrollbar { width: 5px; }
         ::-webkit-scrollbar-thumb { background: #27272a; border-radius: 10px; }
 
-        /* 🌈 PRO EXCLUSIVE RGB MESH ANIMATION */
+        /* 🌈 PRO EXCLUSIVE RGB FLOW MESH ANIMATION WITH TEXT TEXT GRADIENT SUPPORT */
         @keyframes meshFlow {
-            0% { border-color: #3b82f6; box-shadow: 0 0 15px rgba(59, 130, 246, 0.4); }
-            33% { border-color: #ec4899; box-shadow: 0 0 15px rgba(236, 72, 153, 0.4); }
-            66% { border-color: #8b5cf6; box-shadow: 0 0 15px rgba(139, 92, 246, 0.4); }
-            100% { border-color: #3b82f6; box-shadow: 0 0 15px rgba(59, 130, 246, 0.4); }
+            0% { border-color: #3b82f6; box-shadow: 0 0 15px rgba(59, 130, 246, 0.4); color: #3b82f6; }
+            33% { border-color: #ec4899; box-shadow: 0 0 15px rgba(236, 72, 153, 0.4); color: #ec4899; }
+            66% { border-color: #8b5cf6; box-shadow: 0 0 15px rgba(139, 92, 246, 0.4); color: #8b5cf6; }
+            100% { border-color: #3b82f6; box-shadow: 0 0 15px rgba(59, 130, 246, 0.4); color: #3b82f6; }
         }
         .pro-mesh-active { animation: meshFlow 6s infinite linear !important; border-width: 2px !important; }
+        .pro-text-flow { animation: meshFlow 6s infinite linear !important; background: transparent !important; }
     </style>
     
     <script>
@@ -56,7 +57,7 @@
         })();
     </script>
 </head>
-<body class="flex h-screen w-screen select-none overflow-hidden">
+<body class="flex h-screen w-screen select-none overflow-hidden" onclick="autoCloseDrawersOnMainClick(event)">
 
     <div id="galaxy-bg"></div>
 
@@ -81,7 +82,7 @@
         </div>
     </div>
 
-    <div id="master-hub-sidebar" class="fixed inset-y-0 left-0 w-80 h-full glass-panel border-r border-gray-900/80 z-[500] transform -translate-x-full transition-transform duration-300 flex flex-col p-5 shadow-2xl">
+    <div id="master-hub-sidebar" class="fixed inset-y-0 left-0 w-80 h-full glass-panel border-r border-gray-900/80 z-[500] transform -translate-x-full transition-transform duration-300 flex flex-col p-5 shadow-2xl" onclick="event.stopPropagation()">
         <button onclick="closeMasterHubModal()" class="absolute top-4 right-4 text-gray-500 hover:text-white text-xs font-bold select-none">✕</button>
         
         <div class="flex items-center gap-2 mb-6 border-b border-gray-900 pb-3 mt-2">
@@ -102,11 +103,28 @@
         </div>
     </div>
 
+    <div id="profile-menu-sidebar" class="fixed inset-y-0 right-0 w-72 h-full bg-[#050508]/95 border-l border-gray-900 z-[800] transform translate-x-full transition-transform duration-300 flex flex-col p-5 shadow-2xl" onclick="event.stopPropagation()">
+        <div class="text-center pb-4 border-b border-gray-900 mt-2">
+            <div class="w-14 h-14 bg-zinc-900 rounded-full mx-auto flex items-center justify-center font-bold text-xl text-purple-400 border border-gray-800 mb-2 heading-font" id="drawer-pfp-letter">U</div>
+            <p id="menu-user-name" class="font-bold text-sm text-white">Hi, User</p>
+            <span id="menu-user-tier" class="text-[10px] px-2.5 py-0.5 rounded-full font-bold inline-block mt-1">Free Trial</span>
+        </div>
+        
+        <div class="py-4 flex-1 space-y-2 text-xs text-gray-300 overflow-y-auto smooth-scroll">
+            <div onclick="openProfileModal()" class="w-full text-left px-3 py-3 hover:bg-zinc-900/80 rounded-xl transition-colors flex items-center gap-3 cursor-pointer">👤 View Profile Metadata</div>
+            <div onclick="openPlans()" class="w-full text-left px-3 py-3 hover:bg-zinc-900/80 rounded-xl transition-colors flex items-center gap-3 cursor-pointer">💎 Upgrade Bandwidth Plans</div>
+            <div onclick="openSettingsModal()" class="w-full text-left px-3 py-3 hover:bg-zinc-900/80 rounded-xl transition-colors flex items-center gap-3 cursor-pointer">⚙️ Advanced Control Center</div>
+        </div>
+        
+        <div class="pt-3 border-t border-gray-900 space-y-1 text-center">
+            <div onclick="logoutSystem()" class="w-full bg-zinc-900/50 hover:bg-red-950/30 border border-gray-900 text-red-400 py-2 rounded-xl text-[11px] font-medium transition-colors cursor-pointer select-none">Logout Current Session</div>
+        </div>
+    </div>
+
     <div id="profile-modal" class="fixed inset-0 z-[2000] flex items-center justify-center blur-bg p-4 hidden transition-all duration-300 overflow-y-auto">
         <div class="glass-panel w-full max-w-md rounded-3xl p-6 shadow-2xl relative my-auto">
             <button onclick="closeProfileModal()" class="absolute top-4 right-4 text-gray-500 hover:text-white">✕</button>
             <h3 class="heading-font text-xl font-bold text-white mb-4 border-b border-gray-800 pb-2 flex items-center gap-2">👤 Complete Student Profile</h3>
-            
             <div class="space-y-3 text-xs">
                 <div>
                     <label class="block text-gray-400 mb-1">Full Name</label>
@@ -116,7 +134,6 @@
                     <label class="block text-gray-400 mb-1">Email Address</label>
                     <input type="email" id="prof-email-display" readonly class="w-full bg-[#0d0d11]/80 text-purple-400 border border-gray-800 rounded-xl p-2.5 cursor-not-allowed outline-none font-mono text-sm">
                 </div>
-                
                 <div>
                     <label class="block text-gray-400 mb-1">Phone Number</label>
                     <div class="flex gap-2 w-full">
@@ -133,12 +150,10 @@
                         <input type="number" id="prof-phone" placeholder="Enter 10 Digit Number" oninput="if(this.value.length > 10) this.value = this.value.slice(0,10);" class="flex-1 bg-[#0d0d11] text-gray-200 border border-gray-800 rounded-xl p-2.5 focus:outline-none focus:border-purple-500 font-mono text-sm">
                     </div>
                 </div>
-
                 <div>
                     <label class="block text-gray-400 mb-1">Where do you live (City/State)</label>
                     <input type="text" id="prof-loc" placeholder="e.g. Delhi, India" class="w-full bg-[#0d0d11] text-gray-200 border border-gray-800 rounded-xl p-2.5 focus:outline-none focus:border-purple-500">
                 </div>
-                
                 <div class="grid grid-cols-2 gap-2">
                     <div>
                         <label class="block text-gray-400 mb-1">Institute/School</label>
@@ -156,11 +171,8 @@
                         </select>
                     </div>
                 </div>
-
                 <div class="pt-4 border-t border-gray-800 space-y-2">
                     <div onclick="saveProfileData()" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold py-2.5 rounded-xl transition-all cursor-pointer text-center select-none">Save Profile Matrix</div>
-                    <div onclick="alert('Add account framework initialized.')" class="w-full bg-zinc-800 hover:bg-zinc-700 text-gray-300 py-2 rounded-xl font-medium text-[11px] transition-colors cursor-pointer text-center select-none">➕ Add Account</div>
-                    <div onclick="logoutSystem()" class="w-full bg-zinc-900 hover:bg-zinc-800 text-red-400 py-2 rounded-xl text-[11px] transition-colors cursor-pointer text-center select-none">Logout Session</div>
                     <div onclick="deleteAccountSystem()" class="w-full text-center text-[10px] text-gray-600 hover:text-red-500 underline block pt-1 cursor-pointer select-none">Delete Account Permanently</div>
                 </div>
             </div>
@@ -170,12 +182,10 @@
     <div id="plans-screen" class="fixed inset-0 z-[2000] flex items-center justify-center blur-bg p-4 hidden transition-all duration-500 overflow-y-auto">
         <div class="glass-panel w-full max-w-xl rounded-3xl p-6 shadow-2xl relative my-auto max-h-[90vh] overflow-y-auto smooth-scroll pr-1">
             <button onclick="closePlans()" class="absolute top-4 right-4 text-gray-500 hover:text-white text-sm font-bold select-none">✕</button>
-            
             <div class="text-center mb-5 mt-2">
                 <h2 class="heading-font text-2xl font-bold text-white">Choose Your Upgrade Path</h2>
                 <p class="text-gray-400 text-xs mt-1">Unlock unrestricted RankBot AI bandwidth streams</p>
             </div>
-            
             <div class="space-y-4 px-1 pb-2">
                 <div class="glass-panel p-5 rounded-2xl border border-blue-500/30 hover:border-blue-500/60 transition-all">
                     <div class="flex items-start justify-between">
@@ -185,14 +195,7 @@
                         </div>
                         <div onclick="selectTier('Free Trial')" class="bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold px-5 py-2 rounded-xl transition-all cursor-pointer select-none">Activate</div>
                     </div>
-                    <ul class="text-xs text-gray-400 mt-3 space-y-2 border-t border-gray-800/60 pt-3 font-medium">
-                        <li class="text-blue-400/90 font-bold">• Limited to 10 RankBot AI Matrix Queries Total</li>
-                        <li>• Complete Customized Academic Timetable Generators Available</li>
-                        <li>• Adaptive Core Study Guidance & Progress Parameter Maps</li>
-                        <li>• Predictive Future Career Path Advisory Mapping Layouts</li>
-                    </ul>
                 </div>
-                
                 <div class="glass-panel p-5 rounded-2xl border border-pink-500/30 hover:border-pink-500/60 transition-all">
                     <div class="flex items-start justify-between">
                         <div>
@@ -201,15 +204,7 @@
                         </div>
                         <div onclick="selectTier('Lite Plan')" class="bg-pink-600 hover:bg-pink-700 text-white text-xs font-bold px-5 py-2 rounded-xl transition-all cursor-pointer select-none">Select Lite</div>
                     </div>
-                    <ul class="text-xs text-gray-400 mt-3 space-y-2 border-t border-gray-800/60 pt-3 font-medium">
-                        <li class="text-pink-400/90 font-bold">• 50 Ad-Free RankBot AI Priority Messages Capacity</li>
-                        <li>• Enhanced Level RankBot High-Logic Processing Architectures</li>
-                        <li>• Instant Advanced Timetable Generation & Automated Modification Cycles</li>
-                        <li>• Tailored Interactive Revision Roadmaps & Numerical Answer Guides</li>
-                        <li>• Fully Encrypted Student Profile Vault Memory Sync Protection</li>
-                    </ul>
                 </div>
-
                 <div class="glass-panel p-5 rounded-2xl border border-purple-500/30 hover:border-purple-500/60 transition-all">
                     <div class="flex items-start justify-between">
                         <div>
@@ -218,15 +213,7 @@
                         </div>
                         <div onclick="selectTier('Plus Plan')" class="bg-purple-600 hover:bg-purple-700 text-white text-xs font-bold px-5 py-2 rounded-xl transition-all cursor-pointer select-none">Select Plus</div>
                     </div>
-                    <ul class="text-xs text-gray-400 mt-3 space-y-2 border-t border-gray-800/60 pt-3 font-medium">
-                        <li class="text-purple-400/90 font-bold">• 150 Ad-Free High Priority RankBot AI Allocation Streams</li>
-                        <li>• Multi-Core RankBot AI Advanced Intellectual Cognitive Modules</li>
-                        <li>• Predictive Academic Weakness Telemetry & Deep Correction Models</li>
-                        <li>• Complex Formula Engineering & Multi-Stage Numerical Reasoning Solvers</li>
-                        <li>• Concurrent Live Multi-Account Configuration Sync Engine Layers</li>
-                    </ul>
                 </div>
-
                 <div id="pro-vertical-card" class="glass-panel p-5 rounded-2xl pro-mesh-active transition-all">
                     <div class="flex items-start justify-between">
                         <div>
@@ -235,13 +222,6 @@
                         </div>
                         <div onclick="selectTier('Pro Plan')" class="bg-gradient-to-r from-blue-500 via-pink-500 to-purple-500 text-white text-xs font-bold px-5 py-2 rounded-xl hover:opacity-90 transition-all cursor-pointer select-none">Unlock VIP</div>
                     </div>
-                    <ul class="text-xs text-gray-300 mt-3 space-y-2 border-t border-gray-800/60 pt-3 font-medium">
-                        <li class="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent font-bold">• 100% Unlimited Absolute RankBot AI Answers capacity</li>
-                        <li class="text-amber-400 font-bold">• Armed with 5 Elite High-IQ RankBot Specialized Hybrid Engines</li>
-                        <li>• Unrestricted Advanced Multi-Thread Logical Reasoning Allocations</li>
-                        <li>• Immediate Hyper-Priority Bandwidth (No Wait Queues Active)</li>
-                        <li>• Exclusive God-Tier RankBot Custom Administrative Control Matrix Dashboard</li>
-                    </ul>
                 </div>
             </div>
         </div>
@@ -251,7 +231,6 @@
         <div class="glass-panel w-full max-w-md rounded-3xl p-6 shadow-2xl relative my-auto max-h-[90vh] overflow-y-auto smooth-scroll">
             <button onclick="closeSettingsModal()" class="absolute top-4 right-4 text-gray-500 hover:text-white">✕</button>
             <h3 class="heading-font text-xl font-bold text-white mb-4 border-b border-gray-800 pb-2 flex items-center gap-2">⚙️ Advanced Control Center</h3>
-            
             <div class="space-y-4 text-xs">
                 <div class="bg-[#0c0c12] p-3 rounded-xl border border-gray-800 space-y-3">
                     <p class="font-bold text-purple-400 tracking-wider uppercase text-[9px]">🤖 RankBot AI Acoustic Voice Core</p>
@@ -268,7 +247,6 @@
                             <select id="set-voice" class="w-full bg-[#050508] border border-gray-800 rounded-xl p-2 text-gray-300 focus:outline-none"></select>
                         </div>
                     </div>
-                    
                     <div>
                         <label class="block text-gray-400 mb-1">Voice Tempo / Pacing Speed</label>
                         <select id="set-voice-speed" class="w-full bg-[#050508] border border-gray-800 rounded-xl p-2 text-gray-300 focus:outline-none">
@@ -277,12 +255,10 @@
                             <option value="1.25">Fast Priority Bandwidth Core</option>
                         </select>
                     </div>
-
                     <div onclick="testActiveVoiceOutputSound()" class="w-full bg-purple-600/20 text-purple-300 border border-purple-500/30 hover:bg-purple-600/40 font-bold py-2 rounded-xl flex items-center justify-center gap-2 transition-all cursor-pointer text-center select-none">
                         🔊 Play Active Audio Track Sample (Test)
                     </div>
                 </div>
-
                 <div class="bg-[#0c0c12] p-3 rounded-xl border border-gray-800 space-y-2">
                     <p class="font-bold text-teal-400 tracking-wider uppercase text-[9px]">🌐 Language Synthesis Controller</p>
                     <div>
@@ -293,7 +269,6 @@
                         </select>
                     </div>
                 </div>
-
                 <div class="bg-[#0c0c12] p-3 rounded-xl border border-gray-800 space-y-2">
                     <p class="font-bold text-pink-400 tracking-wider uppercase text-[9px]">🌓 Workspace Theme Module</p>
                     <div class="grid grid-cols-2 gap-2 select-none">
@@ -301,7 +276,6 @@
                         <div onclick="toggleThemeState('light')" id="theme-light-btn" class="py-2 rounded-xl font-bold border border-gray-800 bg-transparent text-gray-400 text-center cursor-pointer">Light Mode</div>
                     </div>
                 </div>
-
                 <div class="bg-[#0c0c12] p-3 rounded-xl border border-gray-800 space-y-3">
                     <p class="font-bold text-blue-400 tracking-wider uppercase text-[9px]">🔤 Typography & Design Modifier</p>
                     <div class="grid grid-cols-2 gap-2">
@@ -323,22 +297,8 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="bg-[#0c0c12] p-3 rounded-xl border border-gray-800 space-y-3">
-                    <p class="font-bold text-amber-400 tracking-wider uppercase text-[9px]">🛠️ Core AI Operational Modules</p>
-                    <div class="space-y-2">
-                        <div class="grid grid-cols-1 gap-2 select-none">
-                            <div onclick="localStorage.removeItem('rb_folders'); localStorage.removeItem('rb_free_chats'); localStorage.removeItem('rb_canvas_vault'); alert('All storage memory arrays successfully reset.'); location.reload();" class="bg-zinc-900 border border-gray-800 text-gray-300 font-medium py-2 rounded-lg hover:text-white transition-colors text-[11px] text-center cursor-pointer">
-                                🗑️ Clear Cache & Reset All Memory Arrays
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
                 <div class="pt-3 border-t border-gray-800 space-y-2 select-none">
                     <div onclick="saveSettingsForm()" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold py-2.5 rounded-xl transition-all shadow-md text-center cursor-pointer">Save Config Parameters</div>
-                    <div onclick="logoutSystem()" class="w-full bg-zinc-900 hover:bg-zinc-800 text-red-400 py-2 rounded-xl text-[11px] font-medium transition-colors text-center cursor-pointer">Logout Session</div>
-                    <div onclick="deleteAccountSystem()" class="w-full text-center text-[10px] text-gray-600 hover:underline block pt-1 cursor-pointer">Delete Account Permanently</div>
                 </div>
             </div>
         </div>
@@ -348,12 +308,10 @@
         
         <div class="w-full flex items-center justify-between px-6 py-4 glass-panel border-b border-b-gray-900 z-50">
             <div class="flex items-center gap-3">
-                <div onclick="openMasterHubModal()" class="text-2xl cursor-pointer active:scale-95 transition-transform select-none" title="Open RankBot Sidebar Node">🤖</div>
-                
-                <div onclick="toggleNotesCanvasWorkspace()" id="notes-tab-btn" class="bg-zinc-800/80 hover:bg-purple-900/40 text-gray-300 border border-gray-800 text-[11px] px-3.5 py-1.5 rounded-xl font-bold cursor-pointer transition-all transition-colors select-none">
+                <div onclick="openMasterHubModal(); event.stopPropagation();" class="text-2xl cursor-pointer active:scale-95 transition-transform select-none" title="Open Sidebar">🤖</div>
+                <div onclick="toggleNotesCanvasWorkspace()" id="notes-tab-btn" class="bg-zinc-800/80 hover:bg-purple-900/40 text-gray-300 border border-gray-800 text-[11px] px-3.5 py-1.5 rounded-xl font-bold cursor-pointer transition-all select-none">
                     Notes
                 </div>
-                
                 <div>
                     <h1 class="heading-font text-sm font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-pink-500 bg-clip-text text-transparent">
                         RankBot AI <span id="active-folder-label" class="text-xs text-gray-500 font-normal tracking-normal ml-1"></span>
@@ -362,20 +320,8 @@
             </div>
             
             <div class="relative z-[999]">
-                <div id="pfp-ring-wrapper" onclick="toggleProfileMenu()" class="w-11 h-11 rounded-full p-[2px] cursor-pointer active:scale-95 transition-all shadow-lg border border-transparent">
+                <div id="pfp-ring-wrapper" onclick="toggleProfileMenuSidebar(event)" class="w-11 h-11 rounded-full p-[2px] cursor-pointer active:scale-95 transition-all shadow-lg border border-transparent">
                     <div id="profile-letter" class="w-full h-full bg-[#0d0d11] rounded-full flex items-center justify-center font-bold text-gray-200 text-base heading-font">U</div>
-                </div>
-                
-                <div id="profile-menu" class="absolute top-14 right-0 w-64 glass-panel rounded-2xl p-4 shadow-2xl hidden z-[1000] select-none">
-                    <div class="text-center pb-3 border-b border-gray-800">
-                        <p id="menu-user-name" class="font-bold text-sm text-white">Hi, User</p>
-                        <span id="menu-user-tier" class="text-[10px] px-2 py-0.5 rounded-full font-bold inline-block mt-1">Free Trial</span>
-                    </div>
-                    <div class="py-2 space-y-1 text-xs text-gray-300">
-                        <div onclick="openProfileModal()" class="w-full text-left px-3 py-2 hover:bg-zinc-800/50 rounded-lg transition-colors flex items-center gap-2.5 cursor-pointer">👤 Profile</div>
-                        <div onclick="openPlans()" class="w-full text-left px-3 py-2 hover:bg-zinc-800/50 rounded-lg transition-colors flex items-center gap-2.5 cursor-pointer">💎 Plans</div>
-                        <div onclick="openSettingsModal()" class="w-full text-left px-3 py-2 hover:bg-zinc-800/50 rounded-lg transition-colors flex items-center gap-2.5 cursor-pointer">⚙️ Settings</div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -386,11 +332,9 @@
                 </div>
 
             <div id="notes-workspace-container" class="absolute inset-0 bg-[#07070c] hidden flex-col md:flex-row p-4 gap-4 z-20 overflow-hidden animate-fade-in">
-                
                 <div class="flex-1 h-full flex flex-col">
                     <div class="w-full glass-panel border border-gray-900 rounded-2xl p-3 flex flex-wrap items-center justify-between gap-3 text-xs mb-3 relative">
                         <button onclick="toggleNotesCanvasWorkspace()" class="absolute top-3 right-4 text-gray-500 hover:text-white text-xs font-bold select-none">✕ Close Board</button>
-                        
                         <div class="flex items-center gap-4">
                             <div class="flex items-center gap-1">
                                 <span class="text-gray-500 text-[11px]">Size:</span>
@@ -423,10 +367,8 @@
 
                 <div class="w-full md:w-64 h-48 md:h-full glass-panel border border-gray-900 rounded-3xl p-4 flex flex-col overflow-hidden">
                     <p class="text-[10px] uppercase font-bold text-gray-500 tracking-wider mb-3 px-1 border-b border-gray-900 pb-1.5">💾 My Saved Note Files</p>
-                    <div id="saved-canvas-files-stream" class="flex-1 overflow-y-auto space-y-2 pr-1 smooth-scroll text-xs text-gray-400">
-                        </div>
+                    <div id="saved-canvas-files-stream" class="flex-1 overflow-y-auto space-y-2 pr-1 smooth-scroll text-xs text-gray-400"></div>
                 </div>
-
             </div>
 
         </div>
@@ -441,8 +383,14 @@
                         </label>
                         <input type="file" id="file-upload" class="hidden" onchange="validateAndUploadFile(this)">
                     </div>
+                    
                     <div class="flex items-center gap-2 select-none">
-                        <div onclick="triggerVoiceInput()" class="p-2.5 hover:bg-zinc-800/60 rounded-xl text-gray-400 hover:text-white cursor-pointer transition-colors">🎙️</div>
+                        <div onclick="triggerVoiceInput()" class="w-9 h-9 hover:bg-zinc-800/80 rounded-xl flex items-center justify-center cursor-pointer text-gray-400 hover:text-white transition-colors" title="Voice Assist">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 10v1a7 7 0 01-14 0v-1M12 19v4M8 23h8"></path>
+                            </svg>
+                        </div>
                         <div onclick="sendQueryToBot()" class="p-2.5 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-xl hover:opacity-90 transition-all font-bold text-xs flex items-center justify-center shadow-md cursor-pointer">➔</div>
                     </div>
                 </div>
@@ -491,18 +439,20 @@
             }
         }
 
-        // 🗣️ DYNAMIC REALISTIC CONVERSATIONAL HUMAN VOICE MODULATION LAYER
         function testActiveVoiceOutputSound() {
             const selectedVoice = document.getElementById('set-voice').value;
             const userSpeed = parseFloat(document.getElementById('set-voice-speed').value || '0.95');
             if ('speechSynthesis' in window) {
                 window.speechSynthesis.cancel();
+                
+                // 🗣️ ENHANCED SPEECH INTELLECT NODES TO BLOCK HUMMING ROBOTS
                 const utterance = new SpeechSynthesisUtterance("Hi, I am RankBot AI. Your customized premium conversational logic sequences are completely live now.");
                 utterance.rate = userSpeed;
                 
                 const systemVoices = window.speechSynthesis.getVoices();
                 if(systemVoices.length > 0) {
-                    const targetVoice = systemVoices.find(v => v.lang.includes('en') && (v.name.includes('Natural') || v.name.includes('Google'))) || systemVoices[0];
+                    // Pull highest quality high definition speech notes natively out of active hardware engines
+                    const targetVoice = systemVoices.find(v => v.lang.includes('en') && (v.name.includes('Natural') || v.name.includes('Google') || v.name.includes('Microsoft'))) || systemVoices[0];
                     utterance.voice = targetVoice;
                 }
                 if (selectedVoice.includes("jarvis") || selectedVoice.includes("titan")) utterance.pitch = 0.95;
@@ -511,22 +461,15 @@
             }
         }
 
-        // 📁 FIXED PER VISION: 100% CLEAN EMPTY DATA STARTER LOGIC FRAMEWORKS
         function loadChatFolderVault() {
             const stored = localStorage.getItem('rb_folders');
-            if(stored) {
-                CHAT_FOLDERS_MAP = JSON.parse(stored);
-            } else {
-                // FIXED PER REQUEST: Completely wiped and empty default lists at launch state
+            if(stored) CHAT_FOLDERS_MAP = JSON.parse(stored);
+            else {
                 CHAT_FOLDERS_MAP = {};
                 localStorage.setItem('rb_folders', JSON.stringify(CHAT_FOLDERS_MAP));
             }
-            
             ACTIVE_FOLDER_ID = localStorage.getItem('rb_active_folder_id') || null;
-            if (ACTIVE_FOLDER_ID && !CHAT_FOLDERS_MAP[ACTIVE_FOLDER_ID]) {
-                ACTIVE_FOLDER_ID = null;
-            }
-            
+            if (ACTIVE_FOLDER_ID && !CHAT_FOLDERS_MAP[ACTIVE_FOLDER_ID]) ACTIVE_FOLDER_ID = null;
             renderFolderSidebarView();
             renderActiveStreamMessages();
         }
@@ -553,13 +496,11 @@
             closeMasterHubModal();
         }
 
-        // ✏️ TRIGGER DIRECT RE-MANIPULATION PROTOCOLS FOR TITLE LABELS
         function renameFolderNodeElement(id, event) {
             if(event) event.stopPropagation();
             const currentTitle = CHAT_FOLDERS_MAP[id].title.replace("📁 ", "");
             const newTitle = prompt("✏️ Edit Topic Title Name:", currentTitle);
             if(!newTitle || newTitle.trim() === "") return;
-            
             CHAT_FOLDERS_MAP[id].title = `📁 ${newTitle.trim()}`;
             localStorage.setItem('rb_folders', JSON.stringify(CHAT_FOLDERS_MAP));
             loadChatFolderVault();
@@ -567,7 +508,7 @@
 
         function deleteFolderNodeElement(id, event) {
             if(event) event.stopPropagation();
-            if(confirm("🗑️ Permanent deletion checkpoint.\nAre you sure you want to completely destroy this active folder history?")) {
+            if(confirm("🗑️ Permanent deletion checkpoint.\nAre you sure?")) {
                 delete CHAT_FOLDERS_MAP[id];
                 localStorage.setItem('rb_folders', JSON.stringify(CHAT_FOLDERS_MAP));
                 if(ACTIVE_FOLDER_ID === id) {
@@ -578,66 +519,67 @@
             }
         }
 
-        // 📢 EXCLUSIVE COST-FREE NATIVE SYSTEM SHARE TRIGGER MECHANISMS
         function shareFolderNodeElement(id, event) {
             if(event) event.stopPropagation();
             const appShareUrl = window.location.href;
             const topicTitle = CHAT_FOLDERS_MAP[id].title.replace("📁 ", "");
-            const nativeText = `Hey! Check out my active study topic folder [${topicTitle}] inside RankBot AI Mentor Workspace:\n👉 ${appShareUrl}`;
-            
+            const nativeText = `Hey! Check out my study notes folder [${topicTitle}] inside RankBot AI:\n👉 ${appShareUrl}`;
             if(navigator.share) {
-                navigator.share({ title: 'RankBot AI Study Folder', text: nativeText, url: appShareUrl })
-                    .catch(() => { copyShareFallbackText(nativeText); });
-            } else {
-                copyShareFallbackText(nativeText);
-            }
+                navigator.share({ title: 'RankBot AI History', text: nativeText, url: appShareUrl }).catch(() => copyShareFallbackText(nativeText));
+            } else { copyShareFallbackText(nativeText); }
         }
 
         function copyShareFallbackText(text) {
             navigator.clipboard.writeText(text);
-            alert("📢 SHARE META COPIED SAFELY!\nLink context successfully bound onto device clipboard with zero server transactional fees.");
+            alert("📢 SHARE LINK COPIED!");
         }
 
         function renderFolderSidebarView() {
             const list = document.getElementById('folder-stream-list');
             if(!list) return; list.innerHTML = "";
-            
             if(Object.keys(CHAT_FOLDERS_MAP).length === 0) {
-                list.innerHTML = `<p class="text-[11px] text-gray-600 px-1 py-4 text-center italic">No active chat directories found.<br>Type a question to begin setup logs automatically.</p>`;
+                list.innerHTML = `<p class="text-[11px] text-gray-600 px-1 py-4 text-center italic">No active chat folders log.<br>Ask a doubt below to generate folder rows.</p>`;
                 return;
             }
-            
             Object.keys(CHAT_FOLDERS_MAP).forEach(id => {
                 const folder = CHAT_FOLDERS_MAP[id];
                 const isActive = (id === ACTIVE_FOLDER_ID);
-                
                 const item = document.createElement('div');
-                item.className = `w-full text-left p-2.5 rounded-xl text-xs flex flex-col gap-2 cursor-pointer transition-all border ${isActive ? 'bg-purple-600/10 border-purple-500/40 text-purple-300' : 'hover:bg-zinc-900/40 border-transparent text-gray-400 hover:text-white'}`;
+                item.className = `w-full text-left p-2.5 rounded-xl text-xs flex flex-col gap-2 cursor-pointer transition-all border ${isActive ? 'bg-purple-600/10 border-purple-500/40 text-purple-300 font-bold' : 'hover:bg-zinc-900/40 border-transparent text-gray-400 hover:text-white'}`;
                 item.setAttribute('onclick', `switchActiveFolderNode('${id}')`);
-                
                 item.innerHTML = `
-                    <div class="w-full truncate font-medium select-none pr-1">${folder.title}</div>
+                    <div class="w-full truncate pr-1">${folder.title}</div>
                     <div class="flex items-center gap-3 border-t border-gray-900/40 pt-1.5 mt-0.5 text-[10px] text-gray-500">
-                        <span onclick="renameFolderNodeElement('${id}', event)" class="hover:text-purple-400 transition-colors">✏️ Rename</span>
-                        <span onclick="shareFolderNodeElement('${id}', event)" class="hover:text-blue-400 transition-colors">📢 Share</span>
-                        <span onclick="deleteFolderNodeElement('${id}', event)" class="hover:text-red-400 transition-colors ml-auto">🗑️ Delete</span>
+                        <span onclick="renameFolderNodeElement('${id}', event)" class="hover:text-purple-400">✏️ Rename</span>
+                        <span onclick="shareFolderNodeElement('${id}', event)" class="hover:text-blue-400">📢 Share</span>
+                        <span onclick="deleteFolderNodeElement('${id}', event)" class="hover:text-red-400 ml-auto">🗑️ Delete</span>
                     </div>`;
                 list.appendChild(item);
             });
         }
 
+        // 🌟 4. FIXED: CUSTOM DYNAMIC PLAN-COLOR THEMED WELCOME RENDERING SCHEME
         function renderActiveStreamMessages() {
             const streamContainer = document.getElementById('chat-workspace-container');
             if(!streamContainer) return;
             
             if(!ACTIVE_FOLDER_ID || !CHAT_FOLDERS_MAP[ACTIVE_FOLDER_ID]) {
                 document.getElementById('active-folder-label').innerText = "";
+                
+                // Read metadata parameters to resolve correct text theme configurations
+                const userRawName = localStorage.getItem('rb_name') || "Student";
+                let textStyleClass = "text-blue-400"; // Free Trial Default
+                
+                if(CURRENT_TIER === "Lite Plan") textStyleClass = "text-pink-400";
+                else if(CURRENT_TIER === "Plus Plan") textStyleClass = "text-purple-400";
+                else if(CURRENT_TIER === "Pro Plan") textStyleClass = "pro-text-flow font-bold bg-gradient-to-r from-blue-400 via-pink-400 to-purple-400 bg-clip-text text-transparent";
+                
+                // FIXED PER REQUEST: Slid up beautiful central layout completely clean of generic tags
                 streamContainer.innerHTML = `
-                    <div class="flex items-start gap-4 max-w-3xl">
-                        <div class="w-9 h-9 rounded-xl bg-purple-600/20 border border-purple-500/30 flex items-center justify-center text-lg flex-shrink-0">🤖</div>
-                        <div class="space-y-1">
-                            <p class="text-xs font-bold text-purple-400 uppercase tracking-widest">RankBot AI</p>
-                            <p id="welcome-message-text" class="text-gray-200 text-sm leading-relaxed bg-[#0f0f14]/80 p-4 rounded-2xl border border-gray-900">Hello brother! I am your customized **RankBot AI** Mentor. Ready to log your studies? Type your first doubt below to instantly spin up a dedicated auto-renamed folder vault array.</p>
+                    <div class="w-full flex items-center justify-center min-h-[40vh] text-center px-4">
+                        <div class="space-y-2 max-w-xl">
+                            <h2 class="heading-font text-3xl font-bold tracking-tight ${textStyleClass}">Hi ${userRawName},</h2>
+                            <p class="text-gray-400 text-sm font-semibold">Start your conversation with RankBot AI</p>
                         </div>
                     </div>`;
                 return;
@@ -658,25 +600,36 @@
             applyFontStyles();
         }
 
-        // 📝 ADVANCED NOTES VAULT SAVED ENTRIES ARCHITECTURE LIST ENGINE
+        // 📁 SIDE SLIDER DRIVING RIGS INTERFACES
+        function openMasterHubModal() { document.getElementById('master-hub-sidebar').classList.remove('-translate-x-full'); }
+        function closeMasterHubModal() { document.getElementById('master-hub-sidebar').classList.add('-translate-x-full'); }
+        
+        // 👤 FIXED: RIGHT DRAWER TOGGLE METHOD ACCELERATOR
+        function toggleProfileMenuSidebar(event) {
+            if(event) event.stopPropagation();
+            const sidebar = document.getElementById('profile-menu-sidebar');
+            sidebar.classList.toggle('translate-x-full');
+        }
+
+        function closeProfileMenuSidebar() {
+            const sidebar = document.getElementById('profile-menu-sidebar');
+            if(sidebar) sidebar.classList.add('translate-x-full');
+        }
+
+        // Auto Close Sidebar Panels upon Clicking Anywhere onto Core Screen Layers
+        function autoCloseDrawersOnMainClick(event) {
+            closeMasterHubModal();
+            closeProfileMenuSidebar();
+        }
+
         function loadNotesCanvasVaultFiles() {
-            const fileContainer = document.getElementById('saved-canvas-files-stream');
-            if(!fileContainer) return; fileContainer.innerHTML = "";
-            
-            const vaultData = localStorage.getItem('rb_canvas_vault');
-            let notesArray = vaultData ? JSON.parse(vaultData) : [];
-            
-            if(notesArray.length === 0) {
-                fileContainer.innerHTML = `<p class="text-[10px] text-gray-600 italic px-1 text-center py-4">No saved layout cells detected.</p>`;
-                return;
-            }
-            
+            const fileContainer = document.getElementById('saved-canvas-files-stream'); if(!fileContainer) return; fileContainer.innerHTML = "";
+            const vaultData = localStorage.getItem('rb_canvas_vault'); let notesArray = vaultData ? JSON.parse(vaultData) : [];
+            if(notesArray.length === 0) { fileContainer.innerHTML = `<p class="text-[10px] text-gray-600 italic px-1 text-center py-4">No note files found.</p>`; return; }
             notesArray.forEach((note, index) => {
                 const item = document.createElement('div');
                 item.className = "w-full bg-[#0d0d12] border border-gray-900 rounded-xl p-2 flex items-center justify-between group hover:border-purple-500/30 transition-all";
-                item.innerHTML = `
-                    <span onclick="restoreSavedCanvasFile('${note.data}')" class="truncate font-medium cursor-pointer text-gray-300 hover:text-purple-300 flex-1 pr-1">${note.name}</span>
-                    <span onclick="deleteSavedCanvasFile(${index})" class="text-[10px] text-gray-600 hover:text-red-400 font-bold px-1 cursor-pointer opacity-0 group-hover:opacity-100 transition-opacity">✕</span>`;
+                item.innerHTML = `<span onclick="restoreSavedCanvasFile('${note.data}')" class="truncate font-medium cursor-pointer text-gray-300 hover:text-purple-300 flex-1 pr-1">${note.name}</span><span onclick="deleteSavedCanvasFile(${index})" class="text-[10px] text-gray-600 hover:text-red-400 font-bold px-1 cursor-pointer opacity-0 group-hover:opacity-100 transition-opacity">✕</span>`;
                 fileContainer.appendChild(item);
             });
         }
@@ -684,33 +637,22 @@
         function saveDrawingCanvasMatrix() {
             const noteName = prompt("💾 Name your note file entry:", "Lecture Note " + (new Date().toLocaleDateString()));
             if(!noteName || noteName.trim() === "") return;
-            
-            const dataUrl = canvas.toDataURL();
-            const vaultData = localStorage.getItem('rb_canvas_vault');
-            let notesArray = vaultData ? JSON.parse(vaultData) : [];
-            
-            notesArray.push({ name: noteName.trim(), data: dataUrl });
-            localStorage.setItem('rb_canvas_vault', JSON.stringify(notesArray));
-            alert("💾 Note saved successfully!");
-            loadNotesCanvasVaultFiles();
+            const dataUrl = canvas.toDataURL(); const vaultData = localStorage.getItem('rb_canvas_vault'); let notesArray = vaultData ? JSON.parse(vaultData) : [];
+            notesArray.push({ name: noteName.trim(), data: dataUrl }); localStorage.setItem('rb_canvas_vault', JSON.stringify(notesArray));
+            alert("💾 Note saved successfully!"); loadNotesCanvasVaultFiles();
         }
 
         function restoreSavedCanvasFile(dataUrl) {
             if(confirm("🎨 Open note file cell onto canvas drawing layers?")) {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
-                const img = new Image();
-                img.onload = function() { ctx.drawImage(img, 0, 0); };
-                img.src = dataUrl;
+                const img = new Image(); img.onload = function() { ctx.drawImage(img, 0, 0); }; img.src = dataUrl;
             }
         }
 
         function deleteSavedCanvasFile(index) {
             if(confirm("🗑️ Remove note asset entry cell from disk permanently?")) {
-                const vaultData = localStorage.getItem('rb_canvas_vault');
-                let notesArray = JSON.parse(vaultData);
-                notesArray.splice(index, 1);
-                localStorage.setItem('rb_canvas_vault', JSON.stringify(notesArray));
-                loadNotesCanvasVaultFiles();
+                const vaultData = localStorage.getItem('rb_canvas_vault'); let notesArray = JSON.parse(vaultData);
+                notesArray.splice(index, 1); localStorage.setItem('rb_canvas_vault', JSON.stringify(notesArray)); loadNotesCanvasVaultFiles();
             }
         }
 
@@ -724,16 +666,11 @@
         }
 
         function toggleNotesCanvasWorkspace() {
-            isNotesCanvasModeActive = !isNotesCanvasModeActive;
-            const btn = document.getElementById('notes-tab-btn');
-            if(isNotesCanvasModeActive) {
-                openNotesCanvasWorkspace();
-                btn.className = "bg-purple-600 text-white border border-purple-500 text-[11px] px-3.5 py-1.5 rounded-xl font-bold cursor-pointer transition-all select-none";
-            } else {
-                document.getElementById('notes-workspace-container').classList.remove('flex');
-                document.getElementById('notes-workspace-container').classList.add('hidden');
-                document.getElementById('chat-workspace-container').classList.remove('hidden');
-                document.getElementById('bottom-input-bar-wrap').classList.remove('hidden');
+            isNotesCanvasModeActive = !isNotesCanvasModeActive; const btn = document.getElementById('notes-tab-btn');
+            if(isNotesCanvasModeActive) { openNotesCanvasWorkspace(); }
+            else {
+                document.getElementById('notes-workspace-container').classList.remove('flex'); document.getElementById('notes-workspace-container').classList.add('hidden');
+                document.getElementById('chat-workspace-container').classList.remove('hidden'); document.getElementById('bottom-input-bar-wrap').classList.remove('hidden');
                 btn.className = "bg-zinc-800/80 hover:bg-purple-900/40 text-gray-300 border border-gray-800 text-[11px] px-3.5 py-1.5 rounded-xl font-bold cursor-pointer transition-all select-none";
                 renderActiveStreamMessages();
             }
@@ -741,48 +678,61 @@
 
         function setupCanvasDimensionsEngine() {
             canvas = document.getElementById('digital-notes-canvas'); if(!canvas) return; ctx = canvas.getContext('2d');
-            const rect = canvas.parentElement.getBoundingClientRect();
-            canvas.width = rect.width; canvas.height = rect.height;
-            ctx.lineJoin = 'round'; ctx.lineCap = 'round';
-            loadNotesCanvasVaultFiles();
-            
-            canvas.addEventListener('mousedown', startDrawingAction);
-            canvas.addEventListener('mousemove', executeDrawingStroke);
-            canvas.addEventListener('mouseup', () => isDrawing = false);
-            canvas.addEventListener('mouseout', () => isDrawing = false);
+            const rect = canvas.parentElement.getBoundingClientRect(); canvas.width = rect.width; canvas.height = rect.height;
+            ctx.lineJoin = 'round'; ctx.lineCap = 'round'; loadNotesCanvasVaultFiles();
+            canvas.addEventListener('mousedown', startDrawingAction); canvas.addEventListener('mousemove', executeDrawingStroke);
+            canvas.addEventListener('mouseup', () => isDrawing = false); canvas.addEventListener('mouseout', () => isDrawing = false);
             canvas.addEventListener('touchstart', (e) => startDrawingAction(e.touches[0]));
             canvas.addEventListener('touchmove', (e) => { executeDrawingStroke(e.touches[0]); e.preventDefault(); }, { passive: false });
             canvas.addEventListener('touchend', () => isDrawing = false);
         }
 
-        function startDrawingAction(e) {
-            isDrawing = true; const rect = canvas.getBoundingClientRect();
-            lastX = e.clientX - rect.left; lastY = e.clientY - rect.top;
-        }
-
+        function startDrawingAction(e) { isDrawing = true; const rect = canvas.getBoundingClientRect(); lastX = e.clientX - rect.left; lastY = e.clientY - rect.top; }
         function executeDrawingStroke(e) {
-            if(!isDrawing) return; const rect = canvas.getBoundingClientRect();
-            const currX = e.clientX - rect.left; const currY = e.clientY - rect.top;
+            if(!isDrawing) return; const rect = canvas.getBoundingClientRect(); const currX = e.clientX - rect.left; const currY = e.clientY - rect.top;
             ctx.beginPath(); ctx.moveTo(lastX, lastY); ctx.lineTo(currX, currY);
-            ctx.strokeStyle = document.getElementById('canvas-brush-color').value;
-            ctx.lineWidth = document.getElementById('canvas-brush-size').value;
+            ctx.strokeStyle = document.getElementById('canvas-brush-color').value; ctx.lineWidth = document.getElementById('canvas-brush-size').value;
             ctx.stroke(); lastX = currX; lastY = currY;
         }
+        function clearDrawingCanvasBoard() { if(confirm("🧹 Clear note surface layers?")) ctx.clearRect(0, 0, canvas.width, canvas.height); }
 
-        function clearDrawingCanvasBoard() {
-            if(confirm("🧹 Clear entire drawing surface layers?")) { ctx.clearRect(0, 0, canvas.width, canvas.height); }
+        function enterWorkspaceDirectly(email, tier) {
+            IS_AUTHENTICATED = true; CURRENT_TIER = tier || "Free Trial";
+            const gate = document.getElementById('auth-gate'); if(gate) gate.style.setProperty('display', 'none', 'important');
+            let defaultName = email.split('@')[0]; let activeName = localStorage.getItem('rb_name') || defaultName;
+            document.getElementById('profile-letter').innerText = activeName.charAt(0).toUpperCase();
+            document.getElementById('drawer-pfp-letter').innerText = activeName.charAt(0).toUpperCase();
+            document.getElementById('menu-user-name').innerText = `Hi, ${activeName}`;
+            applyTierStylesAndRings(CURRENT_TIER); document.getElementById('prof-email-display').value = email;
+            loadChatFolderVault();
         }
 
-        // 🧠 AUTO-RENAME PROCESSOR ARRAYS FLOW
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedAuth = localStorage.getItem('rb_auth'); const savedEmail = localStorage.getItem('rb_email'); const savedTier = localStorage.getItem('rb_tier');
+            if (savedAuth === 'true' && savedEmail) {
+                enterWorkspaceDirectly(savedEmail, savedTier);
+                document.getElementById('prof-name').value = localStorage.getItem('rb_name') || "";
+                document.getElementById('prof-phone').value = localStorage.getItem('rb_phone') || "";
+                document.getElementById('prof-loc').value = localStorage.getItem('rb_loc') || "";
+                document.getElementById('prof-school').value = localStorage.getItem('rb_school') || "";
+                document.getElementById('prof-class').value = localStorage.getItem('rb_class') || "9th Standard";
+                document.getElementById('prof-country-code').value = localStorage.getItem('rb_country_code') || "+91";
+                if(localStorage.getItem('rb_set_gender')) { document.getElementById('set-voice-gender').value = localStorage.getItem('rb_set_gender'); syncAcousticVoiceList(); document.getElementById('set-voice').value = localStorage.getItem('rb_set_voice'); }
+                if(localStorage.getItem('rb_set_speed')) document.getElementById('set-voice-speed').value = localStorage.getItem('rb_set_speed');
+                if(localStorage.getItem('rb_set_lang')) document.getElementById('set-ai-lang').value = localStorage.getItem('rb_set_lang');
+                if(localStorage.getItem('rb_font_sz')) { document.getElementById('set-font-size').value = localStorage.getItem('rb_font_sz'); document.getElementById('set-font-fam').value = localStorage.getItem('rb_font_fam'); }
+                if(localStorage.getItem('rb_theme') === 'light') toggleThemeState('light');
+            }
+        });
+
+        // 🧠 AUTO-RENAME CORE ARCHITECTURE FEED ENGINE
         async function sendQueryToBot() {
             if(!IS_AUTHENTICATED) return;
             let currentFreeChats = parseInt(localStorage.getItem('rb_free_chats') || '0');
             if (CURRENT_TIER === "Free Trial" && currentFreeChats >= MAX_FREE_CHATS) { alert("🛑 FREE TRIAL LIMIT EXCEEDED!"); return; }
-            
             const queryInput = document.getElementById('student-query'); const streamContainer = document.getElementById('chat-workspace-container');
             let messageText = queryInput.value.trim(); if(!messageText) return;
 
-            // 🌟 GEMINI LOGIC INSTANT SPINNER ARRAY: Folds dynamically up from zero statements on first typing execution
             if (!ACTIVE_FOLDER_ID) {
                 const wordsArray = messageText.split(" ");
                 const cleanAutoTitle = wordsArray.slice(0, 3).join(" ") + "...";
@@ -815,71 +765,17 @@
             } catch (error) { document.getElementById(`${botMessageId}-text`).innerText = "Sync Error. Please retry."; }
         }
 
-        function openMasterHubModal() { const sidebar = document.getElementById('master-hub-sidebar'); if(sidebar) sidebar.classList.remove('-translate-x-full'); }
-        function closeMasterHubModal() { const sidebar = document.getElementById('master-hub-sidebar'); if(sidebar) sidebar.classList.add('-translate-x-full'); }
-        function enterWorkspaceDirectly(email, tier) {
-            IS_AUTHENTICATED = true; CURRENT_TIER = tier || "Free Trial";
-            const gate = document.getElementById('auth-gate'); if(gate) gate.style.setProperty('display', 'none', 'important');
-            let defaultName = email.split('@')[0]; let activeName = localStorage.getItem('rb_name') || defaultName;
-            document.getElementById('profile-letter').innerText = activeName.charAt(0).toUpperCase();
-            document.getElementById('menu-user-name').innerText = `Hi, ${activeName}`;
-            applyTierStylesAndRings(CURRENT_TIER); document.getElementById('prof-email-display').value = email;
-            loadChatFolderVault();
-        }
-
-        window.addEventListener('DOMContentLoaded', () => {
-            const savedAuth = localStorage.getItem('rb_auth'); const savedEmail = localStorage.getItem('rb_email'); const savedTier = localStorage.getItem('rb_tier');
-            if (savedAuth === 'true' && savedEmail) {
-                enterWorkspaceDirectly(savedEmail, savedTier);
-                document.getElementById('prof-name').value = localStorage.getItem('rb_name') || "";
-                document.getElementById('prof-phone').value = localStorage.getItem('rb_phone') || "";
-                document.getElementById('prof-loc').value = localStorage.getItem('rb_loc') || "";
-                document.getElementById('prof-school').value = localStorage.getItem('rb_school') || "";
-                document.getElementById('prof-class').value = localStorage.getItem('rb_class') || "9th Standard";
-                document.getElementById('prof-country-code').value = localStorage.getItem('rb_country_code') || "+91";
-                if(localStorage.getItem('rb_set_gender')) { document.getElementById('set-voice-gender').value = localStorage.getItem('rb_set_gender'); syncAcousticVoiceList(); document.getElementById('set-voice').value = localStorage.getItem('rb_set_voice'); }
-                if(localStorage.getItem('rb_set_speed')) document.getElementById('set-voice-speed').value = localStorage.getItem('rb_set_speed');
-                if(localStorage.getItem('rb_set_lang')) document.getElementById('set-ai-lang').value = localStorage.getItem('rb_set_lang');
-                if(localStorage.getItem('rb_font_sz')) { document.getElementById('set-font-size').value = localStorage.getItem('rb_font_sz'); document.getElementById('set-font-fam').value = localStorage.getItem('rb_font_fam'); }
-                if(localStorage.getItem('rb_theme') === 'light') toggleThemeState('light');
-            }
-        });
-
-        function applyTierStylesAndRings(tier) {
-            const badge = document.getElementById('menu-user-tier'); const ring = document.getElementById('pfp-ring-wrapper'); const notice = document.getElementById('bottom-ad-notice');
-            badge.className = "text-[10px] px-2 py-0.5 rounded-full font-bold inline-block mt-1 "; ring.className = "w-11 h-11 rounded-full p-[2px] cursor-pointer active:scale-95 transition-all shadow-lg border border-transparent";
-            if (tier === "Free Trial") { badge.innerText = "Free Trial Active"; badge.classList.add('bg-blue-500/20', 'text-blue-400'); ring.classList.add('border-blue-500'); notice.innerText = `⚠️ Free Trial Active: ${MAX_FREE_CHATS - count} messages remaining.`; notice.style.color = "#60a5fa"; }
-            else if (tier === "Lite Plan") { badge.innerText = "Lite Plan Active"; badge.classList.add('bg-pink-500/20', 'text-pink-400'); ring.classList.add('border-pink-500'); notice.innerText = "✨ VIP SECURE CONNECTION: Lite Plan Active."; notice.style.color = "#f472b6"; }
-            else if (tier === "Plus Plan") { badge.innerText = "Plus Plan Active"; badge.classList.add('bg-purple-500/20', 'text-purple-400'); ring.classList.add('border-purple-500'); notice.innerText = "✨ VIP SECURE CONNECTION: Plus Plan Active."; notice.style.color = "#c084fc"; }
-            else if (tier === "Pro Plan") { badge.innerText = "Pro Plan Active"; badge.classList.add('bg-gradient-to-r', 'from-blue-500', 'via-pink-500', 'to-purple-500', 'text-white'); ring.classList.add('pro-mesh-active'); notice.innerText = "✨ VIP SECURE OMNISCIENT CORE CONNECTION: Pro Plan Active."; notice.style.color = "#34d399"; notice.classList.remove('animate-pulse'); }
-        }
-
-        function verifyEmailFormat() {
-            const emailInput = document.getElementById('auth-email-input'); if(!emailInput) return; const email = emailInput.value.trim();
-            if (email && email.includes("@") && email.includes(".")) {
-                const encOwner = ["ayushkumar", "in2011", "gmail.com"].join(".");
-                if(email.toLowerCase() === encOwner.replace(".gmail", "@gmail")) {
-                    CURRENT_TIER = "Pro Plan"; localStorage.setItem('rb_auth', 'true'); localStorage.setItem('rb_email', email); localStorage.setItem('rb_tier', CURRENT_TIER);
-                    localStorage.setItem('rb_name', 'Ayush Kumar'); localStorage.setItem('rb_school', 'RankBot Headquarters'); localStorage.setItem('rb_class', '11th Standard'); localStorage.setItem('rb_loc', 'Delhi, India'); localStorage.setItem('rb_country_code', '+91'); enterWorkspaceDirectly(email, CURRENT_TIER);
-                } else { localStorage.setItem('rb_email', email); document.getElementById('auth-gate').classList.add('opacity-0', 'pointer-events-none'); document.getElementById('plans-screen').classList.remove('hidden'); }
-            } else { alert("❌ INVALID EMAIL MATRIX FORMAT."); }
-        }
-
-        function selectTier(tierName) { CURRENT_TIER = tierName; localStorage.setItem('rb_tier', tierName); localStorage.setItem('rb_auth', 'true'); if (tierName === 'Free Trial') localStorage.setItem('rb_free_chats', '0'); const email = localStorage.getItem('rb_email') || "student@example.com"; enterWorkspaceDirectly(email, CURRENT_TIER); closePlans(); }
-        function saveProfileData() { localStorage.setItem('rb_name', document.getElementById('prof-name').value.trim()); localStorage.setItem('rb_phone', document.getElementById('prof-phone').value.trim()); localStorage.setItem('rb_loc', document.getElementById('prof-loc').value.trim()); localStorage.setItem('rb_school', document.getElementById('prof-school').value.trim()); localStorage.setItem('rb_class', document.getElementById('prof-class').value); localStorage.setItem('rb_country_code', document.getElementById('prof-country-code').value); alert("🚀 STUDENT PROFILE META UPDATED!"); closeProfileModal(); let activeName = localStorage.getItem('rb_name') || localStorage.getItem('rb_email').split('@')[0]; document.getElementById('profile-letter').innerText = activeName.charAt(0).toUpperCase(); document.getElementById('menu-user-name').innerText = `Hi, ${activeName}`; }
+        function openProfileModal() { closeProfileMenuSidebar(); document.getElementById('profile-modal').classList.remove('hidden'); }
+        function closeProfileModal() { document.getElementById('profile-modal').classList.add('hidden'); }
+        function openSettingsModal() { closeProfileMenuSidebar(); document.getElementById('settings-modal').classList.remove('hidden'); }
+        function closeSettingsModal() { document.getElementById('settings-modal').classList.add('hidden'); }
+        function openPlans() { closeProfileMenuSidebar(); document.getElementById('plans-screen').classList.remove('hidden'); }
+        function closePlans() { document.getElementById('plans-screen').classList.add('hidden'); }
         function toggleThemeState(mode) { const body = document.body; const darkBtn = document.getElementById('theme-dark-btn'); const lightBtn = document.getElementById('theme-light-btn'); if (mode === 'light') { body.classList.add('light-mode-active'); localStorage.setItem('rb_theme', 'light'); lightBtn.className = "py-2 rounded-xl font-bold border border-purple-600 bg-purple-600/20 text-purple-600 text-center cursor-pointer"; darkBtn.className = "py-2 rounded-xl font-bold border border-gray-300 bg-transparent text-gray-400 text-center cursor-pointer"; } else { body.classList.remove('light-mode-active'); localStorage.setItem('rb_theme', 'dark'); darkBtn.className = "py-2 rounded-xl font-bold border border-purple-600 bg-purple-600/20 text-white text-center cursor-pointer"; lightBtn.className = "py-2 rounded-xl font-bold border border-gray-800 bg-transparent text-gray-400 text-center cursor-pointer"; initGalaxy(); } }
         function applyFontStyles() { const sz = document.getElementById('set-font-size').value; const fam = document.getElementById('set-font-fam').value; const welcomeBlock = document.getElementById('welcome-message-text'); if(welcomeBlock) welcomeBlock.className = `text-gray-200 leading-relaxed bg-[#0f0f14]/80 p-4 rounded-2xl border border-gray-900 ${sz} ${fam}`; localStorage.setItem('rb_font_sz', sz); localStorage.setItem('rb_font_fam', fam); }
         function saveSettingsForm() { localStorage.setItem('rb_set_gender', document.getElementById('set-voice-gender').value); localStorage.setItem('rb_set_voice', document.getElementById('set-voice').value); localStorage.setItem('rb_set_speed', document.getElementById('set-voice-speed').value); localStorage.setItem('rb_set_lang', document.getElementById('set-ai-lang').value); localStorage.setItem('rb_font_sz', document.getElementById('set-font-size').value); localStorage.setItem('rb_font_fam', document.getElementById('set-font-fam').value); alert("⚙️ CONFIGURATION PARAMETERS REGISTERED."); closeSettingsModal(); renderActiveStreamMessages(); }
-        function toggleMobileSidebarPanel() { const panel = document.getElementById('master-hub-sidebar'); panel.classList.toggle('-translate-x-full'); }
-        function openProfileModal() { document.getElementById('profile-menu').classList.add('hidden'); document.getElementById('prof-email-display').value = localStorage.getItem('rb_email') || ""; document.getElementById('profile-modal').classList.remove('hidden'); }
-        function closeProfileModal() { document.getElementById('profile-modal').classList.add('hidden'); }
-        function openSettingsModal() { document.getElementById('profile-menu').classList.add('hidden'); document.getElementById('settings-modal').classList.remove('hidden'); }
-        function closeSettingsModal() { document.getElementById('settings-modal').classList.add('hidden'); }
-        function openPlans() { document.getElementById('profile-menu').classList.add('hidden'); document.getElementById('plans-screen').classList.remove('hidden'); }
-        function closePlans() { document.getElementById('plans-screen').classList.add('hidden'); }
-        function toggleProfileMenu() { document.getElementById('profile-menu').classList.toggle('hidden'); }
         function logoutSystem() { localStorage.clear(); location.reload(); }
-        function deleteAccountSystem() { if(confirm("Wipe all data cache vault permanently?")) { logoutSystem(); } }
+        function deleteAccountSystem() { if(confirm("Wipe all data cache vault permanently?")) logoutSystem(); }
         function validateAndUploadFile(i) { alert("Document registered safely under 100MB constraints."); }
         function triggerVoiceInput() { alert("Voice detection matrix activated."); }
     </script>
